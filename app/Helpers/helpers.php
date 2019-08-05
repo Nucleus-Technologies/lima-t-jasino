@@ -5,3 +5,9 @@ if (!function_exists('showTitle')) {
         return $title . ' | ' . config('app.name');
     }
 }
+
+if (!function_exists('showTitleAdmin')) {
+    function showTitleAdmin($title) {
+        return $title . ' | Admin | ' . config('app.name');
+    }
+}

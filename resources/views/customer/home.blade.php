@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Home'])
+@extends('customer.layouts.app', ['title' => 'Home'])
 
 @section('banner')
 

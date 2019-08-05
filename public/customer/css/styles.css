@@ -21,6 +21,11 @@ a:hover {
     border-bottom-color: var(--main-color);
 }
 
+.login_form .form-group input.is-invalid:focus {
+    border-bottom-color: #dc3545;
+    box-shadow: none;
+}
+
 .login_form .input-group-icon .icon {
     top: 7px;
     font-weight: bold;
