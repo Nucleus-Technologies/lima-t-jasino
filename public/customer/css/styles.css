@@ -9,13 +9,33 @@ a:hover {
     color: var(--main-color-dark);
 }
 
-.login_box_img .main_btn:hover {
-    color: #fff;
-    border-color: #fff;
+.nav.pull-right .dropdown-toggle::after {
+    display: none;
+}
+
+.custom-select.is-invalid,
+.form-control.is-invalid,
+.was-validated .custom-select:invalid,
+.was-validated .form-control:invalid {
+    border-color: #dc3545 !important;
+}
+
+.invalid-feedback {
+    background: #dc3545;
+    color: #fff
+}
+
+.active a {
+    color: var(--main-color) !important;
 }
 
 
 /* Login/Register */
+
+.login_box_img .main_btn:hover {
+    color: #fff;
+    border-color: #fff;
+}
 
 .login_form .form-group input:focus {
     border-bottom-color: var(--main-color);
@@ -35,7 +55,63 @@ a:hover {
     padding-left: 50px;
 }
 
+
+/* Home page */
+
+.white_bg_btn.inverse {
+    background: var(--main-color);
+    color: #eeeeee;
+    border: 1px solid var(--main-color);
+}
+
+.white_bg_btn.inverse:hover {
+    background: #f9f9ff;
+    color: #222222;
+    border-color: #f9f9ff;
+}
+
 footer .single-footer-widget input,
 .subscription input {
     border: 1px solid var(--main-color);
+}
+
+
+/* Appointments */
+
+.input-group-icon input {
+    transition: border 0.2s ease-in-out;
+}
+
+.input-group-icon input:focus {
+    border: 1px solid var(--main-color) !important;
+}
+
+.input-group-icon input,
+.form-select .nice-select {
+    background: #f9f9ff !important;
+    border: 1px solid #eee;
+    padding-left: 45px !important;
+}
+
+.form-select .nice-select.open {
+    border: 1px solid var(--main-color);
+    border-bottom: none;
+}
+
+.form-select .nice-select.open .list {
+    border: 1px solid var(--main-color);
+    border-top: none;
+}
+
+.form-select .nice-select .list .option {
+    font-size: 16px;
+}
+
+.form-select .nice-select .list .option:hover,
+.form-select .nice-select .list .option.selected {
+    color: var(--main-color);
+}
+
+.input-group-icon .icon {
+    left: 35px;
 }

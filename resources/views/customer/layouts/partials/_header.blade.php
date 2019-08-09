@@ -14,7 +14,7 @@
                     @else
                         <li><a href="#">{{ Auth::user()->full_name }}</a></li>
                         <li>
-                            <a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -46,7 +46,7 @@
                     <div class="row w-100">
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
-                                <li class="nav-item active">
+                                <li class="nav-item {{ set_active_route('home') }}">
                                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
@@ -54,18 +54,18 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a class="nav-link" href="category.html">Shop Category</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="single-product.html">Product Details</a>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="cart.html">Shopping Cart</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="confirmation.html">Confirmation</a>
-                                                    </li>
-                                                </li>
-                                            </li>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="single-product.html">Product Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="checkout.html">Product Checkout</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cart.html">Shopping Cart</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="confirmation.html">Confirmation</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -85,12 +85,12 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.html">Login</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="tracking.html">Tracking</a>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="elements.html">Elements</a>
-                                                </li>
-                                            </li>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="tracking.html">Tracking</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="elements.html">Elements</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -105,7 +105,45 @@
                                 <hr>
                                 <li class="nav-item">
                                     <a href="#" class="icons">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+
+                                <hr>
+
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="icons dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-user" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @guest
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                            </li>
+                                            @if (Route::has('register'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">{{ __('My account') }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        @endguest
+                                    </ul>
+                                </li>
+
+                                <hr>
+
+                                <li class="nav-item {{ set_active_route('appointment.create') }}">
+                                    <a href="{{ route('appointment.create') }}" class="icons">
+                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                                     </a>
                                 </li>
 
@@ -113,23 +151,7 @@
 
                                 <li class="nav-item">
                                     <a href="#" class="icons">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-
-                                <hr>
-
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-
-                                <hr>
-
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="lnr lnr lnr-cart"></i>
+                                        <i class="fas fa-shopping-cart"></i>
                                     </a>
                                 </li>
 

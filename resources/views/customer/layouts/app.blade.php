@@ -13,7 +13,7 @@
 
     <title>{{ showTitle($title) }}</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Utilities CSS -->
     <link rel="stylesheet" href="{{ asset('customer/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/vendors/linericon/style.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/css/font-awesome.min.css') }}">
@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{ asset('customer/vendors/nice-select/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/vendors/animate-css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/vendors/jquery-ui/jquery-ui.css') }}">
+
+    <!-- Fonts -->
+    <script src="https://kit.fontawesome.com/fa22834e6d.js"></script>
 
     <!-- main css -->
     <link rel="stylesheet" href="{{ asset('customer/css/app.css') }}">

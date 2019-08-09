@@ -30,7 +30,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                            <img alt="Image placeholder" src="{{ asset('admin/img/theme/avatar.svg') }}">
                         </span>
                     </div>
                 </a>
@@ -38,7 +38,7 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome!</h6>
                     </div>
-                    <a href="./examples/profile.html" class="dropdown-item">
+                    <a href="{{ route('admin.profile') }}" class="dropdown-item {{ set_active_route('admin.profile') }}">
                         <i class="ni ni-single-02"></i>
                         <span>My profile</span>
                     </a>
@@ -55,9 +55,13 @@
                         <span>Support</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
+                    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
                         <i class="ni ni-user-run"></i>
                         <span>Logout</span>
+
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </a>
                 </div>
             </li>
@@ -69,8 +73,8 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="./index.html">
-                            <img src="./assets/img/brand/blue.png">
+                        <a href="{{ route('admin.dashboard') }}">
+                            <img src="{{ asset('admin/img/theme/avatar.svg') }}">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -96,12 +100,12 @@
 
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <li class="nav-item  class=" active" ">
-                    <a class=" nav-link active " href=" ./index.html"> <i class="ni ni-tv-2 text-primary"></i> Dashboard </a>
+                <li class="nav-item">
+                    <a class=" nav-link {{ set_active_route('admin.dashboard') }}" href="{{ route('admin.dashboard') }}"> <i class="ni ni-tv-2 text-primary"></i> Dashboard </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/icons.html">
-                        <i class="ni ni-planet text-blue"></i> Icons
+                    <a class="nav-link {{ set_active_route('admin.outfit') }}" href="{{ route('admin.outfit') }}">
+                        <i class="fas fa-tshirt text-blue"></i> Outfits
                     </a>
                 </li>
                 <li class="nav-item">
@@ -150,8 +154,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-                        <i class="ni ni-ui-04"></i> Components
+                    <a class="nav-link text-uppercase btn-default text-white" href="{{ route('admin.outfit.create') }}">
+                        <i class="fas fa-plus-circle mr-1"></i> ADD NEW OUTFIT
                     </a>
                 </li>
             </ul>

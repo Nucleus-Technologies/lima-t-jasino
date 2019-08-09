@@ -39,12 +39,20 @@
         @yield('content')
     </div>
 
+    <output id="alert-response">
+        @include('flash::message')
+    </output>
+
     <!--   Core   -->
     <script src="{{ asset('admin/js/plugins/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
 
     <!--   Optional JS   -->
+    <script src="{{ asset('admin/js/helpers.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
+    <script src="{{ asset('admin/js/app.outfit.js') }}"></script>
 
     <!--   Argon JS   -->
     <script src="{{ asset('admin/js/argon-dashboard.min.js?v=1.1.0') }}"></script>

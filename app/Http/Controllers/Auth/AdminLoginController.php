@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AdminFormRequest;
 
 class AdminLoginController extends Controller
 {
@@ -28,14 +28,8 @@ class AdminLoginController extends Controller
         return view('auth.admin_login');
     }
 
-    public function login(Request $request)
+    public function login(AdminFormRequest $request)
     {
-        // Validate the form data
-        $this->validate($request, [
-            'username' => 'required|string',
-            'password' => 'required|string|min:8'
-        ]);
-
         // Attempt to log the user in
         $credentials = [
             'username' => $request->username,
@@ -48,7 +42,7 @@ class AdminLoginController extends Controller
         }
 
         // if unsuccessful, then redirect back to the login with the form data
-        return redirect()->back()->withInput($request->only('username', 'remember'));
+        return redirect()->back()->withInput($credentials);
     }
 
     public function logout()
