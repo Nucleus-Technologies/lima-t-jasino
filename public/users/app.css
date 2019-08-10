@@ -1,0 +1,22 @@
+/* ----------------Variables---------------- */
+
+:root {
+    --main-color: #a649b6;
+    --main-color-dark: #73337e;
+}
+
+
+/* Appointments Messages */
+
+.message {
+    border-left: 2px solid var(--main-color);
+    padding: 10px 20px;
+}
+
+.message .message-from small {
+    font-size: 60%;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}

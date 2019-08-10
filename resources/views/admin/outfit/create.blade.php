@@ -127,7 +127,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group @error('context') has-danger @enderror">
                                         <label class="form-control-label" for="input-context">Context</label><br>
-                                        <textarea name="context" class="form-control form-control-alternative @error('context') is-invalid @enderror" rows="3" placeholder="Write a large text here..." id="input-context" required></textarea>
+                                        <textarea name="context" class="form-control form-control-alternative @error('context') is-invalid @enderror" rows="3" placeholder="Write a large text here..." id="input-context" required>{{ old('context') }}</textarea>
 
                                         @error('context')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">
@@ -140,7 +140,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group @error('description') has-danger @enderror">
                                         <label class="form-control-label" for="input-description">Description</label><br>
-                                        <textarea name="description" class="form-control form-control-alternative @error('description') is-invalid @enderror" rows="8" placeholder="Write the largest text here..." id="input-description" required></textarea>
+                                        <textarea name="description" class="form-control form-control-alternative @error('description') is-invalid @enderror" rows="8" placeholder="Write the largest text here..." id="input-description" required>{{ old('description') }}</textarea>
 
                                         @error('description')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">
@@ -179,7 +179,7 @@
                                             Defines this outfit specification in this format: <strong>wording 1:value 1|wording 2:value 2|...</strong><br>
                                             For example: <strong>Width:128mm|Height:508mm|Depth:85mm</strong>
                                         </div>
-                                        <textarea name="specification" class="form-control form-control-alternative @error('specification') is-invalid @enderror" rows="9" placeholder="Write the largest text here..." id="input-specification" required></textarea>
+                                        <textarea name="specification" class="form-control form-control-alternative @error('specification') is-invalid @enderror" rows="9" placeholder="Write the largest text here..." id="input-specification" required>{{ old('specification') }}</textarea>
 
                                         @error('specification')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">

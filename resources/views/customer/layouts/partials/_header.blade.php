@@ -130,6 +130,9 @@
                                                 <a class="nav-link" href="#">{{ __('My account') }}</a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('appointment') }}">My appointments</a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     @csrf
@@ -144,6 +147,14 @@
                                 <li class="nav-item {{ set_active_route('appointment.create') }}">
                                     <a href="{{ route('appointment.create') }}" class="icons">
                                         <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+
+                                <hr>
+
+                                <li class="nav-item {{ set_active_route('appointment.create') }}">
+                                    <a href="{{ route('appointment.create') }}" class="icons">
+                                        <i class="fas fa-bell" aria-hidden="true"></i>
                                     </a>
                                 </li>
 

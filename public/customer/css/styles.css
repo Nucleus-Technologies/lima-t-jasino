@@ -29,6 +29,71 @@ a:hover {
     color: var(--main-color) !important;
 }
 
+.single-textarea {
+    height: 200px;
+}
+
+.alert-floatable {
+    position: fixed;
+    top: 40px;
+    right: 10px;
+    z-index: 9999;
+}
+
+.form-group label.error,
+label.error {
+    width: 98%;
+    margin: auto;
+    padding: 7px 15px;
+    display: block;
+    background-color: #f75676;
+    color: #fff;
+    border-color: #f75676;
+    border-radius: 0 0 4px 4px;
+}
+
+.main_btn.btn-sm {
+    padding: 0px 20px;
+    line-height: 32px;
+}
+
+.badge.badge-lg {
+    font-size: 100%;
+}
+
+.text-primary {
+    color: var(--main-color) !important;
+    font-weight: bold;
+}
+
+p.lead {
+    line-height: 2.2rem;
+}
+
+.badge-primary {
+    background: var(--main-color) !important;
+}
+
+.card {
+    box-shadow: 0 13px 6px -4px #ccc;
+}
+
+.card .card-icon {
+    width: 20%;
+}
+
+.card .card-content {
+    width: 80%;
+}
+
+.card .card-icon i {
+    font-size: 2rem;
+}
+
+.card .card-text .text-warning {
+    font-weight: bold;
+}
+
 
 /* Login/Register */
 
@@ -82,12 +147,14 @@ footer .single-footer-widget input,
     transition: border 0.2s ease-in-out;
 }
 
-.input-group-icon input:focus {
+form:not(.login_form) .form-group .single-textarea:focus,
+form:not(.login_form) .input-group-icon input:focus {
     border: 1px solid var(--main-color) !important;
 }
 
 .input-group-icon input,
-.form-select .nice-select {
+.form-select .nice-select,
+.form-group .single-textarea {
     background: #f9f9ff !important;
     border: 1px solid #eee;
     padding-left: 45px !important;
@@ -112,6 +179,6 @@ footer .single-footer-widget input,
     color: var(--main-color);
 }
 
-.input-group-icon .icon {
+form:not(.login_form) .input-group-icon .icon {
     left: 35px;
 }

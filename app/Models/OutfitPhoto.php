@@ -19,6 +19,6 @@ class OutfitPhoto extends Model
 
     public function outfit()
     {
-        return $this->belongsTo('App\Models\Outfit');
+        return $this->belongsTo('App\Models\Outfit', 'outfit');
     }
 }

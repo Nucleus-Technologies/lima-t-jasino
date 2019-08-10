@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits($men_total_this_month) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('men')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits($women_total_this_month) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('women')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits($children_total_this_month) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('children')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>

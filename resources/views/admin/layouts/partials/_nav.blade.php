@@ -109,8 +109,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/maps.html">
-                        <i class="ni ni-pin-3 text-orange"></i> Maps
+                    <a class="nav-link {{ set_active_route('admin.appointment') }}" href="{{ route('admin.appointment') }}">
+                        <i class="fas fa-calendar-alt text-orange"></i> Appointments
                     </a>
                 </li>
                 <li class="nav-item">

@@ -19,9 +19,22 @@ Route::get('/', 'PagesController@index')->name('home');
 Auth::routes();
 
 Route::prefix('users')->group(function() {
-    // Customer Outfits Routes
+    // Customer Appointments Routes
+    Route::get('/appointment', 'AppointmentController@index_u')->name('appointment')
+        ->middleware('auth');
     Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create')
-    ->middleware('auth');
+        ->middleware('auth');
+    Route::post('/appointment/store', 'AppointmentController@store')->name('appointment.store')
+        ->middleware('auth');
+    Route::get('/appointment/appointment-{appointment}', 'AppointmentController@show')->name('appointment.show')
+        ->middleware('auth');
+    // Customer Appointment Messages Routes
+    Route::post('/appointment/appointment-{appointment}/reply', 'AppointmentController@reply')->name('appointment.reply')
+        ->middleware('auth');
+
+    // Customer Notifications Routes
+    Route::post('/notification', 'NotificationController@index_u')->name('notification')
+        ->middleware('auth');
 
     // Log Out Route
     Route::post('/logout', 'Auth\LoginController@log_out')->name('user.logout');
@@ -42,6 +55,17 @@ Route::prefix('admin')->group(function() {
     Route::get('/outfit/create', 'OutfitController@create')->name('admin.outfit.create');
     Route::post('/outfit', 'OutfitController@store')->name('admin.outfit.store');
     Route::get('/outfit/{outfit}', 'OutfitController@show')->name('admin.outfit.show');
+
+    // Admin Appointments Routes
+    Route::get('/appointment', 'AppointmentController@index_a')->name('admin.appointment')
+        ->middleware('auth:admin');
+    Route::get('/appointment/appointment-{appointment}', 'AppointmentController@show')->name('admin.appointment.show')
+        ->middleware('auth:admin');
+    Route::post('/appointment/appointment-{appointment}/done', 'AppointmentController@done')->name('admin.appointment.done')
+        ->middleware('auth:admin');
+    // Admin Appointment Messages Routes
+    Route::post('/appointment/appointment-{appointment}/reply', 'AppointmentController@reply')->name('admin.appointment.reply')
+        ->middleware('auth:admin');
 
     // Admin Profile Routes
     Route::get('/profile', 'AdminController@edit')->name('admin.profile');

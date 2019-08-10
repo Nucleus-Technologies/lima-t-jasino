@@ -10,7 +10,7 @@
     border-top-left-radius: 0;
 }
 
-.form-group label.error, 
+.form-group label.error,
 label.error {
     width: 98%;
     margin: auto;
@@ -40,11 +40,16 @@ label.error {
     width: 400px;
 }
 
-.table-outfits {
+.table-outfits,
+.table-appointments {
     max-height: 600px;
 }
 
 .outfit-save-form .custom-control {
     display: inline-block;
     margin-left: 25px;
+}
+
+#carouselOutfitPhotos span[class*='carousel-control'] {
+    background-image: inherit !important;
 }

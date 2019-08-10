@@ -27,6 +27,7 @@
     <script src="https://kit.fontawesome.com/fa22834e6d.js"></script>
 
     <!-- main css -->
+    <link href="{{ asset('users/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('customer/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('customer/css/responsive.css') }}">
@@ -49,6 +50,8 @@
     {{-- Footer Area --}}
     @include('customer.layouts.partials._footer')
 
+    <output id="alert-response"></output>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('customer/js/jquery-3.2.1.min.js') }}"></script>
@@ -66,7 +69,13 @@
     <script src="{{ asset('customer/vendors/counter-up/jquery.counterup.js') }}"></script>
     <script src="{{ asset('customer/js/mail-script.js') }}"></script>
     <script src="{{ asset('customer/js/theme.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+
+    <script src="{{ asset('users/app.js') }}"></script>
     <script src="{{ asset('customer/js/app.js') }}"></script>
+    <script src="{{ asset('customer/js/app.appointment.js') }}"></script>
 </body>
 
 </html>

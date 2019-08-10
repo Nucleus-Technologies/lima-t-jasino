@@ -61,16 +61,16 @@
                     <p>Let us be social</p>
                     <div class="f_social">
                         <a href="https://www.facebook.com/Lima-T-Jasino-1533113203618905/" target="_blank">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fab fa-facebook"></i>
                         </a>
                         <a href="https://twitter.com/lima_t_jasino" target="_blank">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fab fa-twitter"></i>
                         </a>
                         <a href="https://www.instagram.com/lima_t_jasino/" target="_blank">
-                            <i class="fa fa-instagram"></i>
+                            <i class="fab fa-instagram"></i>
                         </a>
                         <a href="https://www.pinterest.fr/tjasino/" target="_blank">
-                            <i class="fa fa-pinterest"></i>
+                            <i class="fab fa-pinterest"></i>
                         </a>
                     </div>
                 </div>
@@ -78,9 +78,10 @@
         </div>
         <div class="row footer-bottom d-flex justify-content-between align-items-center">
             <p class="col-lg-12 footer-text text-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy; {{ Carbon\Carbon::now()->format('Y') }} All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://nucleus-technologies.com" target="_blank">Nucléus Technologies</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy; {{ Carbon\Carbon::now()->format('Y') }} |  All rights reserved <br>
+                Designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+                & Developed by <a href="https://nucleus-technologies.com" target="_blank">Nucléus Technologies</a>
+                with <i class="fas fa-heart" aria-hidden="true"></i>
             </p>
         </div>
     </div>

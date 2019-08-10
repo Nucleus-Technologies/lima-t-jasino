@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Type extends Model
+class AppointmentMessage extends Model
 {
     use Notifiable;
-
-    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +15,11 @@ class Type extends Model
      * @var array
      */
     protected $fillable = [
-        'wording',
+        'origin', 'from', 'to', 'appointment', 'answered_message'
     ];
 
-    public function outfits()
+    public function appointment()
     {
-        return $this->hasMany('App\Outfit');
+        return $this->belongsTo('App\Models\Appointment', 'appointment');
     }
 }

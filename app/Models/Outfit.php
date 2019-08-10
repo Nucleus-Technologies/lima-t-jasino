@@ -19,6 +19,12 @@ class Outfit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'price', 'category', 'type', 'availibility', 'context', 'description', 'specification', 'images'
+        'name', 'slug', 'price', 'category', 'type', 'availibility',
+        'context', 'description', 'specification', 'images'
     ];
+
+    public function type()
+    {
+        return $this->hasOne('App\Models\Type', 'type');
+    }
 }

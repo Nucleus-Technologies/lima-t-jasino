@@ -26,18 +26,12 @@ class OutfitController extends Controller
      */
     public function index()
     {
-        $outfits = Outfit::all();
         $men_outfits = Outfit::where('category', 'men')->get();
         $women_outfits = Outfit::where('category', 'women')->get();
         $children_outfits = Outfit::where('category', 'children')->get();
 
-        $men_total_this_month = totalThisMonth('men');
-        $women_total_this_month = totalThisMonth('women');
-        $children_total_this_month = totalThisMonth('children');
-
         return view('admin.outfit.index', compact(
-            'outfits', 'men_outfits', 'women_outfits', 'children_outfits',
-            'men_total_this_month', 'women_total_this_month', 'children_total_this_month')
+            'men_outfits', 'women_outfits', 'children_outfits')
         );
     }
 
@@ -54,7 +48,7 @@ class OutfitController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created outfit in storage.
      *
      * @param  \App\Http\Requests\OutfitFormRequest  $request
      * @return \Illuminate\Http\Response
@@ -106,7 +100,7 @@ class OutfitController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified outfit.
      *
      * @param  Outfit $outfit
      * @return \Illuminate\Http\Response
@@ -117,7 +111,7 @@ class OutfitController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified outfit.
      *
      * @param  Outfit $outfit
      * @return \Illuminate\Http\Response
@@ -128,7 +122,7 @@ class OutfitController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified outfit in storage.
      *
      * @param  \App\Http\Requests\OutfitFormRequest  $request
      * @param  Outfit $outfit
@@ -140,7 +134,7 @@ class OutfitController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified outfit from storage.
      *
      * @param  Outfit $outfit
      * @return \Illuminate\Http\Response

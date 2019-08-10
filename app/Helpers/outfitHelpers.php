@@ -47,8 +47,8 @@ if (!function_exists('getOutfitPhotos')) {
 }
 
 if (!function_exists('totalThisMonth')) {
-    function totalThisMonth($type) {
-        return Outfit::where('category', $type)
+    function totalThisMonth($category) {
+        return Outfit::where('category', $category)
             ->where('created_at', 'like', '%'.Carbon::now()->month.'%')
             ->count();
     }

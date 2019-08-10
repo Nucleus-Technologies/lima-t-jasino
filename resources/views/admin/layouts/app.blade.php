@@ -25,6 +25,7 @@
 
     <!-- CSS Files -->
     <link href="{{ asset('admin/css/argon-dashboard.css?v=1.1.0') }}" rel="stylesheet">
+    <link href="{{ asset('users/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
 </head>
 
@@ -50,9 +51,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
 
     <!--   Optional JS   -->
+    <script src="{{ asset('users/app.js') }}"></script>
     <script src="{{ asset('admin/js/helpers.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
-    <script src="{{ asset('admin/js/app.outfit.js') }}"></script>
+    <script src="{{ asset('admin/js/app.appointment.js') }}"></script>
 
     <!--   Argon JS   -->
     <script src="{{ asset('admin/js/argon-dashboard.min.js?v=1.1.0') }}"></script>

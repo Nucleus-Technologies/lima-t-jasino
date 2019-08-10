@@ -2,6 +2,15 @@ $(function() {
 
     alertDisappear();
 
+    // Dashboard Outfits search
+    filterOutfit('#men-outfit-search', '#men-list tr');
+    filterOutfit('#women-outfit-search', '#women-list tr');
+    filterOutfit('#children-outfit-search', '#children-list tr');
+
+    // Appointment search
+    filterOutfit('#done-search', '#done-list tr');
+    filterOutfit('#not-done-search', '#not-done-list tr');
+
     $('.admin-data-form').validate({
         rules: {
             username: {
