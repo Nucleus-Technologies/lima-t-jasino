@@ -11,7 +11,7 @@
 
     <link rel="icon" href="{{ asset('brand/favicon.png') }}" type="image/png">
 
-    <title>{{ showTitle($title) }}</title>
+    <title>{{ show_title($title) }}</title>
 
     <!-- Utilities CSS -->
     <link rel="stylesheet" href="{{ asset('customer/css/bootstrap.css') }}">
@@ -76,6 +76,10 @@
     <script src="{{ asset('users/app.js') }}"></script>
     <script src="{{ asset('customer/js/app.js') }}"></script>
     <script src="{{ asset('customer/js/app.appointment.js') }}"></script>
+
+    <script>
+        var notifUrl = "{{ URL::to('users/notification/refresh') }}";
+    </script>
 </body>
 
 </html>

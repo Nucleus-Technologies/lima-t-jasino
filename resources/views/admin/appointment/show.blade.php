@@ -11,7 +11,7 @@
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
         <div class="container-fluid">
             <div class="header-body">
-                <h1 class="display-2 text-white">{{ idToFullname($appointment->user)->full_name }}</h1>
+                <h1 class="display-2 text-white">{{ id_to_full_name($appointment->user)->full_name }}</h1>
                 <p class="text-white mt-0 mb-5">{!! $appointment->location !!}</p>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col mt-3 mt-sm-0">
                                 <span class="badge badge-pill badge-dark float-lg-right">
-                                    Added on {{ formatDate($appointment->created_at) }} at {{ formatTime($appointment->created_at) }}
+                                    Added on {{ format_date($appointment->created_at) }} at {{ format_time($appointment->created_at) }}
                                 </span>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-white-50 mb-0">Date of appointment</h5>
-                                                <span class="h2 font-weight-bold mb-0 text-white">{{ formatDate($appointment->takes_place_the) }}</span>
+                                                <span class="h2 font-weight-bold mb-0 text-white">{{ format_date($appointment->takes_place_the) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-white-50 mb-0">Starts at</h5>
-                                                <span class="h2 font-weight-bold mb-0 text-white">{{ formatTime($appointment->starts_at) }}</span>
+                                                <span class="h2 font-weight-bold mb-0 text-white">{{ format_time($appointment->starts_at) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-white-50 mb-0">Ends at</h5>
-                                                <span class="h2 font-weight-bold mb-0 text-white">{{ formatTime($appointment->ends_at) }}</span>
+                                                <span class="h2 font-weight-bold mb-0 text-white">{{ format_time($appointment->ends_at) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-white mb-0">Status</h5>
-                                                <span class="h2 font-weight-bold mb-0 text-white">{!! formatDone($appointment->done) !!}</span>
+                                                <span class="h2 font-weight-bold mb-0 text-white">{!! format_done($appointment->done) !!}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                             <div class="col-12 col-lg-8 mt-3">
                                 <h1>Specified Message</h1>
                                 <p class="lead text-justify">
-                                    {!! backToLine($appointment->specified_message) !!}
+                                    {!! back_to_line(format_message($appointment->specified_message, 100000000000)) !!}
                                 </p>
                             </div>
 
@@ -99,15 +99,15 @@
                                         <h1 class="mb-5">Conversation</h1>
 
                                         @foreach ($messages as $message)
-                                            <div class="message w-100 mt-4">
+                                            <div class="message w-100 mt-4" id="{{ _('msg') . $message->id }}">
                                                 <h1 class="message-from mb-3">
                                                     <span @if ($message->origin == 'admin') class="text-primary text-bold" @endif()>
-                                                        {{ idToAuthorMsg($message->from, $message->origin) }}
+                                                        {{ id_to_author_msg($message->from, $message->origin) }}
                                                     </span>,
-                                                    <small>{{ formatDate($message->created_at) }} at {{ formatTime($message->created_at) }}</small>
+                                                    <small>{{ format_date($message->created_at) }} at {{ format_time($message->created_at) }}</small>
                                                 </h1>
                                                 <p class="message-content lead mb-0">
-                                                    {!! backToLine($message->answered_message) !!}
+                                                    {!! back_to_line($message->answered_message) !!}
                                                 </p>
                                             </div>
                                         @endforeach

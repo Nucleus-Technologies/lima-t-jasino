@@ -30,7 +30,7 @@ class AppointmentFormRequest extends FormRequest
             'takes_place_the' => 'required|date_format:Y-m-d|after_or_equal:' .$today,
             'starts_at' => 'required|date_format:H:i',
             'ends_at' => 'required|date_format:H:i|after:starts_at',
-            'specified_message' => 'nullable|string'
+            'specified_message' => 'required|string'
         ];
     }
 }

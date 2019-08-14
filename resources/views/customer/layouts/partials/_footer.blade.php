@@ -85,4 +85,35 @@
             </p>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <form class="modal-content rounded-0" method="POST" action="{{ route('outfit.search') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="searchModalTitle">Searching for an outfit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <h6 class="col-12 mb-4 mt-3 text-center">You can search by name, by category, by type, by price or another keyword.</h6>
+
+                        <div class="col-12 col-md-10 input-group-icon form-group mb-4">
+                            <div class="icon text-center">
+                                <i class="fab fa-searchengin" aria-hidden="true"></i>
+                            </div>
+                            <input type="search" name="keyword" placeholder="your keyword here..." class="single-input" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn submit_btn">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </footer>

@@ -21,7 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('takes_place_the');
             $table->time('starts_at');
             $table->time('ends_at');
-            $table->text('specified_message')->nullable();
+            $table->text('specified_message');
             $table->boolean('done');
             $table->timestamps();
         });

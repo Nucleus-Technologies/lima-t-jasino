@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Already Done</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ totalByDone(1) }}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{ total_by_done(1) }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Not yet Done</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ totalByDone(0) }}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{ total_by_done(0) }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -128,7 +128,7 @@
                                                 <th scope="row" class="customer">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <strong class="mb-0 text-sm">{{ idToFullname($appointment->user)->full_name }}</strong>
+                                                            <strong class="mb-0 text-sm">{{ id_to_full_name($appointment->user)->full_name }}</strong>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -136,21 +136,21 @@
                                                 <th scope="row" class="takes_place_the">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">{{ formatDate($appointment->takes_place_the) }}</span>
+                                                            <span class="mb-0 text-sm">{{ format_date($appointment->takes_place_the) }}</span>
                                                         </div>
                                                     </div>
                                                 </th>
 
                                                 <td class="starts_at">
-                                                    <span class="badge badge-pill badge-primary"> {{ formatTime($appointment->starts_at) }}</span>
+                                                    <span class="badge badge-pill badge-primary"> {{ format_time($appointment->starts_at) }}</span>
                                                 </td>
 
                                                 <td class="ends_at">
-                                                    <span class="badge badge-pill badge-primary">{{ formatTime($appointment->ends_at) }}</span>
+                                                    <span class="badge badge-pill badge-primary">{{ format_time($appointment->ends_at) }}</span>
                                                 </td>
 
                                                 <td class="specified_message">
-                                                    {!! backToLine(formatMessage($appointment->specified_message, 50)) !!}
+                                                    {!! back_to_line(format_message($appointment->specified_message, 50)) !!}
                                                 </td>
 
                                                 <td class="text-right">
@@ -223,7 +223,7 @@
                                                 <th scope="row" class="customer">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <strong class="mb-0 text-sm">{{ idToFullname($appointment->user)->full_name }}</strong>
+                                                            <strong class="mb-0 text-sm">{{ id_to_full_name($appointment->user)->full_name }}</strong>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -231,21 +231,21 @@
                                                 <th scope="row" class="takes_place_the">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">{{ formatDate($appointment->takes_place_the) }}</span>
+                                                            <span class="mb-0 text-sm">{{ format_date($appointment->takes_place_the) }}</span>
                                                         </div>
                                                     </div>
                                                 </th>
 
                                                 <td class="starts_at">
-                                                    <span class="badge badge-pill badge-primary"> {{ formatTime($appointment->starts_at) }}</span>
+                                                    <span class="badge badge-pill badge-primary"> {{ format_time($appointment->starts_at) }}</span>
                                                 </td>
 
                                                 <td class="ends_at">
-                                                    <span class="badge badge-pill badge-primary">{{ formatTime($appointment->ends_at) }}</span>
+                                                    <span class="badge badge-pill badge-primary">{{ format_time($appointment->ends_at) }}</span>
                                                 </td>
 
                                                 <td class="specified_message">
-                                                    {!! backToLine(formatMessage($appointment->specified_message, 50)) !!}
+                                                    {!! back_to_line(format_message($appointment->specified_message, 50)) !!}
                                                 </td>
 
                                                 <td class="text-right">

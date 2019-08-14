@@ -104,7 +104,7 @@
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                 <hr>
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
+                                    <a href="#" class="icons" data-toggle="modal" data-target="#searchModal">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </a>
                                 </li>
@@ -150,13 +150,21 @@
                                     </a>
                                 </li>
 
+                                @if (Auth::check())
                                 <hr>
 
-                                <li class="nav-item {{ set_active_route('appointment.create') }}">
-                                    <a href="{{ route('appointment.create') }}" class="icons">
+                                <li class="nav-item {{ set_active_route('notification') }}" id="nav-item-notif">
+                                    <a href="{{ route('notification') }}" class="icons nav-notification">
                                         <i class="fas fa-bell" aria-hidden="true"></i>
+
+                                        @if (number_notif_unread(Auth::user()->id, 'user') != 0)
+                                            <span class="badge badge-pill badge-danger">
+                                                {{ number_notif_unread(Auth::user()->id, 'user') }}
+                                            </span>
+                                        @endif
                                     </a>
                                 </li>
+                                @endif
 
                                 <hr>
 

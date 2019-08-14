@@ -39,7 +39,8 @@
         "files": [
             "app/Helpers/helpers.php",
             "app/Helpers/outfitHelpers.php",
-            "app/Helpers/appointmentHelpers.php"
+            "app/Helpers/appointmentHelpers.php",
+            "app/Helpers/notificationHelpers.php"
         ],
         "classmap": [
             "database/seeds",

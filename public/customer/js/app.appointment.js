@@ -29,6 +29,9 @@ $(function() {
                 required: true,
                 min: $(".starts_at").val(),
                 max: close_time
+            },
+            specified_message: {
+                required: true
             }
         },
 
@@ -50,6 +53,9 @@ $(function() {
                 required: "You must choose at what time you want the appointment to end.",
                 min: "This time is less than the starting time.",
                 max: "This appointment must starts no later than " + close_time + "."
+            },
+            specified_message: {
+                required: "It's very important that you specifies a message to our tailors."
             }
         },
 
@@ -122,7 +128,7 @@ $(function() {
 
                 setTimeout(function() {
                     window.location.reload();
-                }, 10000);
+                }, 2000);
             });
 
             request.fail(function() {

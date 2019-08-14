@@ -56,7 +56,7 @@ class AdminController extends Controller
         $response = ['msg' => 'Something goes to wrong. Please try again again or later!', 'status' => false];
 
         if ($check) {
-            $response = ['msg' => 'Your credential data have been successfully updated!', 'status' => true];
+            $response = ['msg' => 'Credential data successfully updated!', 'status' => true];
         }
 
         return response()->json($response);

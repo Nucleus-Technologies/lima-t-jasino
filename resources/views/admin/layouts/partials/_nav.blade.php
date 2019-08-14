@@ -14,16 +14,16 @@
 
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">
+                <a href="{{ route('admin.notification') }}" class="nav-link nav-link-icon nav-notification">
                     <i class="ni ni-bell-55"></i>
+
+                    @if (number_notif_unread(Auth::user()->id, 'admin') != 0)
+                        <span class="badge badge-pill badge-danger">
+                            {{ number_notif_unread(Auth::user()->id, 'admin') }}
+                        </span>
+                    @endif
                 </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
             </li>
 
             <li class="nav-item dropdown">
@@ -139,22 +139,12 @@
             <hr class="my-3">
 
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
+            <h6 class="navbar-heading text-muted">Utilities</h6>
 
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-                        <i class="ni ni-palette"></i> Foundation
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase btn-default text-white" href="{{ route('admin.outfit.create') }}">
+                    <a class="nav-link text-uppercase" href="{{ route('admin.outfit.create') }}">
                         <i class="fas fa-plus-circle mr-1"></i> ADD NEW OUTFIT
                     </a>
                 </li>

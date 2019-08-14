@@ -69,7 +69,16 @@ class AppointmentController extends Controller
         $response = ['msg' => 'Something goes to wrong. Please try again again or later!', 'status' => false];
 
         if ($appointment) {
-            $response = ['msg' => 'Your appointment has been successfully booked!', 'status' => true];
+            $notification = new NotificationController;
+            $notification->store([
+                'type' => 'admin',
+                'about' => 'appointment',
+                'to' => 1,
+                'item' => $appointment->id,
+                'read' => 0
+            ]);
+
+            $response = ['msg' => 'Appointment successfully booked!', 'status' => true];
         }
 
         return response()->json($response);
@@ -147,7 +156,16 @@ class AppointmentController extends Controller
         $response = ['msg' => 'Something goes to wrong. Please try again again or later!', 'status' => false];
 
         if ($appointment_message) {
-            $response = ['msg' => 'Your reply has been successfully sent!', 'status' => true];
+            $notification = new NotificationController;
+            $notification->store([
+                'type' => (Auth::user()->username) ? 'user' : 'admin',
+                'about' => 'appointment_message',
+                'to' => (Auth::user()->username) ? $appointment->user : 1,
+                'item' => $appointment_message->id,
+                'read' => 0
+            ]);
+
+            $response = ['msg' => 'Reply successfully sent!', 'status' => true];
         }
 
         return response()->json($response);
@@ -166,7 +184,7 @@ class AppointmentController extends Controller
         $response = ['msg' => 'Something goes to wrong. Please try again again or later!', 'status' => false];
 
         if ($check_done) {
-            $response = ['msg' => 'This appointment has been successfully marked as done!', 'status' => true];
+            $response = ['msg' => 'Appointment successfully marked as done!', 'status' => true];
         }
 
         return response()->json($response);

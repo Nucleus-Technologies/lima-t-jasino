@@ -4,7 +4,7 @@ function alertDisappear() {
     setTimeout(function() {
         $('#alert-response .alert').alert('close').fadeOut();
         $('#alert-response').fadeOut();
-    }, 10000);
+    }, 2000);
 }
 
 function fadeAlert(type, message) {
@@ -19,4 +19,15 @@ function fadeAlert(type, message) {
 
 }
 
+
+//
 // Pages and Events
+//
+
+
+// Mark a notification as read
+$('.list-notification .list-group-item').click(function(e) {
+    e.preventDefault();
+
+    $(this).children('.notif-form').submit();
+});

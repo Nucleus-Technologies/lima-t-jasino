@@ -11,7 +11,7 @@
         "banner_content" => "<h2>" .$title. "</h2>
             <div class='page_link'>
                 <a href=" .route('home').">Home</a>
-                <a href=" .route('appointment'). ">My appointments</a>
+                <a href=" .route('appointment'). ">" .$title. "</a>
             </div>
         "
     ])
@@ -49,18 +49,18 @@
 
                                     <p class="card-text mb-2">
                                         On the
-                                        <span class="badge badge-pill badge-dark badge-lg">{{ formatDate($appointment->takes_place_the) }}</span>
+                                        <span class="badge badge-pill badge-dark badge-lg">{{ format_date($appointment->takes_place_the) }}</span>
                                     </p>
 
                                     <p>
                                         From <span class="badge badge-pill badge-dark badge-lg text-uppercase">
-                                            {{ formatTime($appointment->starts_at) }}</span>
+                                            {{ format_time($appointment->starts_at) }}</span>
                                         To <span class="badge badge-pill badge-dark badge-lg text-uppercase">
-                                            {{ formatTime($appointment->ends_at) }}</span>
+                                            {{ format_time($appointment->ends_at) }}</span>
                                     </p>
                                     <hr>
                                     <p>
-                                        {!! backToLine(formatMessage($appointment->specified_message, 150)) !!}
+                                        {!! back_to_line(format_message($appointment->specified_message, 150)) !!}
                                     </p>
                                     <a href="{{ route('appointment.show', $appointment) }}" class="main_btn btn-sm">Show more about this</a>
                                 </div>

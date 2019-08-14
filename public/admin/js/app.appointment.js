@@ -38,7 +38,7 @@ $(function() {
 
                 setTimeout(function() {
                     window.location.reload();
-                }, 10000);
+                }, 2000);
             });
 
             request.fail(function() {
@@ -52,6 +52,7 @@ $(function() {
 
     });
 
+    // Mark an appointment as done
     $('.mark-done-btn').click(function(e) {
         e.preventDefault();
 
@@ -69,7 +70,7 @@ $(function() {
 
             setTimeout(function() {
                 window.location.reload();
-            }, 10000);
+            }, 2000);
         });
 
         request.fail(function() {

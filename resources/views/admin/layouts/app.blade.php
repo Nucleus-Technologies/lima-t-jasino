@@ -11,7 +11,7 @@
 
     <link rel="icon" href="{{ asset('brand/favicon.png') }}" type="image/png">
 
-    <title>{{ showTitleAdmin($title) }}</title>
+    <title>{{ show_title_admin($title) }}</title>
 
     <!-- Favicon -->
     <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
@@ -66,6 +66,8 @@
             token: "ee6fab19c5a04ac1a32a645abde4613a",
             application: "argon-dashboard-free"
         });
+
+        var notifUrl = "{{ URL::to('admin/notification/refresh') }}";
     </script>
 </body>
 

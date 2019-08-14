@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('men')) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('men')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('women')) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('women')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(totalThisMonth('children')) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('children')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -151,18 +151,18 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ $outfit->name }}
+                                                    {{ id_to_wording($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! showAvailibility($outfit->availibility) !!}
+                                                    {!! show_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">
                                                     <div class="avatar-group">
-                                                        @foreach (getOutfitPhotos($outfit->id) as $img)
-                                                            <a href="{{ showPhoto($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
-                                                                <img alt="Image placeholder" src="{{ showPhoto($img->filename) }}" class="rounded-circle">
+                                                        @foreach (get_outfit_photos($outfit->id) as $img)
+                                                            <a href="{{ show_photo($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
+                                                                <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="rounded-circle">
                                                             </a>
                                                         @endforeach
                                                     </div>
@@ -252,18 +252,18 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ $outfit->name }}
+                                                    {{ id_to_wording($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! showAvailibility($outfit->availibility) !!}
+                                                    {!! show_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">
                                                     <div class="avatar-group">
-                                                        @foreach (getOutfitPhotos($outfit->id) as $img)
-                                                            <a href="{{ showPhoto($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
-                                                                <img alt="Image placeholder" src="{{ showPhoto($img->filename) }}" class="rounded-circle">
+                                                        @foreach (get_outfit_photos($outfit->id) as $img)
+                                                            <a href="{{ show_photo($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
+                                                                <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="rounded-circle">
                                                             </a>
                                                         @endforeach
                                                     </div>
@@ -353,18 +353,18 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ $outfit->name }}
+                                                    {{ id_to_wording($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! showAvailibility($outfit->availibility) !!}
+                                                    {!! show_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">
                                                     <div class="avatar-group">
-                                                        @foreach (getOutfitPhotos($outfit->id) as $img)
-                                                            <a href="{{ showPhoto($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
-                                                                <img alt="Image placeholder" src="{{ showPhoto($img->filename) }}" class="rounded-circle">
+                                                        @foreach (get_outfit_photos($outfit->id) as $img)
+                                                            <a href="{{ show_photo($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
+                                                                <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="rounded-circle">
                                                             </a>
                                                         @endforeach
                                                     </div>

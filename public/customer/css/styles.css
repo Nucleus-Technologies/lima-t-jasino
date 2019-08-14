@@ -40,6 +40,14 @@ a:hover {
     z-index: 9999;
 }
 
+.header_area .navbar .nav .nav-item .nav-link {
+    font-size: 14px;
+}
+
+.header_area .navbar .icons {
+    font-size: 20px;
+}
+
 .form-group label.error,
 label.error {
     width: 98%;
@@ -94,6 +102,10 @@ p.lead {
     font-weight: bold;
 }
 
+.single-textarea {
+    line-height: 25px;
+}
+
 
 /* Login/Register */
 
@@ -116,7 +128,14 @@ p.lead {
     font-weight: bold;
 }
 
-.login_form .input-group-icon input {
+#searchModal .input-group-icon .icon {
+    top: 3px;
+    left: 29px;
+    font-size: 1.5rem;
+}
+
+.login_form .input-group-icon input,
+#searchModal .input-group-icon input {
     padding-left: 50px;
 }
 

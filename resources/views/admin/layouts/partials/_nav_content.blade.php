@@ -20,6 +20,18 @@
 
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item" id="nav-item-notif">
+                <a href="{{ route('admin.notification') }}" class="nav-link nav-link-icon nav-notification">
+                    <i class="ni ni-bell-55"></i>
+
+                    @if (number_notif_unread(Auth::user()->id, 'admin') != 0)
+                        <span class="badge badge-pill badge-danger">
+                            {{ number_notif_unread(Auth::user()->id, 'admin') }}
+                        </span>
+                    @endif
+                </a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">

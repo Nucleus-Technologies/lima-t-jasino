@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="header-body">
                 <h1 class="display-2 text-white">{{ $outfit->name }}</h1>
-                <p class="text-white mt-0 mb-5">{!! backToLine($outfit->context) !!}</p>
+                <p class="text-white mt-0 mb-5">{!! back_to_line($outfit->context) !!}</p>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col mt-3 mt-sm-0">
                                 <span class="badge badge-pill badge-dark float-lg-right">
-                                    Added on {{ formatDate($outfit->created_at) }} at {{ formatTime($outfit->created_at) }}
+                                    Added on {{ format_date($outfit->created_at) }} at {{ format_time($outfit->created_at) }}
                                 </span>
                             </div>
                         </div>
@@ -38,20 +38,20 @@
 
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col-12">
-                                <div class="row">
+                            <div class="col-12 mb-5">
+                                <div class="row align-items-center">
                                     <div class="col-12 col-md-6 mb-5 mb-md-0">
                                         <h1>Photos</h1>
                                         <div id="carouselOutfitPhotos" class="carousel slide" data-ride="carousel">
                                             <ol class="carousel-indicators">
-                                                @for ($i = 0; $i < count(getOutfitPhotos($outfit->id)); $i++)
+                                                @for ($i = 0; $i < count(get_outfit_photos($outfit->id)); $i++)
                                                     <li data-target="#carouselOutfitPhotos" data-slide-to="0" @if ($i == 0) class="active" @endif></li>
                                                 @endfor
                                             </ol>
                                             <div class="carousel-inner">
-                                                @foreach (getOutfitPhotos($outfit->id) as $img)
+                                                @foreach (get_outfit_photos($outfit->id) as $img)
                                                     <div class="carousel-item @if ($loop->first) active @endif">
-                                                        <img alt="Image placeholder" src="{{ showPhoto($img->filename) }}" class="d-block m-auto">
+                                                        <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="d-block m-auto">
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -98,7 +98,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title text-uppercase text-white-50 mb-0">Type</h5>
-                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ idToWording($outfit->type)->wording }}</span>
+                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ id_to_wording($outfit->type) }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title text-uppercase text-white mb-0">Availibility</h5>
-                                                        <span class="h2 font-weight-bold mb-0 text-white">{!! showAvailibility($outfit->availibility) !!}</span>
+                                                        <span class="h2 font-weight-bold mb-0 text-white">{!! show_availibility($outfit->availibility) !!}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,10 +120,19 @@
 
                             <hr class="col-12">
 
-                            <div class="col-12 mt-3 mb-5">
+                            <div class="col-12 mt-3">
                                 <h1>Description</h1>
                                 <p class="lead text-justify">
-                                    {!! backToLine($outfit->description) !!}
+                                    {!! back_to_line($outfit->description) !!}
+                                </p>
+                            </div>
+
+                            <hr class="col-12">
+
+                            <div class="col-12 mt-3 mb-5">
+                                <h1>Specification</h1>
+                                <p class="lead text-justify">
+                                    {!! show_specification($outfit->specification) !!}
                                 </p>
                             </div>
                         </div>

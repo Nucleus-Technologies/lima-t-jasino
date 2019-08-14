@@ -1,5 +1,5 @@
 @php
-    $title = 'My appointment of the ' .formatDate($appointment->takes_place_the);
+    $title = 'My appointment of the ' .format_date($appointment->takes_place_the);
 @endphp
 
 @extends('customer.layouts.app', ['title' => $title])
@@ -12,7 +12,7 @@
             <div class='page_link'>
                 <a href=" .route('home').">Home</a>
                 <a href=" .route('appointment'). ">My appointments</a>
-                <a href=" .route('appointment.show', $appointment). ">" .formatDate($appointment->takes_place_the). "</a>
+                <a href=" .route('appointment.show', $appointment). ">" .format_date($appointment->takes_place_the). "</a>
             </div>
         "
     ])
@@ -60,7 +60,7 @@
                                         <span class="text-warning text-uppercase">On the</span>
                                     </p>
 
-                                    <h3 class="card-title mb-0 text-white">{{ formatDate($appointment->takes_place_the) }}</h3>
+                                    <h3 class="card-title mb-0 text-white">{{ format_date($appointment->takes_place_the) }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -78,8 +78,8 @@
                                     </p>
 
                                     <h3 class="card-title mb-0 text-white">
-                                        From <span class="text-uppercase">{{ formatTime($appointment->starts_at) }}</span>
-                                        To <span class="text-uppercase">{{ formatTime($appointment->ends_at) }}</span>
+                                        From <span class="text-uppercase">{{ format_time($appointment->starts_at) }}</span>
+                                        To <span class="text-uppercase">{{ format_time($appointment->ends_at) }}</span>
                                     </h3>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                     </p>
 
                                     <h3 class="card-title mb-0 text-white">
-                                        <span class="text-uppercase">{{ formatDone($appointment->done) }}</span>
+                                        <span class="text-uppercase">{{ format_done($appointment->done) }}</span>
                                     </h3>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                     @if ($appointment->specified_message)
                         <h2>You've left a message:</h2>
                         <p class="lead mt-3">
-                            {!! backToLine($appointment->specified_message) !!}
+                            {!! back_to_line($appointment->specified_message) !!}
                         </p>
                     @else
                         <h2>You haven't left a message.</h2>
@@ -130,15 +130,15 @@
                         <h2 class="mb-4">Conversation</h2>
 
                         @foreach ($messages as $message)
-                            <div class="message w-100 mt-4">
+                            <div class="message w-100 mt-4" id="{{ _('msg') . $message->id }}">
                                 <h3 class="message-from mb-3">
                                     <span @if ($message->origin == 'admin') class="text-primary" @endif()>
-                                        {{ idToAuthorMsg($message->from, $message->origin) }}
+                                        {{ id_to_author_msg($message->from, $message->origin) }}
                                     </span>,
-                                    <small>{{ formatDate($message->created_at) }} at {{ formatTime($message->created_at) }}</small>
+                                    <small>{{ format_date($message->created_at) }} at {{ format_time($message->created_at) }}</small>
                                 </h3>
                                 <p class="message-content lead mb-0">
-                                    {!! backToLine($message->answered_message) !!}
+                                    {!! back_to_line($message->answered_message) !!}
                                 </p>
                             </div>
                         @endforeach

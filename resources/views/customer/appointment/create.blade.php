@@ -11,7 +11,7 @@
         "banner_content" => "<h2>" .$title. "</h2>
             <div class='page_link'>
                 <a href=" .route('home').">Home</a>
-                <a href=" .route('appointment.create'). ">Appointment</a>
+                <a href=" .route('appointment.create'). ">" .$title. "</a>
             </div>
         "
     ])
@@ -75,9 +75,11 @@
                         <input type="time" name="ends_at" placeholder="Define a time..." class="single-input" min="{{ env('OPEN_TIME') }}" max="{{ env('CLOSE_TIME') }}" value="{{ env('CLOSE_TIME') }}" required>
                     </div>
 
-                    <h6>Specifies a message to our tailors <small>--Optional</small></h6>
+                    <h6>Specifies a message to our tailors
+                        <small class="badge badge-warning ml-1">--Important</small>
+                    </h6>
                     <div class="col-md-12 form-group mb-4">
-                        <textarea class="single-textarea" name="specified_message" placeholder="Write a large text here..."></textarea>
+                        <textarea class="single-textarea" name="specified_message" placeholder="Write a large text here..." required></textarea>
                     </div>
 
                     <div class="col-md-12 form-group">

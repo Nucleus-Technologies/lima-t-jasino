@@ -53,3 +53,12 @@ label.error {
 #carouselOutfitPhotos span[class*='carousel-control'] {
     background-image: inherit !important;
 }
+
+
+/* Responsive */
+
+@media (max-width: 767.98px) {
+    .navbar-nav .nav-link.btn-default {
+        color: #fff !important;
+    }
+}

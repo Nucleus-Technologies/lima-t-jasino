@@ -6,19 +6,10 @@ use App\Models\Outfit;
 use App\Http\Requests\OutfitFormRequest;
 use App\Models\OutfitPhoto;
 use App\Models\Type;
+use Illuminate\Http\Request;
 
 class OutfitController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
     /**
      * Display a listing of outfits.
      *
@@ -87,7 +78,7 @@ class OutfitController extends Controller
         }
 
         if ($outfit) {
-            $response = ['msg' => 'The outfit has been successfully registered!', 'status' => true];
+            $response = ['msg' => 'Outfit successfully registered!', 'status' => true];
 
             flash($response['msg'])->success()->important();
         } else {
@@ -142,5 +133,26 @@ class OutfitController extends Controller
     public function destroy(Outfit $outfit)
     {
         //
+    }
+
+    /**
+     * Search engine for outfits.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $request->validate(['keyword' => 'required']);
+
+        $outfits = Outfit::where('name', 'like', '%' . $request->keyword . '%')
+            ->orWhere('price', 'like', '%' . $request->keyword . '%')
+            ->orWhere('category', 'like', '%' . $request->keyword . '%')
+            ->orWhere('type', 'like', '%' . $request->keyword . '%')
+            ->orWhere('availibility', 'like', '%' . $request->keyword . '%')
+            ->orWhere('description', 'like', '%' . $request->keyword . '%')
+            ->get();
+
+        return view('customer.outfit.shop', compact('outfits'));
     }
 }
