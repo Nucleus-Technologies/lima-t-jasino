@@ -6,36 +6,30 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\AppointmentMessage;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\AppointmentFormRequest;
+use App\Http\Requests\AppointmentRequest;
 use App\Http\Requests\AppointmentMessageRequest;
 
 class AppointmentController extends Controller
 {
     /**
-     * Display a listing of the appointment for users.
+     * Display a listing of the appointment for users and admins.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_u()
+    public function index()
     {
-        $appointments = Appointment::where('user', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        if(isset(Auth::user()->username)) {
+            $appointments_done = Appointment::where('done', 1)
+                ->orderBy('user')->orderBy('created_at', 'desc')->get();
+            $appointments_not_done = Appointment::where('done', 0)
+                ->orderBy('user')->orderBy('created_at', 'desc')->get();
 
-        return view('customer.appointment.index', compact('appointments'));
-    }
+            return view('admin.appointment.index', compact('appointments_done', 'appointments_not_done'));
+        } else {
+            $appointments = Appointment::where('user', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
-    /**
-     * Display a listing of the appointment for admins.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index_a()
-    {
-        $appointments_done = Appointment::where('done', 1)
-            ->orderBy('user')->orderBy('created_at', 'desc')->get();
-        $appointments_not_done = Appointment::where('done', 0)
-            ->orderBy('user')->orderBy('created_at', 'desc')->get();
-
-        return view('admin.appointment.index', compact('appointments_done', 'appointments_not_done'));
+            return view('customer.appointment.index', compact('appointments'));
+        }
     }
 
     /**
@@ -51,10 +45,10 @@ class AppointmentController extends Controller
     /**
      * Store a newly created appointment in storage.
      *
-     * @param  \App\Http\Requests\AppointmentFormRequest $request
+     * @param  \App\Http\Requests\AppointmentRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AppointmentFormRequest $request)
+    public function store(AppointmentRequest $request)
     {
         $appointment = Appointment::create([
             'user' => Auth::user()->id,
@@ -97,8 +91,9 @@ class AppointmentController extends Controller
         if (isset(Auth::user()->username)) {
             return view('admin.appointment.show', compact('appointment', 'messages'));
         }
-
-        return view('customer.appointment.show', compact('appointment', 'messages'));
+        else {
+            return view('customer.appointment.show', compact('appointment', 'messages'));
+        }
     }
 
     /**
@@ -115,7 +110,7 @@ class AppointmentController extends Controller
     /**
      * Update the specified appointment in storage.
      *
-     * @param  \App\Http\Requests\AppointmentFormRequest $request
+     * @param  \App\Http\Requests\AppointmentRequest $request
      * @param  Appointment $appointment
      * @return \Illuminate\Http\Response
      */

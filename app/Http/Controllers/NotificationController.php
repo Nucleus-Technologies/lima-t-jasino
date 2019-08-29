@@ -9,33 +9,27 @@ use Illuminate\Support\Facades\Auth;
 class NotificationController extends Controller
 {
     /**
-     * Display a listing of customer notifications.
+     * Display a listing of customer and admin notifications.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_u()
+    public function index()
     {
-        $notifications = Notification::where('type', 'user')
-            ->where('to', Auth::user()->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        if(isset(Auth::user()->username)) {
+            $notifications = Notification::where('type', 'admin')
+                ->where('to', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
 
-        return view('customer.notification.index', compact('notifications'));
-    }
+            return view('admin.notification.index', compact('notifications'));
+        } else {
+            $notifications = Notification::where('type', 'user')
+                ->where('to', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
 
-    /**
-     * Display a listing of admin notifications.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index_a()
-    {
-        $notifications = Notification::where('type', 'admin')
-            ->where('to', Auth::user()->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return view('admin.notification.index', compact('notifications'));
+            return view('customer.notification.index', compact('notifications'));
+        }
     }
 
     /**
@@ -83,13 +77,12 @@ class NotificationController extends Controller
         }
     }
 
-    public function refresh_a()
+    public function refresh()
     {
-        return view('admin.layouts.partials._notification');
-    }
-
-    public function refresh_u()
-    {
-        return view('customer.layouts.partials._notification');
+        if(isset(Auth::user()->username)) {
+            return view('admin.layouts.partials._notification');
+        } else {
+            return view('customer.layouts.partials._notification');
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentFormRequest extends FormRequest
+class CartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,9 @@ class AppointmentFormRequest extends FormRequest
      */
     public function rules()
     {
-        $today = date('Y-m-d');
-
         return [
-            'location' => 'required|string',
-            'takes_place_the' => 'required|date_format:Y-m-d|after_or_equal:' .$today,
-            'starts_at' => 'required|date_format:H:i',
-            'ends_at' => 'required|date_format:H:i|after:starts_at',
-            'specified_message' => 'required|string'
+            'outfit' => 'required|integer',
+            'quantity' => 'required|integer'
         ];
     }
 }

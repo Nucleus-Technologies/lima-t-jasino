@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\AdminFormRequest;
+use App\Http\Requests\AdminRequest;
 
 class AdminController extends Controller
 {
@@ -46,7 +46,7 @@ class AdminController extends Controller
      * @param  string  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminFormRequest $request, Admin $admin)
+    public function update(AdminRequest $request, Admin $admin)
     {
         $check = $admin->where('id', Auth::user()->id)->update([
             'username' => $request->username,

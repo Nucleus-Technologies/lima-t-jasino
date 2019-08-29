@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Outfit;
-use App\Http\Requests\OutfitFormRequest;
-use App\Models\OutfitPhoto;
 use App\Models\Type;
-use Illuminate\Http\Request;
+use App\Models\Outfit;
+use App\Models\OutfitPhoto;
+use App\Models\Traits\Searchable;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\OutfitRequest;
 
 class OutfitController extends Controller
 {
+    use Searchable;
+
     /**
      * Display a listing of outfits.
      *
@@ -17,13 +20,44 @@ class OutfitController extends Controller
      */
     public function index()
     {
+        $outfits = Outfit::orderBy('name')
+            ->paginate(9);
+
+        $categories = [
+            'men',
+            'women',
+            'children'
+        ];
+
+        $types = Type::all()->sortBy('label');
+
+        $colors = [
+            'black',
+            'blue',
+            'red',
+            'gold',
+            'grey',
+            'white',
+            'yellow'
+        ];
+
         $men_outfits = Outfit::where('category', 'men')->get();
         $women_outfits = Outfit::where('category', 'women')->get();
         $children_outfits = Outfit::where('category', 'children')->get();
 
-        return view('admin.outfit.index', compact(
-            'men_outfits', 'women_outfits', 'children_outfits')
-        );
+        if(Auth::check()) {
+            if(isset(Auth::user()->username)) {
+                return view('admin.outfit.index', compact(
+                    'men_outfits', 'women_outfits', 'children_outfits')
+                );
+            } else {
+                return view('customer.outfit.shop', compact('outfits', 'categories', 'types', 'colors'));
+            }
+        }
+        else {
+            return view('customer.outfit.shop', compact('outfits', 'categories', 'types', 'colors'));
+        }
+
     }
 
     /**
@@ -33,7 +67,7 @@ class OutfitController extends Controller
      */
     public function create()
     {
-        $types = Type::all()->sortBy('wording');
+        $types = Type::all()->sortBy('label');
 
         return view('admin.outfit.create', compact('types'));
     }
@@ -41,10 +75,10 @@ class OutfitController extends Controller
     /**
      * Store a newly created outfit in storage.
      *
-     * @param  \App\Http\Requests\OutfitFormRequest  $request
+     * @param  \App\Http\Requests\OutfitRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OutfitFormRequest $request)
+    public function store(OutfitRequest $request)
     {
         $outfit = Outfit::create([
             'name' => $request->name,
@@ -59,7 +93,7 @@ class OutfitController extends Controller
 
         $type = Type::where('id', $request->type)->first();
 
-        $slug_type = str_slug($type->wording);
+        $slug_type = str_slug($type->label);
         $slug_category = str_slug($request->category);
         $slug_name = str_slug($request->name);
 
@@ -98,7 +132,16 @@ class OutfitController extends Controller
      */
     public function show(Outfit $outfit)
     {
-        return view('admin.outfit.show', compact('outfit'));
+        if(Auth::check()) {
+            if(isset(Auth::user()->username)) {
+                return view('admin.outfit.show', compact('outfit'));
+            } else {
+                return view('customer.outfit.show', compact('outfit'));
+            }
+        }
+        else {
+            return view('customer.outfit.show', compact('outfit'));
+        }
     }
 
     /**
@@ -115,11 +158,11 @@ class OutfitController extends Controller
     /**
      * Update the specified outfit in storage.
      *
-     * @param  \App\Http\Requests\OutfitFormRequest  $request
+     * @param  \App\Http\Requests\OutfitRequest  $request
      * @param  Outfit $outfit
      * @return \Illuminate\Http\Response
      */
-    public function update(OutfitFormRequest $request, Outfit $outfit)
+    public function update(OutfitRequest $request, Outfit $outfit)
     {
         //
     }
@@ -133,26 +176,5 @@ class OutfitController extends Controller
     public function destroy(Outfit $outfit)
     {
         //
-    }
-
-    /**
-     * Search engine for outfits.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $request->validate(['keyword' => 'required']);
-
-        $outfits = Outfit::where('name', 'like', '%' . $request->keyword . '%')
-            ->orWhere('price', 'like', '%' . $request->keyword . '%')
-            ->orWhere('category', 'like', '%' . $request->keyword . '%')
-            ->orWhere('type', 'like', '%' . $request->keyword . '%')
-            ->orWhere('availibility', 'like', '%' . $request->keyword . '%')
-            ->orWhere('description', 'like', '%' . $request->keyword . '%')
-            ->get();
-
-        return view('customer.outfit.shop', compact('outfits'));
     }
 }

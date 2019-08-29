@@ -64,6 +64,7 @@
     <script src="{{ asset('customer/vendors/isotope/isotope-min.js') }}"></script>
     <script src="{{ asset('customer/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('customer/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('customer/vendors/jquery-ui/jquery-ui.js') }}"></script>
     <script src="{{ asset('customer/vendors/counter-up/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('customer/vendors/flipclock/timer.js') }}"></script>
     <script src="{{ asset('customer/vendors/counter-up/jquery.counterup.js') }}"></script>

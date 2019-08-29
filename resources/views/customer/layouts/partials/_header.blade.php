@@ -47,27 +47,10 @@
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
                                 <li class="nav-item {{ set_active_route('home') }}">
-                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="category.html">Shop Category</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="single-product.html">Product Details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Shopping Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="confirmation.html">Confirmation</a>
-                                        </li>
-                                    </ul>
+                                <li class="nav-item {{ set_active_route('outfit.shop') }}">
+                                    <a href="{{ route('outfit.shop') }}" class="nav-link">Shop</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
@@ -98,13 +81,28 @@
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
                             </ul>
+
+                            <div class="nav-search">
+                                <form method="GET" action="{{ route('outfit.search') }}" class="search_form" role="search">
+                                    @csrf
+
+                                    <div class="input-group-icon form-group w-100 mb-0">
+                                        <div class="icon text-center">
+                                            <button type="button" class="close">
+                                                <i class="fas fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <input type="search" name="keyword" placeholder="You can search by name, by category, by type, by price or another keyword..." class="w-100">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
                         <div class="col-lg-5">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                 <hr>
                                 <li class="nav-item">
-                                    <a href="#" class="icons" data-toggle="modal" data-target="#searchModal">
+                                    <a href="#" class="icons" id="search-link">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </a>
                                 </li>
@@ -169,7 +167,7 @@
                                 <hr>
 
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
+                                    <a href="{{ route('cart') }}" class="icons">
                                         <i class="fas fa-shopping-cart"></i>
                                     </a>
                                 </li>

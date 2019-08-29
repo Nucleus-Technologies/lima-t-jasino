@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::prefix('users')->group(function() {
     // Customer Appointments Routes
-    Route::get('/appointment', 'AppointmentController@index_u')->name('appointment')
+    Route::get('/appointment', 'AppointmentController@index')->name('appointment')
         ->middleware('auth');
     Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create')
         ->middleware('auth');
@@ -33,16 +33,20 @@ Route::prefix('users')->group(function() {
         ->middleware('auth');
 
     // Customer Notifications Routes
-    Route::get('/notification', 'NotificationController@index_u')->name('notification')
+    Route::get('/notification', 'NotificationController@index')->name('notification')
         ->middleware('auth');
     Route::post('/notification/notification-{notification}/read', 'NotificationController@read')->name('notification.read')
         ->middleware('auth');
-    Route::get('/notification/refresh', 'NotificationController@refresh_u')->name('notification.refresh')
+    Route::get('/notification/refresh', 'NotificationController@refresh')->name('notification.refresh')
         ->middleware('auth');
 
     // Customer Outfits Routes
-    Route::post('/outfit/search', 'OutfitController@search')->name('outfit.search')
-        ->middleware('auth');
+    Route::get('/outfit/shop', 'OutfitController@index')->name('outfit.shop');
+    Route::get('/outfit/search', 'OutfitController@search')->name('outfit.search');
+    Route::get('/outfit/{outfit}', 'OutfitController@show')->name('outfit.show');
+
+    // Customer Cart Routes
+    Route::get('/cart', 'CartController@index')->name('cart');
 
     // Log Out Route
     Route::post('/logout', 'Auth\LoginController@log_out')->name('user.logout');
@@ -69,7 +73,7 @@ Route::prefix('admin')->group(function() {
         ->middleware('auth:admin');
 
     // Admin Appointments Routes
-    Route::get('/appointment', 'AppointmentController@index_a')->name('admin.appointment')
+    Route::get('/appointment', 'AppointmentController@index')->name('admin.appointment')
         ->middleware('auth:admin');
     Route::get('/appointment/appointment-{appointment}', 'AppointmentController@show')->name('admin.appointment.show')
         ->middleware('auth:admin');
@@ -80,11 +84,11 @@ Route::prefix('admin')->group(function() {
         ->middleware('auth:admin');
 
     // Admin Notifications Routes
-    Route::get('/notification', 'NotificationController@index_a')->name('admin.notification')
+    Route::get('/notification', 'NotificationController@index')->name('admin.notification')
         ->middleware('auth:admin');
     Route::post('/notification/notification-{notification}/read', 'NotificationController@read')->name('admin.notification.read')
         ->middleware('auth:admin');
-    Route::get('/notification/refresh', 'NotificationController@refresh_a')->name('admin.notification.refresh')
+    Route::get('/notification/refresh', 'NotificationController@refresh')->name('admin.notification.refresh')
         ->middleware('auth:admin');
 
     // Admin Profile Routes

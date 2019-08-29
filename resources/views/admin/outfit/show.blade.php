@@ -98,7 +98,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title text-uppercase text-white-50 mb-0">Type</h5>
-                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ id_to_wording($outfit->type) }}</span>
+                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ id_to_label($outfit->type) }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title text-uppercase text-white mb-0">Availibility</h5>
-                                                        <span class="h2 font-weight-bold mb-0 text-white">{!! show_availibility($outfit->availibility) !!}</span>
+                                                        <span class="h2 font-weight-bold mb-0 text-white">{!! format_availibility($outfit->availibility) !!}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                             <div class="col-12 mt-3 mb-5">
                                 <h1>Specification</h1>
                                 <p class="lead text-justify">
-                                    {!! show_specification($outfit->specification) !!}
+                                    {!! format_specification($outfit->specification) !!}
                                 </p>
                             </div>
                         </div>

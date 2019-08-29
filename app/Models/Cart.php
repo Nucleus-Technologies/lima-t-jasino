@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Appointment extends Model
+class Cart extends Model
 {
     use Notifiable;
 
@@ -15,7 +15,7 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'location', 'takes_place_the', 'starts_at', 'ends_at', 'specified_message', 'done'
+        'user', 'outfit', 'quantity'
     ];
 
     public function user()
@@ -23,8 +23,8 @@ class Appointment extends Model
         return $this->belongsTo('App\Models\User', 'user');
     }
 
-    public function messages()
+    public function outfit()
     {
-        return $this->hasMany('App\Models\AppointmentMessage');
+        return $this->hasMany('App\Models\Outfit', 'outfit');
     }
 }

@@ -35,7 +35,7 @@ if (!function_exists('id_to_author_msg')) {
 
 if (!function_exists('format_message')) {
     function format_message($message, $length) {
-        return substr($message, 0, $length);
+        return substr(str_replace('<br />', '', $message), 0, $length);
     }
 }
 

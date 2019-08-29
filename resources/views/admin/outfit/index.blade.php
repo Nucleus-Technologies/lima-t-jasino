@@ -151,11 +151,11 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ id_to_wording($outfit->type) }}
+                                                    {{ id_to_label($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! show_availibility($outfit->availibility) !!}
+                                                    {!! format_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">
@@ -248,15 +248,15 @@
                                                 </th>
 
                                                 <td class="price">
-                                                    <span class="badge badge-pill badge-primary">XAF {{ $outfit->price }}</span>
+                                                    <span class="badge badge-pill badge-primary">@convert($outfit->price)</span>
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ id_to_wording($outfit->type) }}
+                                                    {{ id_to_label($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! show_availibility($outfit->availibility) !!}
+                                                    {!! format_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">
@@ -353,11 +353,11 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ id_to_wording($outfit->type) }}
+                                                    {{ id_to_label($outfit->type) }}
                                                 </td>
 
                                                 <td class="availibility">
-                                                    {!! show_availibility($outfit->availibility) !!}
+                                                    {!! format_availibility($outfit->availibility) !!}
                                                 </td>
 
                                                 <td class="pictures">

@@ -111,14 +111,10 @@
 
             <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-md-8">
-                    @if ($appointment->specified_message)
-                        <h2>You've left a message:</h2>
-                        <p class="lead mt-3">
-                            {!! back_to_line($appointment->specified_message) !!}
-                        </p>
-                    @else
-                        <h2>You haven't left a message.</h2>
-                    @endif
+                    <h2>You've left a message:</h2>
+                    <p class="lead mt-3">
+                        {!! back_to_line($appointment->specified_message) !!}
+                    </p>
                 </div>
             </div>
 

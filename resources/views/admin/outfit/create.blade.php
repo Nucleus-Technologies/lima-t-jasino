@@ -93,7 +93,7 @@
                                     <select name="type" class="form-control form-control-alternative @error('type') has-danger @enderror" id="input-type" required>
                                         <option selected></option>
                                         @foreach ($types as $type)
-                                            <option value="{{ $type->id }}">{{ $type->wording }}</option>
+                                            <option value="{{ $type->id }}">{{ $type->label }}</option>
                                         @endforeach
                                     </select>
 
@@ -176,7 +176,7 @@
                                             <p>
                                                 <span class="badge badge-pill badge-secondary"> <i class="fas fa-exclamation-triangle"></i> IMPORTANT</span>
                                             </p>
-                                            Defines this outfit specification in this format: <strong>wording 1:value 1|wording 2:value 2|...</strong><br>
+                                            Defines this outfit specification in this format: <strong>label 1:value 1|label 2:value 2|...</strong><br>
                                             For example: <strong>Width:128mm|Height:508mm|Depth:85mm</strong>
                                         </div>
                                         <textarea name="specification" class="form-control form-control-alternative @error('specification') is-invalid @enderror" rows="9" placeholder="Write the largest text here..." id="input-specification" required>{{ old('specification') }}</textarea>

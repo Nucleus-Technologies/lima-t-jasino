@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\AdminFormRequest;
+use App\Http\Requests\AdminRequest;
 
 class AdminLoginController extends Controller
 {
@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
         return view('auth.admin_login');
     }
 
-    public function login(AdminFormRequest $request)
+    public function login(AdminRequest $request)
     {
         // Attempt to log the user in
         $credentials = [

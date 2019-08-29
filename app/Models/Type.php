@@ -17,7 +17,7 @@ class Type extends Model
      * @var array
      */
     protected $fillable = [
-        'wording',
+        'label',
     ];
 
     public function outfits()

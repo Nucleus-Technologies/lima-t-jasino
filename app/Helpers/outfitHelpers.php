@@ -6,16 +6,16 @@ use App\Models\OutfitPhoto;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
 
-if (!function_exists('show_availibility')) {
-    function show_availibility($availibility) {
+if (!function_exists('format_availibility')) {
+    function format_availibility($availibility) {
         return ($availibility == 'in') ?
             '<span class="badge badge-pill badge-success">In Stock</span>'
-            : '<span class="badge badge-pill badge-danger">Out of Stock</span>';
+            : '<span class="badge badge-pill badge-danger">Temporarily Out of Stock</span>';
     }
 }
 
-if (!function_exists('show_specification')) {
-    function show_specification($specification) {
+if (!function_exists('format_specification')) {
+    function format_specification($specification) {
         $tab = explode('|', $specification);
 
         $html = '<ul class="list-group text-center">';
@@ -23,6 +23,31 @@ if (!function_exists('show_specification')) {
             $html .= '<li class="list-group-item">' .str_replace(':', ' | ', $elt). '</li>';
         }
         $html .= '</ul>';
+
+        return $html;
+    }
+}
+
+if (!function_exists('cformat_specification')) {
+    function cformat_specification($specification) {
+        $tab = explode('|', $specification);
+
+        $html = '
+            <table class="table">
+                <tbody>';
+        foreach ($tab as $elt) {
+            $html .= '<tr>';
+
+            $tab_s = explode(':', $elt);
+            foreach ($tab_s as $elt_s) {
+                $html .= '<td><h5>' .$elt_s. '</h5></td>';
+            }
+
+            $html .= '</tr>';
+        }
+        $html .= '
+                </tbody>
+            </table>';
 
         return $html;
     }
@@ -46,6 +71,12 @@ if (!function_exists('get_outfit_photos')) {
     }
 }
 
+if (!function_exists('get_outfit_cover')) {
+    function get_outfit_cover($outfit) {
+        return OutfitPhoto::where('outfit', $outfit)->first();
+    }
+}
+
 if (!function_exists('total_this_month')) {
     function total_this_month($category) {
         return Outfit::where('category', $category)
@@ -54,9 +85,9 @@ if (!function_exists('total_this_month')) {
     }
 }
 
-if (!function_exists('id_to_wording')) {
-    function id_to_wording($id) {
-        return Type::where('id', $id)->first()->wording;
+if (!function_exists('id_to_label')) {
+    function id_to_label($id) {
+        return Type::where('id', $id)->first()->label;
     }
 }
 
