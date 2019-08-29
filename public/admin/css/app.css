@@ -1,0 +1,64 @@
+.alert-floatable {
+    position: fixed;
+    top: 40px;
+    right: 10px;
+    z-index: 9999;
+}
+
+.form-group .alert {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.form-group label.error,
+label.error {
+    width: 98%;
+    margin: auto;
+    padding: 7px 15px;
+    display: block;
+    background-color: #f75676;
+    color: #fff;
+    border-color: #f75676;
+    border-radius: 0 0 4px 4px;
+}
+
+.card-profile-image img {
+    width: 80px;
+}
+
+.header-body .card-body .icon i,
+.header-body .card-body .icon svg {
+    font-size: 2rem !important;
+}
+
+.table-responsive .list .badge {
+    font-size: 100%;
+}
+
+.table-outfits td,
+.table-outfits th {
+    width: 400px;
+}
+
+.table-outfits,
+.table-appointments {
+    max-height: 600px;
+}
+
+.outfit-save-form .custom-control {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+#carouselOutfitPhotos span[class*='carousel-control'] {
+    background-image: inherit !important;
+}
+
+
+/* Responsive */
+
+@media (max-width: 767.98px) {
+    .navbar-nav .nav-link.btn-default {
+        color: #fff !important;
+    }
+}

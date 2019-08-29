@@ -1,0 +1,46 @@
+/* ----------------Variables---------------- */
+
+:root {
+    --main-color: #a649b6;
+    --main-color-dark: #73337e;
+}
+
+
+/* Appointments Messages */
+
+.message {
+    border-left: 2px solid var(--main-color);
+    padding: 10px 20px;
+}
+
+.message .message-from small {
+    font-size: 60%;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}
+
+.nav-item .badge {
+    font-size: 44%;
+    margin-left: -12px;
+    display: inline;
+}
+
+.nav-item .nav-notification .ni {
+    font-size: 24px;
+}
+
+.nav-item .nav-notification .badge {
+    position: relative;
+    background: #f80031;
+    color: #fff;
+    margin-left: -12px;
+    padding: 1px 5px;
+    font-size: 61%;
+}
+
+.tracking_box_inner .list-group-item .small,
+.tracking_box_inner .list-group-item small {
+    font-size: 90%;
+}

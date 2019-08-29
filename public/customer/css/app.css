@@ -69,14 +69,6 @@ Table of Content:
 }
 
 
-/* ----------------Variables---------------- */
-
-:root {
-    --main-color: #a649b6;
-    --main-color-dark: #73337e;
-}
-
-
 /*---------------------------------------------------- */
 
 
@@ -4370,7 +4362,8 @@ h6 {
     border-radius: 0px;
 }
 
-.cat_page .pagination li a {
+.cat_page .pagination li a, 
+.cat_page .pagination li span {
     height: 40px;
     width: 40px;
     border-radius: 0px;
@@ -4485,12 +4478,12 @@ h6 {
     color: #555555;
 }
 
-.s_product_text .list li a span {
+.s_product_text .list li a span:not(.badge) {
     width: 90px;
     display: inline-block;
 }
 
-.s_product_text .list li a span:hover {
+.s_product_text .list li a span:not(.badge):hover {
     color: #555;
 }
 

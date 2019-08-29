@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Home'])
+@extends('customer.layouts.app', ['title' => 'Home'])
 
 @section('banner')
 
@@ -12,7 +12,8 @@
                         <h3>Fashion for
                             <br />Upcoming Winter</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        <a class="white_bg_btn" href="#">View Collection</a>
+                        <a class="white_bg_btn text-uppercase" href="#">View Collection</a>
+                        <a class="white_bg_btn inverse text-uppercase" href="{{ route('appointment.create') }}">Book an appointment</a>
                     </div>
                 </div>
             </div>
@@ -29,23 +30,33 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hot_deal_box">
-                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/deal1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/for-men.jpg') }}" alt="">
                         <div class="content">
-                            <h2>Hot Deals of this Month</h2>
+                            <h2>Hot Deals for You, Men</h2>
                             <p>shop now</p>
                         </div>
-                        <a class="hot_deal_link" href="#"></a>
+                        <a class="hot_deal_link" href="{{ route('outfit.search', 'prefix=category&keyword=men') }}" onclick="event.preventDefault(); document.getElementById('men-form').submit();"></a>
+                        <form id="men-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
+                            @csrf
+                            <input type="hidden" name="prefix" value="category">
+                            <input type="hidden" name="keyword" value="men">
+                        </form>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="hot_deal_box">
-                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/deal1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/for-women.jpg') }}" alt="">
                         <div class="content">
-                            <h2>Hot Deals of this Month</h2>
+                            <h2>Women, you deserves the Best</h2>
                             <p>shop now</p>
                         </div>
-                        <a class="hot_deal_link" href="#"></a>
+                        <a class="hot_deal_link" href="{{ route('outfit.search', 'prefix=category&keyword=women') }}" onclick="event.preventDefault(); document.getElementById('women-form').submit();"></a>
+                        <form id="women-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
+                            @csrf
+                            <input type="hidden" name="prefix" value="category">
+                            <input type="hidden" name="keyword" value="women">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -81,264 +92,44 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="main_title">
-                        <h2>Featured Products</h2>
-                        <p>Who are in extremely love with eco friendly system.</p>
+                        <h2>New Outfits</h2>
+                        <p>Those who are recent and who might interest you; a change of style will do you good.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col col1">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-1.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
+                    @if ($outfits->isEmpty())
+                        <div class="alert alert-primary w-100" role="alert">
+                            <strong>Info!</strong> No outfits available!
+                        </div>
+                    @else
+                        @foreach ($outfits as $outfit)
+                            <div class="col col1">
+                                <div class="f_p_item">
+                                    <div class="f_p_img">
+                                        <img class="img-fluid" src="{{ show_photo(get_outfit_cover($outfit->id)->filename) }}" alt="">
+                                        <div class="p_icon">
+                                            <a href="#">
+                                                <i class="lnr lnr-heart"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="lnr lnr-cart"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('outfit.show', $outfit) }}">
+                                        <h4>{{ $outfit->name }}</h4>
                                     </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
+                                    <h5>@convert($outfit->price)</h5>
                                 </div>
                             </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col2">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-2.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col3">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-3.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col4">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-4.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col5">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-5.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-
-                    <div class="col col6">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-5.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-
-                    <div class="col col7">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-4.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-
-                    <div class="col col8">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-5.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col9">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-1.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
-                    <div class="col col10">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{ asset('customer/img/product/feature-product/f-p-4.jpg') }}" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Long Sleeve TShirt</h4>
-                            </a>
-                            <h5>$150.00</h5>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
 
                 <div class="row">
                     <nav class="cat_page mx-auto" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">01</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">02</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">03</a>
-                            </li>
-                            <li class="page-item blank">
-                                <a class="page-link" href="#">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">09</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        {{ $outfits->links() }}
                     </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- Subscription Area --}}
-    <section class="subscription-area section_gap">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <h2>Subscribe for Our Newsletter</h2>
-                        <span>We won’t send any kind of spam</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div id="mc_embed_signup">
-                        <form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01" method="get" class="subscription relative">
-                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="">
-                            <!-- <div style="position: absolute; left: -5000px;">
-								<input type="text" name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="">
-							</div> -->
-                            <button type="submit" class="newsl-btn">Get Started</button>
-                            <div class="info"></div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
