@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use App\Models\Outfit;
 use App\Models\OutfitPhoto;
-use App\Models\Traits\Searchable;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OutfitRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Traits\Searchable;
 
 class OutfitController extends Controller
 {
@@ -91,7 +91,7 @@ class OutfitController extends Controller
             'specification' => $request->specification
         ]);
 
-        $type = Type::where('id', $request->type)->first();
+        $type = Type::find($request->type);
 
         $slug_type = str_slug($type->label);
         $slug_category = str_slug($request->category);

@@ -40,6 +40,11 @@
     font-size: 61%;
 }
 
+.nav-item .nav-cart .badge {
+    padding: 1px 5px;
+    font-size: 61%;
+}
+
 .tracking_box_inner .list-group-item .small,
 .tracking_box_inner .list-group-item small {
     font-size: 90%;

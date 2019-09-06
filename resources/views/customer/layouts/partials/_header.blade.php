@@ -2,7 +2,7 @@
     <div class="top_menu row m0">
         <div class="container-fluid">
             <div class="float-left">
-                <p>Call Us: <a href="tel:+">012 44 5698 7456 896</a></p>
+                <p>Call Us: <a href="tel:+237655191890">+237 655 191 890</a></p>
             </div>
             <div class="float-right">
                 <ul class="right_side">
@@ -52,16 +52,8 @@
                                 <li class="nav-item {{ set_active_route('outfit.shop') }}">
                                     <a href="{{ route('outfit.shop') }}" class="nav-link">Shop</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="blog.html">Blog</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="single-blog.html">Blog Details</a>
-                                        </li>
-                                    </ul>
+                                <li class="nav-item {{ set_active_route('weedings') }}">
+                                    <a href="{{ route('weedings') }}" class="nav-link">Weedings</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
@@ -131,6 +123,9 @@
                                                 <a class="nav-link" href="{{ route('appointment') }}">My appointments</a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('wishlist') }}">My wishlist</a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     @csrf
@@ -155,9 +150,9 @@
                                     <a href="{{ route('notification') }}" class="icons nav-notification">
                                         <i class="fas fa-bell" aria-hidden="true"></i>
 
-                                        @if (number_notif_unread(Auth::user()->id, 'user') != 0)
+                                        @if (number_notif_unread('user') != 0)
                                             <span class="badge badge-pill badge-danger">
-                                                {{ number_notif_unread(Auth::user()->id, 'user') }}
+                                                {{ number_notif_unread('user') }}
                                             </span>
                                         @endif
                                     </a>
@@ -166,9 +161,23 @@
 
                                 <hr>
 
+                                @if (!Auth::check())
                                 <li class="nav-item">
-                                    <a href="{{ route('cart') }}" class="icons">
+                                    <a href="{{ route('wishlist') }}" class="icons">
+                                        <i class="fas fa-heart"></i>
+                                    </a>
+                                </li>
+
+                                <hr>
+                                @endif
+
+                                <li class="nav-item" id="nav-item-cart">
+                                    <a href="{{ route('cart') }}" class="icons nav-cart">
                                         <i class="fas fa-shopping-cart"></i>
+
+                                        <span class="badge badge-pill badge-success" id="badge-cart">
+                                            {{ number_outfit_cart() }}
+                                        </span>
                                     </a>
                                 </li>
 

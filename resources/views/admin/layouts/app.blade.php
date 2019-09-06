@@ -67,7 +67,9 @@
             application: "argon-dashboard-free"
         });
 
-        var notifUrl = "{{ URL::to('admin/notification/refresh') }}";
+        var Url = [
+            "notifUrl" => "{{ URL::to('admin/notification/refresh') }}"
+        ];
     </script>
 </body>
 

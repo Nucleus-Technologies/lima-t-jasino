@@ -54,6 +54,7 @@
 
                                 <form action="{{ route('admin.notification.read', $notification->id) }}" method="post" class="d-none notif-form">
                                     @csrf
+                                    @method('PUT')
                                 </form>
                             </a>
                         @endforeach

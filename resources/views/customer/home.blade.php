@@ -35,7 +35,7 @@
                             <h2>Hot Deals for You, Men</h2>
                             <p>shop now</p>
                         </div>
-                        <a class="hot_deal_link" href="{{ route('outfit.search', 'prefix=category&keyword=men') }}" onclick="event.preventDefault(); document.getElementById('men-form').submit();"></a>
+                        <a class="hot_deal_link" href="{{ route('outfit.search', 'category/men') }}" onclick="event.preventDefault(); document.getElementById('men-form').submit();"></a>
                         <form id="men-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
                             @csrf
                             <input type="hidden" name="prefix" value="category">
@@ -51,7 +51,7 @@
                             <h2>Women, you deserves the Best</h2>
                             <p>shop now</p>
                         </div>
-                        <a class="hot_deal_link" href="{{ route('outfit.search', 'prefix=category&keyword=women') }}" onclick="event.preventDefault(); document.getElementById('women-form').submit();"></a>
+                        <a class="hot_deal_link" href="{{ route('outfit.search', 'category/women') }}" onclick="event.preventDefault(); document.getElementById('women-form').submit();"></a>
                         <form id="women-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
                             @csrf
                             <input type="hidden" name="prefix" value="category">
@@ -107,13 +107,23 @@
                                 <div class="f_p_item">
                                     <div class="f_p_img">
                                         <img class="img-fluid" src="{{ show_photo(get_outfit_cover($outfit->id)->filename) }}" alt="">
-                                        <div class="p_icon">
-                                            <a href="#">
-                                                <i class="lnr lnr-heart"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="lnr lnr-cart"></i>
-                                            </a>
+                                        <div class="p_icon d-flex">
+                                            <form class="form-add-to-wishlist" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                                                <button type="submit" class="btn-add-to-wishlist">
+                                                    <i class="lnr lnr-heart"></i>
+                                                </button>
+                                            </form>
+
+                                            <form class="form-add-to-cart ml-2" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="btn-add-to-cart">
+                                                    <i class="lnr lnr-cart"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <a href="{{ route('outfit.show', $outfit) }}">

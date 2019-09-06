@@ -26,7 +26,7 @@ class AppointmentController extends Controller
 
             return view('admin.appointment.index', compact('appointments_done', 'appointments_not_done'));
         } else {
-            $appointments = Appointment::where('user', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            $appointments = Auth::user()->appointments()->orderBy('created_at', 'desc')->get();
 
             return view('customer.appointment.index', compact('appointments'));
         }
@@ -86,7 +86,7 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        $messages = AppointmentMessage::where('appointment', $appointment->id)->get();
+        $messages = Appointment::find($appointment->id)->messages()->get();
 
         if (isset(Auth::user()->username)) {
             return view('admin.appointment.show', compact('appointment', 'messages'));

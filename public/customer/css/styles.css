@@ -13,6 +13,10 @@ a:hover {
     display: none;
 }
 
+#alert-response {
+    display: none;
+}
+
 .custom-select.is-invalid,
 .form-control.is-invalid,
 .was-validated .custom-select:invalid,
@@ -38,6 +42,17 @@ a:hover {
     top: 40px;
     right: 10px;
     z-index: 9999;
+}
+
+.toast-floatable {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 9999;
+}
+
+.toast-floatable.hide {
+    display: none !important;
 }
 
 .main-btn {
@@ -124,7 +139,8 @@ p.lead {
 .login_box_area,
 .cat_product_area.section_gap,
 .tracking_box_area,
-.cart_area {
+.cart_area,
+.checkout_area {
     padding: 0px 0px 60px 0px;
 }
 
@@ -190,9 +206,23 @@ p.lead {
     box-shadow: none;
 }
 
+.login_form .input-group-icon {
+    display: flex;
+}
+
 .login_form .input-group-icon .icon {
     top: 7px;
     font-weight: bold;
+}
+
+.login_form .input-group-icon #code {
+    padding-left: 20px !important;
+    padding-right: 10px !important;
+    width: 20%;
+}
+
+.login_form .input-group-icon #phone {
+    padding-left: 10px !important;
 }
 
 #searchModal .input-group-icon .icon {
@@ -201,7 +231,6 @@ p.lead {
     font-size: 1.5rem;
 }
 
-.login_form .input-group-icon input,
 #searchModal .input-group-icon input {
     padding-left: 50px;
 }
@@ -224,6 +253,10 @@ p.lead {
 footer .single-footer-widget input,
 .subscription input {
     border: 1px solid var(--main-color);
+}
+
+.btn-add-to-wishlist.active {
+    cursor: default !important;
 }
 
 
@@ -340,10 +373,20 @@ form:not(.login_form) .input-group-icon .icon {
 
 .s_product_img .carousel .carousel-indicators li {
     height: auto;
+    opacity: 1;
 }
 
 .s_product_img .carousel .carousel-indicators li img {
     width: 100%;
+}
+
+.s_product_text .list span {
+    display: inline-block;
+    width: 100px;
+}
+
+.s_product_text .list strong {
+    color: var(--main-color);
 }
 
 .s_product_text .list .badge {
@@ -373,4 +416,31 @@ form:not(.login_form) .input-group-icon .icon {
 
 .fa-star.active {
     color: #fbd600 !important;
+}
+
+
+/* Checkout */
+
+.checkout_area .checkout_info {
+    padding: 15px 5px;
+}
+
+.checkout_area .checkout_info div {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.checkout_area .checkout_info div i,
+.checkout_area .checkout_info div span {
+    vertical-align: middle;
+}
+
+.checkout_area .checkout_info div span a {
+    font-weight: bold;
+    color: #fff;
+}
+
+.contact_form .p_star label::after {
+    content: '*';
+    color: #dc3545;
 }

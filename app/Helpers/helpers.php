@@ -1,6 +1,8 @@
 <?php
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Session;
+use Illuminate\Support\Facades\Cookie;
 
 if (!function_exists('show_title')) {
     function show_title($title) {
@@ -23,19 +25,25 @@ if (! function_exists('set_active_route')) {
 
 if (!function_exists('id_to_full_name')) {
     function id_to_full_name($id) {
-        return User::where('id', $id)->first();
+        return User::find($id);
     }
 }
 
 if (!function_exists('id_to_author_msg')) {
     function id_to_author_msg($id, $origin) {
-        return ($origin == 'user') ? User::where('id', $id)->first()->full_name : 'Tailors';
+        return ($origin == 'user') ? User::find($id)->full_name : 'Tailors';
     }
 }
 
 if (!function_exists('format_message')) {
     function format_message($message, $length) {
-        return substr(str_replace('<br />', '', $message), 0, $length);
+        $suffx = '';
+
+        if (strlen($message) >= $length) {
+            $suffx = '...';
+        }
+
+        return substr(str_replace('<br />', '', $message), 0, $length) . $suffx;
     }
 }
 
@@ -66,5 +74,15 @@ if (!function_exists('crypt_id')) {
 if (!function_exists('decrypt_id')) {
     function decrypt_id($id) {
         return ($id - 7) + (94 / 2);
+    }
+}
+
+if (!function_exists('make_cookie_session')) {
+    function make_cookie_session() {
+        $session = Session::create();
+
+        Cookie::queue(Cookie::forever('user', $session->id));
+
+        return Cookie::get('user');
     }
 }
