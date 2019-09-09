@@ -40,7 +40,22 @@ class User extends Authenticatable
 
     public function appointments()
     {
-        return $this->hasMany('App\Appointment');
+        return $this->hasMany('App\Models\Appointment', 'user');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification', 'to');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany('App\Models\Cart', 'user');
+    }
+
+    public function wishlist()
+    {
+        return $this->hasMany('App\Models\Wishlist', 'user');
     }
 
     public function getFullNameAttribute()

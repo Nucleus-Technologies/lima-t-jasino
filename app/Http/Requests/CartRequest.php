@@ -25,7 +25,7 @@ class CartRequest extends FormRequest
     {
         return [
             'outfit' => 'required|integer',
-            'quantity' => 'required|integer'
+            'quantity' => 'required|integer|min:1'
         ];
     }
 }

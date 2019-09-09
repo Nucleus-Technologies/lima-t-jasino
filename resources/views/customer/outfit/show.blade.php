@@ -52,31 +52,44 @@
 						<h2>@convert($outfit->price)</h2>
 						<ul class="list">
 							<li>
-								<a class="active" href="#"><span>Category:</span> <strong>{{ ucfirst($outfit->category) }}</strong></a>
+								<span>Category:</span> <strong>{{ ucfirst($outfit->category) }}</strong>
 							</li>
 							<li>
-								<a class="active" href="#"><span>Type:</span> <strong>{{ id_to_label($outfit->type) }}</strong></a>
+								<span>Type:</span> <strong>{{ id_to_label($outfit->type) }}</strong>
 							</li>
 							<li>
-								<a href="#"><span>Availibility:</span> <strong>{!! format_availibility($outfit->availibility) !!}</strong></a>
+								<span>Availibility:</span> <strong>{!! format_availibility($outfit->availibility) !!}</strong>
 							</li>
 						</ul>
-						<p>{!! back_to_line($outfit->context) !!}</p>
-						<div class="product_count">
-							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button">
-								<i class="lnr lnr-chevron-up"></i>
-							</button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button">
-								<i class="lnr lnr-chevron-down"></i>
-							</button>
-						</div>
-						<div class="card_area">
-							<a class="main_btn" href="#">Add to Cart</a>
-						</div>
+                        <p>{!! back_to_line($outfit->context) !!}</p>
+
+                        <form class="form-add-to-cart" method="POST">
+                            @csrf
+
+                            <div class="product_count">
+                                <label for="qty">Quantity:</label>
+                                <input type="text" name="quantity" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                <button class="increase items-count" type="button">
+                                    <i class="lnr lnr-chevron-up"></i>
+                                </button>
+                                <button class="reduced items-count" type="button">
+                                    <i class="lnr lnr-chevron-down"></i>
+                                </button>
+                            </div><br>
+
+                            <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                            <button type="submit" class="main_btn btn-add-to-cart text-uppercase">
+                                <i class="lnr lnr-cart mr-1"></i> Add to Cart
+                            </button>
+                        </form>
+
+                        <form class="form-add-to-wishlist mt-2" method="POST">
+                            @csrf
+                            <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                            <button type="submit" class="main_btn btn-add-to-wishlist text-uppercase">
+                                <i class="lnr lnr-heart mr-1"></i> Add to Wishlist
+                            </button>
+                        </form>
 					</div>
 				</div>
 			</div>

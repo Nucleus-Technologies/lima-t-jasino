@@ -1,14 +1,14 @@
 <?php
-use App\Models\Notification;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Appointment;
 use App\Models\AppointmentMessage;
+use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('number_notif_unread')) {
-    function number_notif_unread($user, $type) {
-        return Notification::where('type', $type)
-            ->where('to', $user)
+    function number_notif_unread($type) {
+        return Auth::user()->notifications()
+            ->where('type', $type)
             ->where('read', 0)
             ->get()
             ->count();
@@ -37,12 +37,12 @@ if (!function_exists('format_sender')) {
 
             default:
                 if ($about == 'appointment') {
-                    $element = Appointment::where('id', $item)->first();
-                    $full_name = User::where('id', $element->user)->first()->full_name;
+                    $element = Appointment::find($item);
+                    $full_name = User::find($element->user)->full_name;
                 }
                 elseif ($about == 'appointment_message') {
-                    $element = AppointmentMessage::where('id', $item)->first();
-                    $full_name = User::where('id', $element->from)->first()->full_name;
+                    $element = AppointmentMessage::find($item);
+                    $full_name = User::find($element->from)->full_name;
                 }
 
                 return 'From ' .$full_name. '.';
@@ -83,14 +83,14 @@ if (!function_exists('format_item')) {
     function format_item($about, $item) {
         switch ($about) {
             case 'appointment':
-                $appointment = Appointment::where('id', $item)->first();
+                $appointment = Appointment::find($item);
 
                 return 'On the ' .format_date($appointment->takes_place_the)
                     . ' from ' .format_time($appointment->starts_at). ' to ' .format_time($appointment->ends_at);
                 break;
 
             case 'appointment_message':
-                $message = AppointmentMessage::where('id', $item)->first();
+                $message = AppointmentMessage::find($item);
                 return back_to_line(format_message($message->answered_message, 120));
                 break;
 

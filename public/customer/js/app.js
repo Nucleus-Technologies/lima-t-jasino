@@ -2,10 +2,9 @@ $(function() {
 
     // Live refresh for notifications nav items
     setInterval(function() {
-        $('#nav-item-notif').load(notifUrl, function(response, status, xhr) {
+        $('#nav-item-notif').load(Url["nt_url"], function(response, status, xhr) {
             if (status == "error") {
-                var msg = "Sorry but there was an error: ";
-                $("#nav-item-notif").html(msg + xhr.status + " " + xhr.statusText);
+                $("#nav-item-notif").html('<a href="{{ route(\'notification\') }}" class="icons nav-notification"><i class="fas fa-bell" aria-hidden="true"></i><span class="badge badge-pill badge-secondary"><i class="fas fa-exclamation-triangle"></i></span></a>');
             }
         });
     }, 1000);

@@ -27,4 +27,13 @@ class Outfit extends Model
     {
         return $this->hasOne('App\Models\Type', 'type');
     }
+
+    public function outfitphotos() {
+        return $this->hasMany('App\Models\OutfitPhoto', 'outfit');
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo('App\Models\Cart', 'outfit');
+    }
 }

@@ -13,6 +13,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', 'PagesController@index')->name('home');
+Route::get('/weedings', 'PagesController@weeding')->name('weedings');
 
 // Customer & Visitor Routes
 
@@ -35,7 +36,7 @@ Route::prefix('users')->group(function() {
     // Customer Notifications Routes
     Route::get('/notification', 'NotificationController@index')->name('notification')
         ->middleware('auth');
-    Route::post('/notification/notification-{notification}/read', 'NotificationController@read')->name('notification.read')
+    Route::put('/notification/notification-{notification}/read', 'NotificationController@read')->name('notification.read')
         ->middleware('auth');
     Route::get('/notification/refresh', 'NotificationController@refresh')->name('notification.refresh')
         ->middleware('auth');
@@ -47,6 +48,25 @@ Route::prefix('users')->group(function() {
 
     // Customer Cart Routes
     Route::get('/cart', 'CartController@index')->name('cart');
+    Route::post('/cart/outfit-{outfit}/store', 'CartController@store')->name('cart.outfit.store');
+    Route::delete('/cart/line-{cart}/destroy', 'CartController@destroy')->name('cart.line.destroy');
+    Route::get('/cart/refresh', 'CartController@refresh')->name('cart.refresh');
+    Route::get('/cart/icon/refresh', 'CartController@refresh_icon')->name('cart.icon.refresh');
+    Route::put('/cart/line-{cart}/quantity/update', 'CartController@update_quantity')->name('cart.line.quantity.update');
+
+    // Customer Wishlist Routes
+    Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
+    Route::post('/wishlist/outfit-{outfit}/store', 'WishlistController@store')->name('wishlist.outfit.store');
+    Route::delete('/wishlist/line-{wishlist}/destroy', 'WishlistController@destroy')->name('wishlist.line.destroy');
+    Route::get('/wishlist/refresh', 'WishlistController@refresh')->name('cart.refresh');
+
+    // Payment Checkout Routes
+    Route::get('payment/checkout/address_details', 'CheckoutController@index')->name('payment.checkout.address_details')->middleware('auth');
+    Route::get('payment/checkout/address_details/refresh-nz', 'CheckoutController@refresh_nz')->name('payment.checkout.address_details.nz')->middleware('auth');
+    Route::get('payment/checkout/address_details/refresh-inz', 'CheckoutController@refresh_inz')->name('payment.checkout.address_details.inz')->middleware('auth');
+    Route::post('payment/checkout/address_details/store', 'AddressController@store')->name('payment.checkout.address_details.store')->middleware('auth');
+
+    Route::get('payment/checkout/{address}/payment_mode', 'CheckoutController@payment_mode')->name('payment.checkout.payment_mode')->middleware('auth');
 
     // Log Out Route
     Route::post('/logout', 'Auth\LoginController@log_out')->name('user.logout');
@@ -86,7 +106,7 @@ Route::prefix('admin')->group(function() {
     // Admin Notifications Routes
     Route::get('/notification', 'NotificationController@index')->name('admin.notification')
         ->middleware('auth:admin');
-    Route::post('/notification/notification-{notification}/read', 'NotificationController@read')->name('admin.notification.read')
+    Route::put('/notification/notification-{notification}/read', 'NotificationController@read')->name('admin.notification.read')
         ->middleware('auth:admin');
     Route::get('/notification/refresh', 'NotificationController@refresh')->name('admin.notification.refresh')
         ->middleware('auth:admin');

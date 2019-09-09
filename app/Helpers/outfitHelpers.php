@@ -1,10 +1,12 @@
 <?php
 
 use Carbon\Carbon;
-use App\Models\Outfit;
-use App\Models\OutfitPhoto;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
+use App\Models\Outfit;
+use App\Models\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('format_availibility')) {
     function format_availibility($availibility) {
@@ -67,13 +69,13 @@ if (!function_exists('show_photo')) {
 
 if (!function_exists('get_outfit_photos')) {
     function get_outfit_photos($outfit) {
-        return OutfitPhoto::where('outfit', $outfit)->get();
+        return Outfit::find($outfit)->outfitphotos()->get();
     }
 }
 
 if (!function_exists('get_outfit_cover')) {
     function get_outfit_cover($outfit) {
-        return OutfitPhoto::where('outfit', $outfit)->first();
+        return Outfit::find($outfit)->outfitphotos()->first();
     }
 }
 
@@ -87,12 +89,34 @@ if (!function_exists('total_this_month')) {
 
 if (!function_exists('id_to_label')) {
     function id_to_label($id) {
-        return Type::where('id', $id)->first()->label;
+        return Type::find($id)->label;
+    }
+}
+
+if (!function_exists('id_to_slug')) {
+    function id_to_slug($id) {
+        return Outfit::find($id)->slug;
     }
 }
 
 if (!function_exists('back_to_line')) {
     function back_to_line($text) {
         return str_replace('\\r\\n', '<br>', $text);
+    }
+}
+
+if (!function_exists('is_wished')) {
+    function is_wished($outfit) {
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+
+            $check = Auth::user()->wishlist()->where('outfit', $outfit)->where('source', 'in')->first();
+        } else {
+            $user = Cookie::get('user');
+
+            $check = Session::find($user)->wishlist()->where('outfit', $outfit)->where('source', 'out')->first();
+        }
+
+        return isset($check) ? 'active' : '';
     }
 }

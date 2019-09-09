@@ -86,7 +86,7 @@ h1,
 h2,
 h3,
 h4,
---main-color h5,
+h5,
 h6 {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -127,9 +127,10 @@ button:focus {
     padding: 0px;
 }
 
-a {
+a,
+button {
     text-decoration: none;
-    transition: all 0.3s e--main-colorase-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 a:hover,
@@ -3386,7 +3387,7 @@ h6 {
     height: 100%;
     border-radius: 3px;
     cursor: pointer;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #777;
 }
 
 .single-defination h4 {
@@ -3960,10 +3961,6 @@ h6 {
     z-index: 10;
 }
 
-.feature_product_area .cat_page .pagination li a {
-    border: 0 !important;
-}
-
 .f_p_item {
     text-align: center;
     margin-bottom: 50px;
@@ -3981,7 +3978,7 @@ h6 {
     transition: all 400ms ease;
 }
 
-.f_p_item .f_p_img .p_icon a {
+.f_p_item .f_p_img .p_icon button {
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -3992,16 +3989,23 @@ h6 {
     color: #222222;
     margin-bottom: 5px;
     margin-right: 5px;
+    border: none;
+    cursor: pointer;
 }
 
-.f_p_item .f_p_img .p_icon a:last-child {
+.f_p_item .f_p_img .p_icon button:last-child {
     margin-bottom: 0px;
     margin-right: 0px;
 }
 
-.f_p_item .f_p_img .p_icon a:hover {
+.f_p_item .f_p_img .p_icon button:hover {
     color: #fff;
     background: var(--main-color);
+}
+
+.f_p_item .f_p_img .p_icon button.active {
+    color: #fff;
+    background: #28a745;
 }
 
 .f_p_item h4 {
@@ -4362,7 +4366,7 @@ h6 {
     border-radius: 0px;
 }
 
-.cat_page .pagination li a, 
+.cat_page .pagination li a,
 .cat_page .pagination li span {
     height: 40px;
     width: 40px;
@@ -4834,6 +4838,7 @@ h6 {
 .cart_inner .table tbody tr td .media .d-flex img {
     border: 1px solid #eeeeee;
     border-radius: 3px;
+    width: 145px;
 }
 
 .cart_inner .table tbody tr td .media .media-body {
@@ -5260,12 +5265,17 @@ h6 {
     border-color: var(--main-color);
 }
 
+.ordering_zone h3,
 .billing_details h3 {
     font-size: 18px;
     color: #222222;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
     margin-bottom: 30px;
+}
+
+.ordering_zone h3 {
+    margin-bottom: 10px;
 }
 
 .billing_details .contact_form .form-group {
@@ -5310,6 +5320,8 @@ h6 {
 .billing_details .contact_form .form-group .country_select .list {
     width: 100%;
     border-radius: 0px;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .billing_details .contact_form .form-group .country_select .list li {
@@ -5343,44 +5355,44 @@ h6 {
     padding-bottom: 15px;
 }
 
-.order_box .list li a {
+.order_box .list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eeeeee;
+    padding: 10px 0;
+}
+
+.order_box .list li .first {
     font-size: 14px;
     color: #777777;
-    font-weight: normal;
-    border-bottom: 1px solid #eeeeee;
-    display: block;
-    line-height: 42px;
+    flex: 2;
 }
 
-.order_box .list li a span {
-    float: right;
-}
-
-.order_box .list li a .middle {
-    float: none;
-    width: 50px;
-    text-align: right;
-    display: inline-block;
-    margin-left: 30px;
+.order_box .list li .middle {
     color: #222222;
+    flex: 1;
+    text-align: center;
 }
 
-.order_box .list li:nth-child(4) a .middle {
-    margin-left: 48px;
+.order_box .list li .last {
+    flex: 1;
+    text-align: right;
 }
 
-.order_box .list_2 li a {
+.order_box .list_2 li .first {
     text-transform: uppercase;
     color: #222222;
     font-weight: 500;
 }
 
-.order_box .list_2 li a span {
+.order_box .list_2 li .last {
     color: #777777;
     text-transform: capitalize;
+    font-weight: 500;
 }
 
-.order_box .list_2 li:last-child a span {
+.order_box .list_2 li:last-child .last {
     color: #222222;
 }
 
@@ -5730,6 +5742,7 @@ h6 {
     position: absolute;
     right: 40px;
     top: 0px;
+    width: 70px;
 }
 
 .radion_btn label {

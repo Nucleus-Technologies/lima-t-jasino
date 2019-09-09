@@ -16,15 +16,15 @@ class NotificationController extends Controller
     public function index()
     {
         if(isset(Auth::user()->username)) {
-            $notifications = Notification::where('type', 'admin')
-                ->where('to', Auth::user()->id)
+            $notifications = Auth::user()->notifications()
+                ->where('type', 'admin')
                 ->orderBy('created_at', 'desc')
                 ->get();
 
             return view('admin.notification.index', compact('notifications'));
         } else {
-            $notifications = Notification::where('type', 'user')
-                ->where('to', Auth::user()->id)
+            $notifications = Auth::user()->notifications()
+                ->where('type', 'user')
                 ->orderBy('created_at', 'desc')
                 ->get();
 
@@ -66,7 +66,7 @@ class NotificationController extends Controller
                 break;
 
             case 'appointment_message':
-                $message = AppointmentMessage::where('id', $notification->item)->first();
+                $message = AppointmentMessage::find($notification->item);
                 if ($notification->type == 'user') return redirect(route('appointment.show', $message->appointment . '#msg' .$notification->item));
                 else return redirect(route('admin.appointment.show', $message->appointment . '#msg' .$notification->item));
                 break;
@@ -77,6 +77,11 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * Display the user notifications icon.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function refresh()
     {
         if(isset(Auth::user()->username)) {

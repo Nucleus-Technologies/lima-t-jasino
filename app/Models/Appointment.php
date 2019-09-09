@@ -25,6 +25,6 @@ class Appointment extends Model
 
     public function messages()
     {
-        return $this->hasMany('App\Models\AppointmentMessage');
+        return $this->hasMany('App\Models\AppointmentMessage', 'appointment');
     }
 }

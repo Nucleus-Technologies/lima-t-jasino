@@ -15,7 +15,7 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'outfit', 'quantity'
+        'user', 'outfit', 'quantity', 'source'
     ];
 
     public function user()
@@ -23,8 +23,8 @@ class Cart extends Model
         return $this->belongsTo('App\Models\User', 'user');
     }
 
-    public function outfit()
+    public function outfits()
     {
-        return $this->hasMany('App\Models\Outfit', 'outfit');
+        return $this->hasMany('App\Models\Outfit', 'id');
     }
 }
