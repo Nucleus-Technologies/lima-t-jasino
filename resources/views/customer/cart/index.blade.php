@@ -147,7 +147,7 @@
                                     <td>
                                         <div class="checkout_btn_inner">
                                             <a class="gray_btn" href="{{ route('outfit.shop') }}">Continue Shopping</a>
-                                            <a class="main_btn" href="{{ route('checkout') }}">Proceed to checkout</a>
+                                            <a class="main_btn" href="{{ route('payment.checkout.address_details') }}">Proceed to checkout</a>
                                         </div>
                                     </td>
                                 </tr>
