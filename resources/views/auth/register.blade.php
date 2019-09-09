@@ -112,8 +112,9 @@
                                     <input type="checkbox" id="primary-checkbox">
                                     <label for="primary-checkbox"></label>
                                 </div>
-
-                                <p>I have read and accept the <a href="#">conditions</a> and <a href="#">terms</a> of use.</p>
+                                <label for="primary-checkbox">
+                                    I have read and accept the <a href="#">conditions</a> and <a href="#">terms</a> of use.
+                                </label>
                             </div>
 
                             <div class="col-md-12 form-group mt-5">

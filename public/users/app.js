@@ -65,20 +65,19 @@ function update_quantity(elt) {
 
 // Refresh Icon Cart
 function refresh_icon_cart() {
-    $('#nav-item-cart').load(Url["cartIconRefreshUrl"], function(response, status, xhr) {
+    $('#nav-item-cart').load(Url["ct_ic_rf_url"], function(response, status, xhr) {
         if (status == "error") {
-            var msg = "Sorry but there was an error: ";
-            $("#nav-item-cart").html(msg + xhr.status + " " + xhr.statusText);
+            $("#nav-item-cart").html('<a href="{{ route(\'cart\') }}" class="icons nav-cart"> <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-secondary"><i class="fas fa-exclamation-triangle"></i></span></a>');
         }
     });
 }
 
 // Refresh Cart
 function refresh_cart() {
-    $('#cart_inner').load(Url["cartRefreshUrl"], function(response, status, xhr) {
-        $.getScript(Url["cartScriptUrl"]);
-        $.getScript(Url["outfitScriptUrl"]);
-        $.getScript(Url["wishlistScriptUrl"]);
+    $('#cart_inner').load(Url["ct_rf_url"], function(response, status, xhr) {
+        $.getScript(Url["ct_sc_url"]);
+        $.getScript(Url["uf_sc_url"]);
+        $.getScript(Url["wl_sc_url"]);
 
         if (status == "error") {
             var msg = "Sorry but there was an error: ";
@@ -89,10 +88,10 @@ function refresh_cart() {
 
 // Refresh Wishlist
 function refresh_wishlist() {
-    $('#wishlist_inner').load(Url["wishlistRefreshUrl"], function(response, status, xhr) {
-        $.getScript(Url["wishlistScriptUrl"]);
-        $.getScript(Url["outfitScriptUrl"]);
-        $.getScript(Url["cartScriptUrl"]);
+    $('#wishlist_inner').load(Url["wl_rf_url"], function(response, status, xhr) {
+        $.getScript(Url["wl_sc_url"]);
+        $.getScript(Url["uf_sc_url"]);
+        $.getScript(Url["ct_sc_url"]);
 
         if (status == "error") {
             var msg = "Sorry but there was an error: ";
@@ -101,6 +100,18 @@ function refresh_wishlist() {
     });
 }
 
+// Refresh Address Details
+function refresh_checkout_address(zone) {
+    var url = (zone == 'national') ? Url["nz_rf_url"] : Url["inz_rf_url"];
+    $('#address_details').load(url, function(response, status, xhr) {
+        $.getScript(Url["py_sc_url"]);
+
+        if (status == "error") {
+            var msg = "Sorry but there was an error: ";
+            $("#address_details").html(msg + xhr.status + " " + xhr.statusText);
+        }
+    });
+}
 
 //
 // Pages and Events
@@ -133,4 +144,10 @@ $('#sst').on('blur', function() {
     if ($(this).parent('form.line-cart').length) {
         update_quantity($(this));
     }
+});
+
+$('.zone').click(function() {
+    $('#address_details').fadeOut();
+    refresh_checkout_address($(this).val());
+    $('#address_details').fadeIn();
 });

@@ -24,6 +24,10 @@ a:hover {
     border-color: #dc3545 !important;
 }
 
+.custom-select {
+    font-size: 12px;
+}
+
 .invalid-feedback {
     background: #dc3545;
     color: #fff
@@ -425,9 +429,27 @@ form:not(.login_form) .input-group-icon .icon {
     padding: 15px 5px;
 }
 
-.checkout_area .checkout_info div {
-    margin-bottom: 0;
+.checkout_area .checkout_info {
+    padding: 15px 5px;
     text-align: center;
+}
+
+.checkout_area .or-separator {
+    background: var(--main-color);
+    text-align: center;
+    height: 3px;
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+
+.checkout_area .or-separator span {
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: -12px;
+    display: inline-block;
+    background: #fff;
+    padding: 0 5px;
 }
 
 .checkout_area .checkout_info div i,
@@ -435,9 +457,29 @@ form:not(.login_form) .input-group-icon .icon {
     vertical-align: middle;
 }
 
-.checkout_area .checkout_info div span a {
+.checkout_area .checkout_info div span a,
+.processing a {
     font-weight: bold;
     color: #fff;
+}
+
+.processing a {
+    padding: 12px 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.processing a:not([href]):not([tabindex]) {
+    color: #fff;
+}
+
+.processing a.bg-primary {
+    background: var(--main-color) !important;
+}
+
+.processing a.bg-primary:hover,
+.processing a.bg-primary:focus {
+    background: var(--main-color-dark) !important;
 }
 
 .contact_form .p_star label::after {

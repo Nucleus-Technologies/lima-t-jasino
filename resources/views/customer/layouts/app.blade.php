@@ -34,7 +34,6 @@
 </head>
 
 <body>
-
     {{-- Header Menu Area --}}
     @include('customer.layouts.partials._header')
 
@@ -77,8 +76,6 @@
         </div>
     </output>
 
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('customer/js/jquery-3.2.1.min.js') }}"></script>
@@ -86,7 +83,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('customer/js/stellar.js') }}"></script>
     <script src="{{ asset('customer/vendors/lightbox/simpleLightbox.min.js') }}"></script>
-    <script src="{{ asset('customer/vendors/nice-select/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('customer/vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('customer/vendors/isotope/isotope-min.js') }}"></script>
     <script src="{{ asset('customer/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
@@ -106,16 +102,20 @@
     <script src="{{ asset('customer/js/app.appointment.js') }}"></script>
     <script src="{{ asset('customer/js/app.outfit.js') }}"></script>
     <script src="{{ asset('customer/js/app.wishlist.js') }}"></script>
+    <script src="{{ asset('customer/js/app.payment.js') }}"></script>
 
     <script>
         var Url = {
-            "notifUrl" : "{{ URL::to('users/notification/refresh') }}",
-            "cartRefreshUrl" : "{{ URL::to('users/cart/refresh') }}",
-            "cartIconRefreshUrl" : "{{ URL::to('users/cart/icon/refresh') }}",
-            "wishlistRefreshUrl" : "{{ URL::to('users/wishlist/refresh') }}",
-            "cartScriptUrl" : "{{ asset('users/app.js') }}",
-            "outfitScriptUrl" : "{{ asset('customer/js/app.outfit.js') }}",
-            "wishlistScriptUrl" : "{{ asset('customer/js/app.wishlist.js') }}"
+            "nt_url" : "{{ URL::to('users/notification/refresh') }}",
+            "ct_rf_url" : "{{ URL::to('users/cart/refresh') }}",
+            "ct_ic_rf_url" : "{{ URL::to('users/cart/icon/refresh') }}",
+            "wl_rf_url" : "{{ URL::to('users/wishlist/refresh') }}",
+            "nz_rf_url" : "{{ URL::to('users/payment/checkout/address_details/refresh-nz') }}",
+            "inz_rf_url" : "{{ URL::to('users/payment/checkout/address_details/refresh-inz') }}",
+            "ct_sc_url" : "{{ asset('users/app.js') }}",
+            "uf_sc_url" : "{{ asset('customer/js/app.outfit.js') }}",
+            "wl_sc_url" : "{{ asset('customer/js/app.wishlist.js') }}",
+            "py_sc_url" : "{{ asset('customer/js/app.payment.js') }}"
         };
     </script>
 </body>

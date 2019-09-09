@@ -68,7 +68,7 @@
         });
 
         var Url = [
-            "notifUrl" => "{{ URL::to('admin/notification/refresh') }}"
+            "nt_url" => "{{ URL::to('admin/notification/refresh') }}"
         ];
     </script>
 </body>

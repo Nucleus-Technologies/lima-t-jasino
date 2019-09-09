@@ -2,7 +2,7 @@ $(function() {
 
     // Live refresh for notifications nav items
     setInterval(function() {
-        $('#nav-item-notif').load(Url["notifUrl"], function(response, status, xhr) {
+        $('#nav-item-notif').load(Url["nt_url"], function(response, status, xhr) {
             if (status == "error") {
                 var msg = "Sorry but there was an error: ";
                 $("#nav-item-notif").html(msg + xhr.status + " " + xhr.statusText);

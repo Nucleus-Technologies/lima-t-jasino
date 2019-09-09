@@ -60,8 +60,13 @@ Route::prefix('users')->group(function() {
     Route::delete('/wishlist/line-{wishlist}/destroy', 'WishlistController@destroy')->name('wishlist.line.destroy');
     Route::get('/wishlist/refresh', 'WishlistController@refresh')->name('cart.refresh');
 
-    // Order Checkout Routes
-    Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('auth');;
+    // Payment Checkout Routes
+    Route::get('payment/checkout/address_details', 'CheckoutController@index')->name('payment.checkout.address_details')->middleware('auth');
+    Route::get('payment/checkout/address_details/refresh-nz', 'CheckoutController@refresh_nz')->name('payment.checkout.address_details.nz')->middleware('auth');
+    Route::get('payment/checkout/address_details/refresh-inz', 'CheckoutController@refresh_inz')->name('payment.checkout.address_details.inz')->middleware('auth');
+    Route::post('payment/checkout/address_details/store', 'AddressController@store')->name('payment.checkout.address_details.store')->middleware('auth');
+
+    Route::get('payment/checkout/{address}/payment_mode', 'CheckoutController@payment_mode')->name('payment.checkout.payment_mode')->middleware('auth');
 
     // Log Out Route
     Route::post('/logout', 'Auth\LoginController@log_out')->name('user.logout');
