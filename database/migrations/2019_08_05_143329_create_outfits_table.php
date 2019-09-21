@@ -19,7 +19,7 @@ class CreateOutfitsTable extends Migration
             $table->string('name')->unique();
             $table->integer('price');
             $table->string('category');
-            $table->unsignedBigInteger('type');
+            $table->unsignedBigInteger('type_id');
             $table->string('availibility');
             $table->text('context');
             $table->longText('description');

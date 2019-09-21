@@ -33,21 +33,13 @@
                 <form class="row book-appointment-form tracking_form mt-5" action="javascript:void(0)" method="POST" novalidate>
                     @csrf
 
-                    <h6>Location</h6>
+                    <h6><i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i> Location</h6>
                     <div class="col-md-12 input-group-icon form-group mb-4">
-                        <div class="icon">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        </div>
-                        <div class="form-select" id="default-select">
-                            <select name="location" style="display: none;" required>
+                        <div class="form-group">
+                            <select name="location" class="custom-select" required>
                                 <option value="Yaoundé, Cameroon (In our Office)" selected>Yaoundé, Cameroon (In our Office)</option>
+                                <option value="Douala, Cameroon (In our Office)">Douala, Cameroon (In our Office)</option>
                             </select>
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">Yaoundé, Cameroon (In our Office)</span>
-                                <ul class="list">
-                                    <li data-value="Yaoundé, Cameroon (In our Office)" class="option selected focus">Yaoundé, Cameroon (In our Office)</li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
 
@@ -59,7 +51,7 @@
                         <input type="date" name="takes_place_the" placeholder="Choose a day..." class="single-input" min="{{ date('Y-m-d') }}" required>
                     </div>
 
-                    <h6>Starts at <small>--Office hours are from 8AM to 6PM</small></h6>
+                    <h6>Starts at <small>--Office hours are from 8AM to 68M</small></h6>
                     <div class="col-md-12 input-group-icon form-group mb-4">
                         <div class="icon">
                             <i class="fas fa-calendar-day" aria-hidden="true"></i>
@@ -67,7 +59,7 @@
                         <input type="time" name="starts_at" placeholder="Define a time..." class="single-input starts_at" min="{{ env('OPEN_TIME') }}" max="{{ env('CLOSE_TIME') }}" value="{{ env('OPEN_TIME') }}" required>
                     </div>
 
-                    <h6>Ends at <small>--Office hours are from 8AM to 6PM</small></h6>
+                    <h6>Ends at <small>--Office hours are from 8AM to 8PM</small></h6>
                     <div class="col-md-12 input-group-icon form-group mb-4">
                         <div class="icon">
                             <i class="fas fa-calendar-day" aria-hidden="true"></i>

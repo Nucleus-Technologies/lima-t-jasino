@@ -14,7 +14,7 @@ class AddForeignKeyTypeOnOutfitsTable extends Migration
     public function up()
     {
         Schema::table('outfits', function (Blueprint $table) {
-            $table->foreign('type')->references('id')->on('types')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 

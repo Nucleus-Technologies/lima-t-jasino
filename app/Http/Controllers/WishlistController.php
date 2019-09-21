@@ -47,16 +47,16 @@ class WishlistController extends Controller
         if(Auth::check()) {
             $user = Auth::user()->id;
 
-            $verif = Auth::user()->wishlist()->where('outfit', $outfit)->where('source', 'in')->first();
+            $verif = Auth::user()->wishlist()->where('outfit_id', $outfit)->where('source', 'in')->first();
         } else {
             $user = Cookie::get('user');
 
             if (isset($user)) {
-                $verif = Session::find($user)->wishlist()->where('outfit', $outfit)->where('source', 'out')->first();
+                $verif = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
             } else {
                 $user = make_cookie_session();
 
-                $verif = Session::find($user)->wishlist()->where('outfit', $outfit)->where('source', 'out')->first();
+                $verif = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
             }
         }
 
@@ -64,8 +64,8 @@ class WishlistController extends Controller
             $response = ['msg' => 'This outfit is already in your wishlist!', 'status' => true];
         } else {
             $wishlist = Wishlist::create([
-                'user' => $user,
-                'outfit' => $outfit,
+                'user_id' => $user,
+                'outfit_id' => $outfit,
                 'source' => (Auth::check()) ? 'in' : 'out'
             ]);
 

@@ -14,13 +14,13 @@
 
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
-            <li class="nav-item">
+            <li class="nav-item" id="nav-item-notif">
                 <a href="{{ route('admin.notification') }}" class="nav-link nav-link-icon nav-notification">
                     <i class="ni ni-bell-55"></i>
 
-                    @if (number_notif_unread(Auth::user()->id, 'admin') != 0)
+                    @if (number_notif_unread('admin') != 0)
                         <span class="badge badge-pill badge-danger">
-                            {{ number_notif_unread(Auth::user()->id, 'admin') }}
+                            {{ number_notif_unread('admin') }}
                         </span>
                     @endif
                 </a>
@@ -114,18 +114,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/profile.html">
-                        <i class="ni ni-single-02 text-yellow"></i> User profile
+                    <a class="nav-link {{ set_active_route('admin.region_city') }}" href="{{ route('admin.region_city') }}">
+                        <i class="fas fa-map-signs text-yellow"></i> Regions & Cities
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/tables.html">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Tables
+                    <a class="nav-link {{ set_active_route('admin.relaypoint') }}" href="{{ route('admin.relaypoint') }}">
+                        <i class="fas fa-map-pin text-red"></i> Relay Points
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./examples/login.html">
-                        <i class="ni ni-key-25 text-info"></i> Login
+                    <a class="nav-link {{ set_active_route('admin.order') }}" href="{{ route('admin.order') }}">
+                        <i class="fas fa-tags text-info"></i> Customer Orders
                     </a>
                 </li>
                 <li class="nav-item">

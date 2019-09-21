@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function appointments()
     {
-        return $this->hasMany('App\Models\Appointment', 'user');
+        return $this->hasMany('App\Models\Appointment');
     }
 
     public function notifications()
@@ -50,12 +50,22 @@ class User extends Authenticatable
 
     public function cart()
     {
-        return $this->hasMany('App\Models\Cart', 'user');
+        return $this->hasMany('App\Models\Cart');
     }
 
     public function wishlist()
     {
-        return $this->hasMany('App\Models\Wishlist', 'user');
+        return $this->hasMany('App\Models\Wishlist');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany('App\Models\Address');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
     }
 
     public function getFullNameAttribute()

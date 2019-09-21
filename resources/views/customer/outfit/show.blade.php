@@ -28,7 +28,7 @@
 					<div class="s_product_img">
 						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
-                                @foreach (get_outfit_photos($outfit->id) as $idx=>$img)
+                                @foreach ($outfit->outfitphotos as $idx=>$img)
                                     <li data-target="#carouselExampleIndicators" data-slide-to="{{ $idx }}" @if ($loop->first) class="active" @endif>
                                         <img src="{{ show_photo($img->filename) }}" alt="">
                                     </li>
@@ -36,7 +36,7 @@
                             </ol>
 
 							<div class="carousel-inner">
-                                @foreach (get_outfit_photos($outfit->id) as $idx=>$img)
+                                @foreach ($outfit->outfitphotos as $idx=>$img)
                                     <div class="carousel-item @if ($loop->first) active @endif">
                                         <img class="d-block w-100" src="{{ show_photo($img->filename) }}" alt="Slide {{ $idx }}">
                                     </div>
@@ -55,7 +55,7 @@
 								<span>Category:</span> <strong>{{ ucfirst($outfit->category) }}</strong>
 							</li>
 							<li>
-								<span>Type:</span> <strong>{{ id_to_label($outfit->type) }}</strong>
+								<span>Type:</span> <strong>{{ $outfit->type->label }}</strong>
 							</li>
 							<li>
 								<span>Availibility:</span> <strong>{!! format_availibility($outfit->availibility) !!}</strong>
@@ -121,7 +121,7 @@
 
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
-						{!! cformat_specification($outfit->specification) !!}
+						{!! $outfit->specification !!}
 					</div>
                 </div>
 

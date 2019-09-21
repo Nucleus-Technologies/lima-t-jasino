@@ -15,16 +15,26 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'outfit', 'quantity', 'source'
+        'user_id', 'outfit_id', 'quantity', 'source'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user');
+        return $this->belongsTo('App\Models\User');
     }
 
-    public function outfits()
+    public function session()
     {
-        return $this->hasMany('App\Models\Outfit', 'id');
+        return $this->belongsTo('App\Models\Session', 'user_id');
+    }
+
+    public function outfit()
+    {
+        return $this->belongsTo('App\Models\Outfit');
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->outfit->price * $this->quantity;
     }
 }

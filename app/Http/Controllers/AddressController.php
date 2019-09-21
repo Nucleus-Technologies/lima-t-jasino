@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AddressRequest;
 use App\Models\Address;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddressRequest;
 
 class AddressController extends Controller
 {
@@ -26,8 +27,10 @@ class AddressController extends Controller
      */
     public function store(AddressRequest $request)
     {
-        $addr = Address::create([
-            'user' => Auth::user()->id,
+        Auth::user()->addresses()->update(['current' => false]);
+
+        Address::create([
+            'user_id' => Auth::user()->id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -37,16 +40,40 @@ class AddressController extends Controller
             'phone2' => $request->phone2,
             'addressline1' => $request->addressline1,
             'addressline2' => $request->addressline2,
-            'region' => $request->region,
-            'city' => $request->city,
-            'zip' => $request->zip
+            'region_id' => $request->region,
+            'city_id' => $request->city,
+            'zip' => $request->zip,
+            'current' => true
         ]);
 
-        $address = Address::find($addr->id);
+        return redirect()->route('payment.checkout.delivery_method');
 
-        flash('Address successfully saved!')->success()->important();
+        // $response = ['msg' => 'Something goes to wrong. Please try again again or later!', 'status' => false];
 
-        return redirect()->route('payment.checkout.payment_mode', [$address]);
+        // if ($addr) {
+        //     $response = ['msg' => 'Address successfully saved!', 'status' => true];
+        // }
+
+        // return response()->json($response);
+    }
+
+    /**
+     * Continue to payment mode with an already stored address.
+     *
+     * @param  \Illuminate\Http\Request  $address
+     * @return \Illuminate\Http\Response
+     */
+    public function chosen(Request $request)
+    {
+        $request->validate([
+            'address' => 'required|integer'
+        ]);
+
+        Auth::user()->addresses()->update(['current' => false]);
+
+        Auth::user()->addresses()->find($request->address)->update(['current' => true]);
+
+        return redirect()->route('payment.checkout.delivery_method');
     }
 
     /**

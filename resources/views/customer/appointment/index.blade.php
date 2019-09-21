@@ -36,7 +36,7 @@
                             <div class="col-12 col-xl-6">
                                 <div class="card text-white bg-primary">
                                     <div class="card-body">
-                                        <h3 class="card-title">You have not yet book an appointment with our tailors!</h3>
+                                        <h3 class="card-title">You have not yet booked an appointment with our tailors!</h3>
                                         <hr>
                                         <p class="card-text">It's possible for you to do it now.</p>
                                         <hr>
@@ -53,10 +53,15 @@
                                         <h5 class="card-title mb-4">
                                             Take place at
                                             <span class="text-primary">{{ $appointment->location }}</span>
+
                                             @if ($appointment->done)
                                                 <span class="float-right badge badge-success">DONE</span>
                                             @else
                                                 <span class="float-right badge badge-danger">NOT DONE</span>
+                                            @endif
+
+                                            @if (count($appointment->messages) != 0)
+                                                <span class="float-right badge badge-info mr-2"><i class="fas fa-comments"></i></span>
                                             @endif
                                         </h5>
 
@@ -66,17 +71,19 @@
                                             On the
                                             <span class="badge badge-pill badge-dark badge-lg">{{ format_date($appointment->takes_place_the) }}</span>
                                         </p>
-
-                                        <p>
+                                        <p class="card-text mb-2">
                                             From <span class="badge badge-pill badge-dark badge-lg text-uppercase">
                                                 {{ format_time($appointment->starts_at) }}</span>
                                             To <span class="badge badge-pill badge-dark badge-lg text-uppercase">
                                                 {{ format_time($appointment->ends_at) }}</span>
                                         </p>
+
                                         <hr>
-                                        <p>
+
+                                        <p class="card-text">
                                             {!! back_to_line(format_message($appointment->specified_message, 150)) !!}
                                         </p>
+
                                         <a href="{{ route('appointment.show', $appointment) }}" class="main_btn btn-sm">Show more about this</a>
                                     </div>
                                 </div>

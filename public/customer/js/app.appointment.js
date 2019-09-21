@@ -5,7 +5,7 @@ $(function() {
         mm = String(today.getMonth() + 1).padStart(2, '0'),
         yyyy = today.getFullYear(),
         open_time = '08:00',
-        close_time = '18:00';
+        close_time = '20:00';
 
     today = yyyy + '-' + mm + '-' + dd;
 
@@ -78,6 +78,10 @@ $(function() {
                 $('#btn-book-appointment').html('Book this appointment');
 
                 fadeAlert((response.status) ? 'success' : 'danger', response.msg);
+
+                if (response.status) {
+                    $('.book-appointment-form').trigger('reset');
+                }
             });
 
             request.fail(function() {
@@ -85,8 +89,6 @@ $(function() {
 
                 fadeAlert('danger', "An script error occured while booking your appointment!");
             });
-
-            $('.book-appointment-form').trigger('reset');
         }
     });
 
@@ -126,9 +128,13 @@ $(function() {
 
                 fadeAlert((response.status) ? 'success' : 'danger', response.msg);
 
-                setTimeout(function() {
-                    window.location.reload();
-                }, 2000);
+                if (response.status) {
+                    $('.answer-appointment-form').trigger('reset');
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                }
             });
 
             request.fail(function() {
@@ -136,8 +142,6 @@ $(function() {
 
                 fadeAlert('danger', "An script error occured while replying to the tailors!");
             });
-
-            $('.answer-appointment-form').trigger('reset');
         }
 
     });

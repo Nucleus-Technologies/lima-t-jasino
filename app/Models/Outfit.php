@@ -19,21 +19,31 @@ class Outfit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'price', 'category', 'type', 'availibility',
+        'name', 'slug', 'price', 'category', 'type_id', 'availibility',
         'context', 'description', 'specification', 'images'
     ];
 
     public function type()
     {
-        return $this->hasOne('App\Models\Type', 'type');
+        return $this->belongsTo('App\Models\Type');
     }
 
     public function outfitphotos() {
-        return $this->hasMany('App\Models\OutfitPhoto', 'outfit');
+        return $this->hasMany('App\Models\OutfitPhoto');
     }
 
-    public function cart()
+    public function carts()
     {
-        return $this->belongsTo('App\Models\Cart', 'outfit');
+        return $this->hasMany('App\Models\Cart');
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany('App\Models\Wishlist');
+    }
+
+    public function orderlines()
+    {
+        return $this->hasMany('App\Models\OrderLine');
     }
 }

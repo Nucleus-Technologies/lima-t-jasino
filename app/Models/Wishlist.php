@@ -15,16 +15,21 @@ class Wishlist extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'outfit', 'source'
+        'user_id', 'outfit_id', 'source'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user');
+        return $this->belongsTo('App\Models\User');
     }
 
-    public function outfits()
+    public function session()
     {
-        return $this->hasMany('App\Models\Outfit', 'id');
+        return $this->belongsTo('App\Models\Session', 'user_id');
+    }
+
+    public function outfit()
+    {
+        return $this->belongsTo('App\Models\Outfit');
     }
 }

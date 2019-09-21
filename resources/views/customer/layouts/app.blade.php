@@ -26,6 +26,11 @@
     <!-- Fonts -->
     <script src="https://kit.fontawesome.com/fa22834e6d.js"></script>
 
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4"></script>
+    <!-- Masonry -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+
     <!-- main css -->
     <link href="{{ asset('users/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('customer/css/app.css') }}">
@@ -99,10 +104,10 @@
 
     <script src="{{ asset('users/app.js') }}"></script>
     <script src="{{ asset('customer/js/app.js') }}"></script>
+    <script src="{{ asset('customer/js/app.payment.js') }}"></script>
     <script src="{{ asset('customer/js/app.appointment.js') }}"></script>
     <script src="{{ asset('customer/js/app.outfit.js') }}"></script>
     <script src="{{ asset('customer/js/app.wishlist.js') }}"></script>
-    <script src="{{ asset('customer/js/app.payment.js') }}"></script>
 
     <script>
         var Url = {

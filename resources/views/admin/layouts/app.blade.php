@@ -23,7 +23,10 @@
     <link href="{{ asset('admin/js/plugins/nucleo/css/nucleo.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fa22834e6d.js"></script>
 
+    <script src="https://cdn.tiny.cloud/1/y3gwk3acv87mmxpcgzhy5fzs19hh8dx7frmcggpf9lnyfr92/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
     <!-- CSS Files -->
+    <link href="{{ asset('admin/js/plugins/chart.js/dist/Chart.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/argon-dashboard.css?v=1.1.0') }}" rel="stylesheet">
     <link href="{{ asset('users/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
@@ -47,6 +50,8 @@
     <!--   Core   -->
     <script src="{{ asset('admin/js/plugins/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/js/plugins/chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ asset('admin/js/plugins/chart.js/dist/Chart.extension.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
 
@@ -55,6 +60,8 @@
     <script src="{{ asset('admin/js/helpers.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script src="{{ asset('admin/js/app.appointment.js') }}"></script>
+    <script src="{{ asset('admin/js/app.regioncity.js') }}"></script>
+    <script src="{{ asset('admin/js/app.relaypoint.js') }}"></script>
 
     <!--   Argon JS   -->
     <script src="{{ asset('admin/js/argon-dashboard.min.js?v=1.1.0') }}"></script>
@@ -67,9 +74,9 @@
             application: "argon-dashboard-free"
         });
 
-        var Url = [
-            "nt_url" => "{{ URL::to('admin/notification/refresh') }}"
-        ];
+        var Url = {
+            "nt_url" : "{{ URL::to('admin/notification/refresh') }}"
+        };
     </script>
 </body>
 

@@ -11,7 +11,7 @@
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
         <div class="container-fluid">
             <div class="header-body">
-                <h1 class="display-2 text-white">{{ id_to_full_name($appointment->user)->full_name }}</h1>
+                <h1 class="display-2 text-white">{{ $appointment->user->full_name }}</h1>
                 <p class="text-white mt-0 mb-5">{!! $appointment->location !!}</p>
             </div>
         </div>
@@ -87,7 +87,7 @@
                             <div class="col-12 col-lg-8 mt-3">
                                 <h1>Specified Message</h1>
                                 <p class="lead text-justify">
-                                    {!! back_to_line(format_message($appointment->specified_message, 100000000000)) !!}
+                                    {!! back_to_line($appointment->specified_message) !!}
                                 </p>
                             </div>
 
@@ -141,7 +141,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-lg float-right" id="btn-appointment-reply"><i class="fas fa-reply"></i> REPLY</button>
+                                                <button type="submit" class="btn btn-primary btn-lg float-right text-uppercase" id="btn-appointment-reply"><i class="fas fa-reply"></i> Reply</button>
                                             </div>
                                         </div>
                                     </div>

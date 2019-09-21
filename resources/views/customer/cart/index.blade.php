@@ -62,24 +62,24 @@
                                         <td>
                                             <div class="media">
                                                 <div class="d-flex">
-                                                    <img src="{{ show_photo(get_outfit_cover($line->outfit)->filename) }}" alt="">
+                                                    <img src="{{ show_photo($line->outfit->outfitphotos->first()->filename) }}" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>
-                                                        <a href="{{ route('outfit.show', id_to_slug($line->outfit)) }}">{{ cart_outfit($line->outfit)->name }}</a>
+                                                        <a href="{{ route('outfit.show', $line->outfit->slug) }}">{{ $line->outfit->name }}</a>
                                                     </h4>
-                                                    <p>Category: <span class="text-primary">{{ ucfirst(cart_outfit($line->outfit)->category) }}</span></p>
-                                                    <p>Type: <span class="text-primary">{{ id_to_label(cart_outfit($line->outfit)->type) }}</span></p>
-                                                    <p><span class="text-primary">{!! format_availibility(cart_outfit($line->outfit)->availibility) !!}</span></p>
+                                                    <p>Category: <span class="text-primary">{{ ucfirst($line->outfit->category) }}</span></p>
+                                                    <p>Type: <span class="text-primary">{{ $line->outfit->type->label }}</span></p>
+                                                    <p><span class="text-primary">{!! format_availibility($line->outfit->availibility) !!}</span></p>
                                                     <hr>
 
                                                     <div class="d-flex">
                                                         <form class="form-add-to-wishlist" method="POST">
                                                             @csrf
 
-                                                            <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit) }}">
-                                                            <button type="submit" class="btn btn-outline-success btn-sm btn-add-to-wishlist {{ is_wished($line->outfit) }}">
-                                                                <i class="lnr lnr-heart"></i> Add to Wishlist
+                                                            <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit->id) }}">
+                                                            <button type="submit" class="btn btn-outline-success btn-sm btn-add-to-wishlist {{ is_wished($line->outfit->id) ? 'active' : '' }}">
+                                                                {!! is_wished($line->outfit->id) ? '<i class="fas fa-heart"></i> Added to Wishlist' : '<i class="lnr lnr-heart"></i> Add to Wishlist' !!}
                                                             </button>
                                                         </form>
 
@@ -87,7 +87,7 @@
                                                             @csrf
                                                             @method('DELETE')
 
-                                                            <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit) }}">
+                                                            <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit->id) }}">
                                                             <input type="hidden" name="cart" value="{{ crypt_id($line->id) }}">
                                                             <input type="hidden" name="quantity" value="{{ $line->quantity }}">
 
@@ -113,10 +113,10 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <h5>@convert(cart_outfit($line->outfit)->price)</h5>
+                                            <h5>@convert($line->outfit->price)</h5>
                                         </td>
                                         <td>
-                                            <h4>@convert(total_price($line->outfit, $line->quantity))</h4>
+                                            <h4>@convert($line->total_price)</h4>
                                         </td>
                                     </tr>
                                 @endforeach

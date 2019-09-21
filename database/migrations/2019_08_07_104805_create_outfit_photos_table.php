@@ -15,8 +15,8 @@ class CreateOutfitPhotosTable extends Migration
     {
         Schema::create('outfit_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('outfit');
-            $table->foreign('outfit')->references('id')->on('outfits')->onDelete('cascade');
+            $table->unsignedBigInteger('outfit_id');
+            $table->foreign('outfit_id')->references('id')->on('outfits')->onDelete('cascade');
             $table->string('filename')->unique();
             $table->timestamps();
         });

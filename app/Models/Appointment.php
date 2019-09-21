@@ -15,16 +15,16 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'location', 'takes_place_the', 'starts_at', 'ends_at', 'specified_message', 'done'
+        'user_id', 'location', 'takes_place_the', 'starts_at', 'ends_at', 'specified_message', 'done'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function messages()
     {
-        return $this->hasMany('App\Models\AppointmentMessage', 'appointment');
+        return $this->hasMany('App\Models\AppointmentMessage');
     }
 }

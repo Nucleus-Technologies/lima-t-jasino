@@ -293,6 +293,13 @@
         font-size: 30px;
         line-height: 40px;
     }
+    .home_banner_area .banner_inner .banner_content h2 {
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .home_banner_area .banner_inner .banner_content p {
+        font-size: 18px;
+    }
     .home_banner_area .banner_inner .banner_content p {
         margin-bottom: 0px;
     }
@@ -517,6 +524,13 @@
     .home_banner_area .banner_inner .banner_content h3 {
         font-size: 24px;
         line-height: 30px;
+    }
+    .home_banner_area .banner_inner .banner_content h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .home_banner_area .banner_inner .banner_content p {
+        font-size: 14px;
     }
     /* End Home Banner Area css
 	============================================================================================ */

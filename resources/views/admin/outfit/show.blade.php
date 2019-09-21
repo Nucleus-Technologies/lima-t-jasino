@@ -12,7 +12,15 @@
         <div class="container-fluid">
             <div class="header-body">
                 <h1 class="display-2 text-white">{{ $outfit->name }}</h1>
-                <p class="text-white mt-0 mb-5">{!! back_to_line($outfit->context) !!}</p>
+                <p class="text-white mt-0 mb-4">{!! back_to_line($outfit->context) !!}</p>
+                <p class="mb-5 stats">
+                    <span class="badge badge-pill badge-default">
+                        <i class="fas fa-tag text-success mr-1"></i>{{ number_sales($outfit->id) }}
+                    </span>
+                    <span class="badge badge-pill badge-default">
+                        <i class="fas fa-heart text-danger mr-1"></i>{{ number_wishes($outfit->id) }}
+                    </span>
+                </p>
             </div>
         </div>
     </div>
@@ -44,12 +52,12 @@
                                         <h1>Photos</h1>
                                         <div id="carouselOutfitPhotos" class="carousel slide" data-ride="carousel">
                                             <ol class="carousel-indicators">
-                                                @for ($i = 0; $i < count(get_outfit_photos($outfit->id)); $i++)
+                                                @for ($i = 0; $i < count($outfit->outfitphotos); $i++)
                                                     <li data-target="#carouselOutfitPhotos" data-slide-to="0" @if ($i == 0) class="active" @endif></li>
                                                 @endfor
                                             </ol>
                                             <div class="carousel-inner">
-                                                @foreach (get_outfit_photos($outfit->id) as $img)
+                                                @foreach ($outfit->outfitphotos as $img)
                                                     <div class="carousel-item @if ($loop->first) active @endif">
                                                         <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="d-block m-auto">
                                                     </div>
@@ -98,7 +106,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h5 class="card-title text-uppercase text-white-50 mb-0">Type</h5>
-                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ id_to_label($outfit->type) }}</span>
+                                                        <span class="h2 font-weight-bold mb-0 text-white">{{ $outfit->type->label }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,7 +131,7 @@
                             <div class="col-12 mt-3">
                                 <h1>Description</h1>
                                 <p class="lead text-justify">
-                                    {!! back_to_line($outfit->description) !!}
+                                    {!! $outfit->description !!}
                                 </p>
                             </div>
 
@@ -132,7 +140,7 @@
                             <div class="col-12 mt-3 mb-5">
                                 <h1>Specification</h1>
                                 <p class="lead text-justify">
-                                    {!! format_specification($outfit->specification) !!}
+                                    {!! $outfit->specification !!}
                                 </p>
                             </div>
                         </div>

@@ -25,8 +25,7 @@ class OutfitController extends Controller
 
         $categories = [
             'men',
-            'women',
-            'children'
+            'women'
         ];
 
         $types = Type::all()->sortBy('label');
@@ -43,12 +42,11 @@ class OutfitController extends Controller
 
         $men_outfits = Outfit::where('category', 'men')->get();
         $women_outfits = Outfit::where('category', 'women')->get();
-        $children_outfits = Outfit::where('category', 'children')->get();
 
         if(Auth::check()) {
             if(isset(Auth::user()->username)) {
                 return view('admin.outfit.index', compact(
-                    'men_outfits', 'women_outfits', 'children_outfits')
+                    'men_outfits', 'women_outfits')
                 );
             } else {
                 return view('customer.outfit.shop', compact('outfits', 'categories', 'types', 'colors'));
@@ -84,7 +82,7 @@ class OutfitController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'category' => $request->category,
-            'type' => $request->type,
+            'type_id' => $request->type,
             'availibility' => $request->availibility,
             'context' => nl2br($request->context),
             'description' => nl2br($request->description),
@@ -106,7 +104,7 @@ class OutfitController extends Controller
                 . $photo->getClientOriginalExtension());
 
             OutfitPhoto::create([
-                'outfit' => $outfit->id,
+                'outfit_id' => $outfit->id,
                 'filename' => $filename
             ]);
         }

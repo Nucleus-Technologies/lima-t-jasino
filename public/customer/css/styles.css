@@ -9,6 +9,16 @@ a:hover {
     color: var(--main-color-dark);
 }
 
+button:disabled {
+    opacity: .65;
+    cursor: not-allowed !important;
+}
+
+button:disabled:hover {
+    background: var(--main-color) !important;
+    color: #fff !important;
+}
+
 .nav.pull-right .dropdown-toggle::after {
     display: none;
 }
@@ -425,64 +435,183 @@ form:not(.login_form) .input-group-icon .icon {
 
 /* Checkout */
 
-.checkout_area .checkout_info {
-    padding: 15px 5px;
+.checkout_area {
+    margin-top: 150px;
 }
 
-.checkout_area .checkout_info {
-    padding: 15px 5px;
-    text-align: center;
-}
-
-.checkout_area .or-separator {
-    background: var(--main-color);
-    text-align: center;
-    height: 3px;
-    margin-bottom: 80px;
-    margin-top: 80px;
-}
-
-.checkout_area .or-separator span {
-    color: var(--main-color);
-    font-weight: bold;
-    font-size: 3rem;
-    margin-top: -12px;
-    display: inline-block;
-    background: #fff;
-    padding: 0 5px;
-}
-
-.checkout_area .checkout_info div i,
-.checkout_area .checkout_info div span {
-    vertical-align: middle;
-}
-
-.checkout_area .checkout_info div span a,
-.processing a {
-    font-weight: bold;
-    color: #fff;
-}
-
-.processing a {
-    padding: 12px 5px;
-    text-align: center;
+.checkout_area .card .card-header {
     text-transform: uppercase;
 }
 
-.processing a:not([href]):not([tabindex]) {
-    color: #fff;
+.checkout_area .card .card-header i.done {
+    color: #3FE331;
 }
 
-.processing a.bg-primary {
-    background: var(--main-color) !important;
+.address_choice .radion_btn label {
+    text-transform: inherit;
+    height: auto;
+    padding: 0px 25px 0 25px;
 }
 
-.processing a.bg-primary:hover,
-.processing a.bg-primary:focus {
-    background: var(--main-color-dark) !important;
-}
-
-.contact_form .p_star label::after {
+.contact_form .p_star label:not(.error)::after {
     content: '*';
     color: #dc3545;
+}
+
+
+/* Payment mode */
+
+.payment-mode-form .payment_item {
+    padding: 30px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.payment-mode-form .payment_item .radion_text {
+    display: none;
+}
+
+.payment-mode-form .payment_item .radion_text.show {
+    display: block;
+}
+
+.payment-mode-form>h3 {
+    margin-bottom: 40px;
+}
+
+.payment-mode-form .main_btn {
+    margin-top: 50px;
+}
+
+
+/* Collection  */
+
+.collection-area .collection-group {
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+.collection-area .collection-group:last-child {
+    margin-bottom: 100px;
+}
+
+.collection-area .collection-group .description {
+    width: 820px;
+    margin-right: -50px;
+    z-index: 9;
+    background: var(--main-color);
+    color: #fff;
+    padding: 30px;
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.collection-area .collection-group .description p {
+    font-size: 1.3rem;
+    line-height: 28px;
+}
+
+.collection-area .collection-group .description h1 {
+    margin-bottom: 10px;
+}
+
+.collection-area .collection-group .description hr {
+    width: 100px;
+    border: 10px solid #fff;
+    margin-left: -30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.collection-area .collection-group .description a {
+    color: #fff;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.collection-area .collection-group .description a i {
+    margin-right: 3px;
+    transition: all .4s ease-in-out;
+}
+
+.collection-area .collection-group .description a:hover i {
+    transform: scale(1.2);
+}
+
+.collection-area .collection-group .picture {
+    width: 90%;
+}
+
+
+/* Collection Groups */
+
+.collection-group-area .grid .grid-item.col-lg-4:hover {
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+}
+
+.collection-group-area .grid .grid-item.col-lg-12:hover {
+    cursor: -moz-zoom-out !important;
+    cursor: -webkit-zoom-out !important;
+    cursor: zoom-out !important;
+}
+
+.collection-group-area .grid .card {
+    box-shadow: 0 13px 6px -6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 60px;
+}
+
+.collection-group-area .grid .card:before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: var(--main-color);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.collection-group-area .grid .card .card-img-top {
+    border-radius: calc(.25rem - 1px);
+}
+
+.collection-group-area .card.card-pub {
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-top: 110px;
+    margin-bottom: 40px;
+}
+
+.collection-group-area .card.card-pub .card-img {
+    border-radius: 0;
+}
+
+.collection-group-area .card.card-pub .display-3 {
+    line-height: 1;
+}
+
+.collection-group-area .card.card-pub .card-text a {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+    transition: margin-left .3s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+.collection-group-area .card.card-pub .card-text a:hover {
+    margin-left: 4px;
+}
+
+.collection-group-area .card.card-pub .card-text a i {
+    margin-left: 2px;
+    transition: margin-left, transform, .3s cubic-bezier(.46, .03, .52, .96);
+}
+
+.collection-group-area .card.card-pub .card-text a:hover i {
+    margin-left: 12px;
+    transform: rotate(360deg);
 }

@@ -9,10 +9,16 @@
             <div class="container">
                 <div class="banner_content row">
                     <div class="offset-lg-2 col-lg-8">
-                        <h3>Fashion for
-                            <br />Upcoming Winter</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        <a class="white_bg_btn text-uppercase" href="#">View Collection</a>
+                        <h3 class="text-uppercase mb-0">Lima T Jasino</h3>
+                        <hr>
+                        <h2 class="text-uppercase text-white mb-5">Bespoke</h2>
+
+                        <p>
+                            <strong>Cameroon Premium Tailor.</strong> <br>
+                            As tailors, we offer outfits already designed and you also have the opportunity to order your own, as well as visit us by booking appointments.
+                        </p>
+
+                        <a class="white_bg_btn text-uppercase" href="{{ route('collection') }}">View Collection</a>
                         <a class="white_bg_btn inverse text-uppercase" href="{{ route('appointment.create') }}">Book an appointment</a>
                     </div>
                 </div>
@@ -106,13 +112,13 @@
                             <div class="col col1">
                                 <div class="f_p_item">
                                     <div class="f_p_img">
-                                        <img class="img-fluid" src="{{ show_photo(get_outfit_cover($outfit->id)->filename) }}" alt="">
+                                        <img class="img-fluid" src="{{ show_photo($outfit->outfitphotos->first()->filename) }}" alt="">
                                         <div class="p_icon d-flex">
                                             <form class="form-add-to-wishlist" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
-                                                <button type="submit" class="btn-add-to-wishlist">
-                                                    <i class="lnr lnr-heart"></i>
+                                                <button type="submit" class="btn-add-to-wishlist {{ is_wished($outfit->id) ? 'active' : '' }}">
+                                                    {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="lnr lnr-heart"></i>' !!}
                                                 </button>
                                             </form>
 

@@ -22,6 +22,6 @@ class Type extends Model
 
     public function outfits()
     {
-        return $this->hasMany('App\Models\Outfit', 'type');
+        return $this->hasMany('App\Models\Outfit');
     }
 }

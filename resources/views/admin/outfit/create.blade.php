@@ -75,10 +75,6 @@
                                             <input name="category" class="custom-control-input" type="radio" value="women" id="categoryRadio2" required>
                                             <label class="custom-control-label" for="categoryRadio2">Women</label>
                                         </div>
-                                        <div class="custom-control custom-control-alternative custom-radio mb-3">
-                                            <input name="category" class="custom-control-input" type="radio" value="children" id="categoryRadio3" required>
-                                            <label class="custom-control-label" for="categoryRadio3">Children</label>
-                                        </div>
 
                                         @error('category')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">
@@ -140,7 +136,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group @error('description') has-danger @enderror">
                                         <label class="form-control-label" for="input-description">Description</label><br>
-                                        <textarea name="description" class="form-control form-control-alternative @error('description') is-invalid @enderror" rows="8" placeholder="Write the largest text here..." id="input-description" required>{{ old('description') }}</textarea>
+                                        <textarea name="description" class="form-control form-control-alternative @error('description') is-invalid @enderror" rows="15" placeholder="Write the largest text here..." id="input-description" required>{{ old('description') }}</textarea>
 
                                         @error('description')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">
@@ -165,21 +161,16 @@
 
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="btn-outfit-save"><i class="fas fa-check-circle"></i> SAVE THIS OUTFIT</button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-uppercase" id="btn-outfit-save">
+                                            <i class="fas fa-check-circle"></i> Save this outfit
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group @error('specification') has-danger @enderror">
                                         <label class="form-control-label" for="input-specification">Specification</label><br>
-                                        <div class="alert alert-default">
-                                            <p>
-                                                <span class="badge badge-pill badge-secondary"> <i class="fas fa-exclamation-triangle"></i> IMPORTANT</span>
-                                            </p>
-                                            Defines this outfit specification in this format: <strong>label 1:value 1|label 2:value 2|...</strong><br>
-                                            For example: <strong>Width:128mm|Height:508mm|Depth:85mm</strong>
-                                        </div>
-                                        <textarea name="specification" class="form-control form-control-alternative @error('specification') is-invalid @enderror" rows="9" placeholder="Write the largest text here..." id="input-specification" required>{{ old('specification') }}</textarea>
+                                        <textarea name="specification" class="form-control form-control-alternative @error('specification') is-invalid @enderror" rows="15" placeholder="Write the largest text here..." id="input-specification" required>{{ old('specification') }}</textarea>
 
                                         @error('specification')
                                             <div class="alert alert-danger mb-0 mr-0 w-100" role="alert">

@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        <span class="h2 font-weight-bold mb-0">{{ number_customers() }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -50,8 +50,35 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                                    <span class="text-nowrap">Since last week</span>
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_week('user', 1) }}</span>
+                                    <span class="text-nowrap">Last week</span> <br>
+
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_week('user', 0) }}</span>
+                                    <span class="text-nowrap">This week</span> <br>
+
+                                    @if (stat_week_pcent('user', 0) < stat_week_pcent('user', 1))
+                                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> {{ stat_week_pcent('user', 0) }}%</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_week_pcent('user', 0) }}%</span>
+                                    @endif
+                                    <span class="text-nowrap">This week</span>
+                                </p>
+
+                                <hr>
+
+                                <p class="mt-3 mb-0 text-muted text-sm">
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_month('user', 1) }}</span>
+                                    <span class="text-nowrap">Last month</span> <br>
+
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_month('user', 0) }}</span>
+                                    <span class="text-nowrap">This month</span> <br>
+
+                                    @if (stat_month_pcent('user', 0) < stat_month_pcent('user', 1))
+                                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> {{ stat_month_pcent('user', 0) }}%</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_month_pcent('user', 0) }}%</span>
+                                    @endif
+                                    <span class="text-nowrap">This month</span>
                                 </p>
                             </div>
                         </div>
@@ -62,18 +89,45 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                                        <span class="h2 font-weight-bold mb-0">924</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Orders</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{ number_orders() }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                        <i class="fas fa-users"></i>
+                                        <i class="fas fa-tags"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                    <span class="text-nowrap">Since yesterday</span>
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_week('order', 1) }}</span>
+                                    <span class="text-nowrap">Last week</span> <br>
+
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_week('order', 0) }}</span>
+                                    <span class="text-nowrap">This week</span> <br>
+
+                                    @if (stat_week_pcent('order', 0) < stat_week_pcent('order', 1))
+                                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> {{ stat_week_pcent('order', 0) }}%</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_week_pcent('order', 0) }}%</span>
+                                    @endif
+                                    <span class="text-nowrap">This week</span>
+                                </p>
+
+                                <hr>
+
+                                <p class="mt-3 mb-0 text-muted text-sm">
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_month('order', 1) }}</span>
+                                    <span class="text-nowrap">Last month</span> <br>
+
+                                    <span class="text-primary mr-2"><i class="fas fa-plus"></i> {{ total_month('order', 0) }}</span>
+                                    <span class="text-nowrap">This month</span> <br>
+
+                                    @if (stat_month_pcent('order', 0) < stat_month_pcent('order', 1))
+                                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> {{ stat_month_pcent('order', 0) }}%</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_month_pcent('order', 0) }}%</span>
+                                    @endif
+                                    <span class="text-nowrap">This month</span>
                                 </p>
                             </div>
                         </div>
@@ -119,13 +173,13 @@
                             </div>
                             <div class="col">
                                 <ul class="nav nav-pills justify-content-end">
-                                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="XAF" data-suffix="k">
                                         <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
                                             <span class="d-none d-md-block">Month</span>
                                             <span class="d-md-none">M</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="XAF" data-suffix="k">
                                         <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
                                             <span class="d-none d-md-block">Week</span>
                                             <span class="d-md-none">W</span>
@@ -168,12 +222,12 @@
 
         <div class="row mt-5">
 
-            <div class="col-xl-8 mb-5 mb-xl-0">
+            <div class="col-xl-8 mb-5 mb-xl-0 best-selling">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Page visits</h3>
+                                <h3 class="mb-0">The 10 best-selling outfits</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -185,83 +239,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Page name</th>
-                                    <th scope="col">Visitors</th>
-                                    <th scope="col">Unique users</th>
-                                    <th scope="col">Bounce rate</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Outfit</th>
+                                    <th scope="col">Sales</th>
+                                    <th scope="col">Wishes</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <th scope="row">
-                                    /argon/
-                                </th>
-                                <td>
-                                    4,569
-                                </td>
-                                <td>
-                                    340
-                                </td>
-                                <td>
-                                    <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">
-                                    /argon/index.html
-                                </th>
-                                <td>
-                                    3,985
-                                </td>
-                                <td>
-                                    319
-                                </td>
-                                <td>
-                                    <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">
-                                    /argon/charts.html
-                                </th>
-                                <td>
-                                    3,513
-                                </td>
-                                <td>
-                                    294
-                                </td>
-                                <td>
-                                    <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">
-                                    /argon/tables.html
-                                </th>
-                                <td>
-                                    2,050
-                                </td>
-                                <td>
-                                    147
-                                </td>
-                                <td>
-                                    <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">
-                                    /argon/profile.html
-                                </th>
-                                <td>
-                                    1,795
-                                </td>
-                                <td>
-                                    190
-                                </td>
-                                <td>
-                                    <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                                </td>
-                                </tr>
+                                @foreach ($lines as $key=>$line)
+                                    <tr>
+                                        <th scope="row">{{ $key+1 }}</th>
+                                        <th scope="row">{{ $line->outfit->name }}</th>
+                                        <td><i class="fas fa-tag text-success mr-1"></i> {{ $line->number_sales }}</td>
+                                        <td><i class="fas fa-heart text-danger mr-1"></i> {{ number_wishes($line->outfit->id) }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

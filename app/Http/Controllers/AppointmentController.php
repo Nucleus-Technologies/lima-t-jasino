@@ -20,9 +20,9 @@ class AppointmentController extends Controller
     {
         if(isset(Auth::user()->username)) {
             $appointments_done = Appointment::where('done', 1)
-                ->orderBy('user')->orderBy('created_at', 'desc')->get();
+                ->orderBy('user_id')->orderBy('created_at', 'desc')->get();
             $appointments_not_done = Appointment::where('done', 0)
-                ->orderBy('user')->orderBy('created_at', 'desc')->get();
+                ->orderBy('user_id')->orderBy('created_at', 'desc')->get();
 
             return view('admin.appointment.index', compact('appointments_done', 'appointments_not_done'));
         } else {
@@ -51,7 +51,7 @@ class AppointmentController extends Controller
     public function store(AppointmentRequest $request)
     {
         $appointment = Appointment::create([
-            'user' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
             'location' => $request->location,
             'takes_place_the' => $request->takes_place_the,
             'starts_at' => $request->starts_at,
@@ -86,7 +86,7 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        $messages = Appointment::find($appointment->id)->messages()->get();
+        $messages = $appointment->messages()->get();
 
         if (isset(Auth::user()->username)) {
             return view('admin.appointment.show', compact('appointment', 'messages'));
@@ -143,8 +143,8 @@ class AppointmentController extends Controller
         $appointment_message = AppointmentMessage::create([
             'origin' => (Auth::user()->username) ? 'admin' : 'user',
             'from' => Auth::user()->id,
-            'to' => $appointment->user,
-            'appointment' => $appointment->id,
+            'to' => $appointment->user_id,
+            'appointment_id' => $appointment->id,
             'answered_message' => nl2br($request->answered_message)
         ]);
 
@@ -155,7 +155,7 @@ class AppointmentController extends Controller
             $notification->store([
                 'type' => (Auth::user()->username) ? 'user' : 'admin',
                 'about' => 'appointment_message',
-                'to' => (Auth::user()->username) ? $appointment->user : 1,
+                'to' => (Auth::user()->username) ? $appointment->user_id : 1,
                 'item' => $appointment_message->id,
                 'read' => 0
             ]);

@@ -37,11 +37,13 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/helpers.php",
-            "app/Helpers/outfitHelpers.php",
-            "app/Helpers/appointmentHelpers.php",
-            "app/Helpers/notificationHelpers.php",
-            "app/Helpers/cartHelpers.php"
+            "app/Helpers/AppHelper.php",
+            "app/Helpers/OutfitHelper.php",
+            "app/Helpers/AppointmentHelper.php",
+            "app/Helpers/NotificationHelper.php",
+            "app/Helpers/CartHelper.php",
+            "app/Helpers/CheckoutHelper.php",
+            "app/Helpers/StatisticsHelper.php"
         ],
         "classmap": [
             "database/seeds",

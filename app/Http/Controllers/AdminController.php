@@ -6,6 +6,9 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AdminRequest;
+use App\Models\OrderLine;
+use App\Models\Outfit;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -26,7 +29,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $lines = OrderLine::select(DB::raw('outfit_id, count(outfit_id) as number_sales'))
+            ->groupBy('outfit_id')
+            ->orderBy('number_sales', 'desc')
+            ->limit(10)
+            ->get();
+
+        return view('admin.dashboard', compact('lines'));
     }
 
     /**

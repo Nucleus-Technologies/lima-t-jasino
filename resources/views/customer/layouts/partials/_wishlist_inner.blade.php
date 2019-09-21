@@ -29,25 +29,25 @@
                         <td>
                             <div class="media">
                                 <div class="d-flex">
-                                    <img src="{{ show_photo(get_outfit_cover($line->outfit)->filename) }}" alt="">
+                                    <img src="{{ show_photo($line->outfit->outfitphotos->first()->filename) }}" alt="">
                                 </div>
                                 <div class="media-body">
                                     <h3>
-                                        <a href="{{ route('outfit.show', id_to_slug($line->outfit)) }}">{{ cart_outfit($line->outfit)->name }}</a>
+                                        <a href="{{ route('outfit.show', $line->outfit->slug) }}">{{ $line->outfit->name }}</a>
                                     </h3>
-                                    <p>Category: <span class="text-primary">{{ ucfirst(cart_outfit($line->outfit)->category) }}</span></p>
-                                    <p>Type: <span class="text-primary">{{ id_to_label(cart_outfit($line->outfit)->type) }}</span></p>
+                                    <p>Category: <span class="text-primary">{{ ucfirst($line->outfit->category) }}</span></p>
+                                    <p>Type: <span class="text-primary">{{ $line->outfit->type->label }}</span></p>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <p class="h5"><span class="text-primary">{!! format_availibility(cart_outfit($line->outfit)->availibility) !!}</span></p>
-                            <h4>@convert(cart_outfit($line->outfit)->price)</h4>
+                            <p class="h5"><span class="text-primary">{!! format_availibility($line->outfit->availibility) !!}</span></p>
+                            <h4>@convert($line->outfit->price)</h4>
                         </td>
                         <td style="width:15%">
                             <form class="form-add-to-cart pull-right" method="POST">
                                 @csrf
-                                <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit) }}">
+                                <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit->id) }}">
                                 <input type="hidden" name="quantity" value="1">
                                 <button type="submit" class="btn btn-outline-success btn-sm btn-add-to-cart">
                                     <i class="lnr lnr-cart"></i> Add to Cart

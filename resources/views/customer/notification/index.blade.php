@@ -53,7 +53,7 @@
                                             {{ format_sender($notification->type, $notification->about, $notification->item) }}
                                         </small>
 
-                                        <form action="{{ route('notification.read', $notification->id) }}" method="post" class="d-none notif-form">
+                                        <form action="{{ route('notification.read', $notification->id) }}" method="POST" class="d-none notif-form">
                                             @csrf
                                             @method('PUT')
                                         </form>

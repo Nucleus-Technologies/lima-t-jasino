@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use App\Models\AppointmentMessage;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
@@ -57,18 +58,21 @@ class NotificationController extends Controller
      */
     public function read(Notification $notification)
     {
-        $check_read = $notification->update(['read' => 1]);
+        $notification->update(['read' => 1]);
 
         switch ($notification->about) {
             case 'appointment':
-                if ($notification->type == 'user') return route('appointment.show', $notification->item);
-                else return redirect(route('admin.appointment.show', $notification->item));
+                return redirect(route('admin.appointment.show', $notification->item));
                 break;
 
             case 'appointment_message':
                 $message = AppointmentMessage::find($notification->item);
-                if ($notification->type == 'user') return redirect(route('appointment.show', $message->appointment . '#msg' .$notification->item));
-                else return redirect(route('admin.appointment.show', $message->appointment . '#msg' .$notification->item));
+                if ($notification->type == 'user') return redirect(route('appointment.show', $message->appointment_id . '#msg' .$notification->item));
+                else return redirect(route('admin.appointment.show', $message->appointment_id . '#msg' .$notification->item));
+                break;
+
+            case 'order_payment':
+                return redirect(route('admin.order.show', $notification->item));
                 break;
 
             default:

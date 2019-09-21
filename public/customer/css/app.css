@@ -458,6 +458,7 @@ a:focus {
     transition: transform 500ms ease, background 500ms ease;
     -webkit-transition: transform 500ms ease, background 500ms ease;
     box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
+    z-index: 99;
 }
 
 .header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
@@ -631,9 +632,16 @@ a:focus {
     color: #ffffff;
 }
 
+.home_banner_area .banner_inner .banner_content hr {
+    border-color: #ffffff42;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 30%;
+}
+
 .home_banner_area .banner_inner .banner_content p {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 1.3rem;
+    line-height: 34px;
     font-family: "Roboto", sans-serif;
     font-weight: normal;
     color: #ffffff;
@@ -3936,7 +3944,7 @@ h6 {
     transform: translate(-50%, -50%);
     color: #ffffff;
     text-align: center;
-    z-index: 999;
+    z-index: 89;
 }
 
 .hot_deals_area .hot_deal_box .content p {
@@ -3949,7 +3957,7 @@ h6 {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 89;
 }
 
 
@@ -4285,7 +4293,7 @@ h6 {
     padding: 10px 20px;
 }
 
-.product_top_bar .left_dorp .sorting {
+.product_top_bar .left_dorp .custom-select {
     display: inline-block;
     clear: none;
     border: 1px solid #eeeeee;
@@ -5288,19 +5296,19 @@ h6 {
 }
 
 .billing_details .contact_form .form-group input.placeholder {
-    color: #777777;
+    color: #ccc;
 }
 
 .billing_details .contact_form .form-group input:-moz-placeholder {
-    color: #777777;
+    color: #ccc;
 }
 
 .billing_details .contact_form .form-group input::-moz-placeholder {
-    color: #777777;
+    color: #ccc;
 }
 
 .billing_details .contact_form .form-group input::-webkit-input-placeholder {
-    color: #777777;
+    color: #ccc;
 }
 
 .billing_details .contact_form .form-group textarea {
@@ -5467,11 +5475,13 @@ h6 {
     text-transform: uppercase;
 }
 
-.order_details .title_confirmation {
+.order_details .title_confirmation,
+.order_details .payment-state {
     text-align: center;
-    color: #28d500;
+    color: #fff;
     font-size: 18px;
     margin-bottom: 80px;
+    padding: 15px 0;
 }
 
 .order_d_inner .details_item h4 {
@@ -5488,22 +5498,21 @@ h6 {
 
 .order_d_inner .details_item .list li {
     margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .order_d_inner .details_item .list li:last-child {
     margin-bottom: 0px;
 }
 
-.order_d_inner .details_item .list li a {
-    font-size: 14px;
-    color: #222222;
-    font-family: "Roboto", sans-serif;
+.order_d_inner .details_item .list li .first {
+    color: #777777;
 }
 
-.order_d_inner .details_item .list li a span {
-    width: 145px;
-    display: inline-block;
-    color: #777777;
+.order_d_inner .details_item .list li strong {
+    color: #222222;
+    text-align: right;
 }
 
 .order_details_table {
@@ -5735,14 +5744,13 @@ h6 {
 .radion_btn {
     position: relative;
     margin-top: 10px;
-    margin-bottom: 15px;
 }
 
 .radion_btn img {
     position: absolute;
     right: 40px;
     top: 0px;
-    width: 70px;
+    width: 90px;
 }
 
 .radion_btn label {

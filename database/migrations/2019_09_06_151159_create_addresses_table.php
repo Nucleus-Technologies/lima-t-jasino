@@ -15,7 +15,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user');
+            $table->unsignedBigInteger('user_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
@@ -25,9 +25,10 @@ class CreateAddressesTable extends Migration
             $table->string('phone2')->nullable();
             $table->string('addressline1');
             $table->string('addressline2')->nullable();
-            $table->string('region');
-            $table->string('city');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('city_id');
             $table->integer('zip')->nullable();
+            $table->boolean('current')->default(false);
             $table->timestamps();
         });
     }

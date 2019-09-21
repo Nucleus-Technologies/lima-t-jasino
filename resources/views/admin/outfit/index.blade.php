@@ -28,7 +28,11 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('men')) }}</span>
+                                    @if (stat_month('outfit', 'men') < 0)
+                                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> {{ stat_month('outfit', 'men') }}</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_month('outfit', 'men') }}</span>
+                                    @endif
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
@@ -50,14 +54,18 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('women')) }}</span>
+                                        @if (stat_month('outfit', 'women') < 0)
+                                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> {{ stat_month('outfit', 'women') }}</span>
+                                    @else
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{ stat_month('outfit', 'women') }}</span>
+                                    @endif
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-lg-6">
+                    {{--  <div class="col-xl-3 col-lg-6">
                         <div class="card card-stats mb-4 mb-xl-0">
                             <div class="card-body">
                                 <div class="row">
@@ -72,12 +80,12 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(total_this_month('children')) }}</span>
+                                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ show2digits(stat_month('outfit', 'children')) }}</span>
                                     <span class="text-nowrap">During this month</span>
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>  --}}
 
                     <div class="col-xl-3 col-lg-6">
                         <a href="{{ route('admin.outfit.create') }}" class="btn btn-warning btn-lg btn-block text-uppercase"><i class="fas fa-plus-circle mr-1"></i> Add New Outfit</a>
@@ -105,7 +113,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
                                             </div>
-                                            <input class="form-control" id="men-outfit-search" placeholder="Search by type, by name, by availibility, ..." type="text">
+                                            <input class="form-control" id="men-outfit-search" placeholder="Search by name, by price, by type, ..." type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -141,17 +149,23 @@
                                                         <img alt="Image placeholder" src="{{ asset('admin/img/theme/outfit-avatar.jpg') }}">
                                                         </a>
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">{{ $outfit->name }}</span>
+                                                            <span class="mb-0 text-sm">{{ format_message($outfit->name, 30) }}</span>
+                                                            <span class="badge badge-pill badge-primary">
+                                                                <i class="fas fa-tag text-success mr-1"></i>{{ number_sales($outfit->id) }}
+                                                            </span>
+                                                            <span class="badge badge-pill badge-primary">
+                                                                <i class="fas fa-heart text-danger mr-1"></i>{{ number_wishes($outfit->id) }}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </th>
 
                                                 <td class="price">
-                                                    <span class="badge badge-pill badge-primary">XAF {{ $outfit->price }}</span>
+                                                    <span class="badge badge-pill badge-primary">@convert($outfit->price)</span>
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ id_to_label($outfit->type) }}
+                                                    {{ $outfit->type->label }}
                                                 </td>
 
                                                 <td class="availibility">
@@ -160,7 +174,7 @@
 
                                                 <td class="pictures">
                                                     <div class="avatar-group">
-                                                        @foreach (get_outfit_photos($outfit->id) as $img)
+                                                        @foreach ($outfit->outfitphotos as $img)
                                                             <a href="{{ show_photo($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
                                                                 <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="rounded-circle">
                                                             </a>
@@ -175,7 +189,6 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                             <a class="dropdown-item" href="{{ route('admin.outfit.show', $outfit) }}"><i class="fas fa-eye"></i> More...</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-upload"></i> Publish</a>
                                                             <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Edit</a>
                                                             <a class="dropdown-item bg-danger text-white" href="#"><i class="fas fa-trash"></i> Delete</a>
                                                         </div>
@@ -242,7 +255,7 @@
                                                         <img alt="Image placeholder" src="{{ asset('admin/img/theme/outfit-avatar.jpg') }}">
                                                         </a>
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">{{ $outfit->name }}</span>
+                                                            <span class="mb-0 text-sm">{{ format_message($outfit->name, 30) }}</span>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -252,7 +265,7 @@
                                                 </td>
 
                                                 <td class="type">
-                                                    {{ id_to_label($outfit->type) }}
+                                                    {{ $outfit->type->label }}
                                                 </td>
 
                                                 <td class="availibility">
@@ -261,7 +274,7 @@
 
                                                 <td class="pictures">
                                                     <div class="avatar-group">
-                                                        @foreach (get_outfit_photos($outfit->id) as $img)
+                                                        @foreach ($outfit->outfitphotos as $img)
                                                             <a href="{{ show_photo($img->filename) }}" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Click to see more" target="_blank">
                                                                 <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="rounded-circle">
                                                             </a>
@@ -276,7 +289,6 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                             <a class="dropdown-item" href="{{ route('admin.outfit.show', $outfit) }}"><i class="fas fa-eye"></i> More...</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-upload"></i> Publish</a>
                                                             <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Edit</a>
                                                             <a class="dropdown-item bg-danger text-white" href="#"><i class="fas fa-trash"></i> Delete</a>
                                                         </div>
@@ -293,7 +305,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 mb-5 mb-xl-0 mt-5">
+            {{--  <div class="col-lg-12 mb-5 mb-xl-0 mt-5">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
@@ -343,13 +355,13 @@
                                                         <img alt="Image placeholder" src="{{ asset('admin/img/theme/outfit-avatar.jpg') }}">
                                                         </a>
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">{{ $outfit->name }}</span>
+                                                            <span class="mb-0 text-sm">{{ format_message($outfit->name, 30) }}</span>
                                                         </div>
                                                     </div>
                                                 </th>
 
                                                 <td class="price">
-                                                    <span class="badge badge-pill badge-primary">XAF {{ $outfit->price }}</span>
+                                                    <span class="badge badge-pill badge-primary">@convert($outfit->price)</span>
                                                 </td>
 
                                                 <td class="type">
@@ -392,7 +404,7 @@
                     @endif
 
                 </div>
-            </div>
+            </div>  --}}
 
         </div>
 

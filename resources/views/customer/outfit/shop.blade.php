@@ -128,7 +128,7 @@
                             @endif
 
                             <label for="sorting" class="mb-0 mr-3">Sort by</label>
-                            <select name="sorting" class="sorting" id="sorting" onchange="event.preventDefault(); document.getElementById('sorting-form').submit();">
+                            <select name="sorting" class="custom-select" id="sorting" onchange="event.preventDefault(); document.getElementById('sorting-form').submit();">
                                 <option value="1" @if (!isset($_GET['sorting']) || $_GET['sorting'] == 1) selected @endif>Newest Arrivals</option>
                                 <option value="2" @if (isset($_GET['sorting']) && $_GET['sorting'] == 2) selected @endif>Price: Low to High</option>
                                 <option value="3" @if (isset($_GET['sorting']) && $_GET['sorting'] == 3) selected @endif>Price: High to Low</option>
@@ -153,13 +153,13 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="f_p_item">
                                         <div class="f_p_img">
-                                            <img class="img-fluid" src="{{ show_photo(get_outfit_cover($outfit->id)->filename) }}" alt="">
+                                            <img class="img-fluid" src="{{ show_photo($outfit->outfitphotos->first()->filename) }}" alt="">
                                             <div class="p_icon d-flex">
                                                 <form class="form-add-to-wishlist" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
-                                                    <button type="submit" class="btn-add-to-wishlist">
-                                                        <i class="lnr lnr-heart"></i>
+                                                    <button type="submit" class="btn-add-to-wishlist {{ is_wished($outfit->id) ? 'active' : '' }}">
+                                                        {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="lnr lnr-heart"></i>' !!}
                                                     </button>
                                                 </form>
 

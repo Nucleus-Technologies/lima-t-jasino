@@ -23,7 +23,7 @@ $(function() {
                 }
             });
 
-            $('#btn-appointment-reply').html('<span class="btn-inner--text"> <i class="fas fa-spinner mr-1"></i> SENDING IN PROGRESS... </span>');
+            $('#btn-appointment-reply').html('<span class="btn-inner--text"> <i class="fas fa-spinner mr-1"></i> Replying in progress... </span>');
 
             var request = $.ajax({
                 type: 'POST',
@@ -32,22 +32,24 @@ $(function() {
             });
 
             request.done(function(response) {
-                $('#btn-appointment-reply').html('<i class="fas fa-reply"></i> REPLY');
+                $('#btn-appointment-reply').html('<i class="fas fa-reply mr-1"></i> Reply');
 
                 fadeAlert((response.status) ? 'success' : 'danger', response.msg);
 
-                setTimeout(function() {
-                    window.location.reload();
-                }, 2000);
+                if (response.status) {
+                    $('.answer-appointment-form').trigger('reset');
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                }
             });
 
             request.fail(function() {
-                $('#btn-appointment-reply').html('<i class="fas fa-reply"></i> REPLY');
+                $('#btn-appointment-reply').html('<i class="fas fa-reply mr-1"></i> Reply');
 
                 fadeAlert('danger', "An script error occured while replying to this appointment!");
             });
-
-            $('.answer-appointment-form').trigger('reset');
         }
 
     });

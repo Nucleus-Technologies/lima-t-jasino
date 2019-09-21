@@ -18,8 +18,8 @@ class CreateAppointmentMessagesTable extends Migration
             $table->enum('origin', ['user', 'admin']);
             $table->unsignedBigInteger('from');
             $table->unsignedBigInteger('to');
-            $table->unsignedBigInteger('appointment');
-            $table->foreign('appointment')->references('id')->on('appointments')->onDelete('cascade');
+            $table->unsignedBigInteger('appointment_id');
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->text('answered_message');
             $table->timestamps();
         });

@@ -1,8 +1,19 @@
 <header class="header_area">
     <div class="top_menu row m0">
         <div class="container-fluid">
-            <div class="float-left">
-                <p>Call Us: <a href="tel:+237655191890">+237 655 191 890</a></p>
+            <div class="float-left d-flex">
+                <p class="mr-4">
+                    <i class="fas fa-phone-volume mb-0 mr-1"></i>
+                    Need help? Call Us: <a href="tel:+237655191890">+237 655 191 890</a>
+                </p>
+                <p class="mr-4">
+                    <i class="fas fa-shield-alt mb-0 mr-1"></i>
+                    Secure Payment.
+                </p>
+                <p>
+                    <i class="fas fa-undo-alt mb-0 mr-1"></i>
+                    Easy Returns.
+                </p>
             </div>
             <div class="float-right">
                 <ul class="right_side">
@@ -52,23 +63,30 @@
                                 <li class="nav-item {{ set_active_route('outfit.shop') }}">
                                     <a href="{{ route('outfit.shop') }}" class="nav-link">Shop</a>
                                 </li>
-                                <li class="nav-item {{ set_active_route('weedings') }}">
-                                    <a href="{{ route('weedings') }}" class="nav-link">Weedings</a>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="tracking.html">Tracking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="elements.html">Elements</a>
-                                        </li>
-                                    </ul>
-                                </li>
+
+                                @if (!in_array(Route::currentRouteName(), ['collection', 'collection.men', 'collection.women', 'collection.weddings']))
+                                    <li class="nav-item {{ set_active_route('collection') }}">
+                                        <a href="{{ route('collection') }}" class="nav-link">Our Collection</a>
+                                    </li>
+                                @else
+                                    <li class="nav-item submenu dropdown {{ set_active_route('collection') }}">
+                                        <a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            Our Collection
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item {{ set_active_route('collection.men') }}">
+                                                <a href="{{ route('collection.men') }}" class="nav-link">Men</a>
+                                            </li>
+                                            <li class="nav-item {{ set_active_route('collection.women') }}">
+                                                <a href="{{ route('collection.women') }}" class="nav-link">Women</a>
+                                            </li>
+                                            <li class="nav-item {{ set_active_route('collection.weddings') }}">
+                                                <a href="{{ route('collection.weddings') }}" class="nav-link">Weddings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
@@ -121,6 +139,9 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('appointment') }}">My appointments</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('order') }}">My orders</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('wishlist') }}">My wishlist</a>

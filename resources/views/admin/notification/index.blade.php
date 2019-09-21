@@ -18,7 +18,7 @@
                         <p class="text-white mt-0 mb-5">Here are the notifications concerning all the operations that have been done on the site.</p>
 
                         <div class="alert alert-info" role="alert">
-                            <strong>NOTIFCATIONS ARE SO HELPFUL!</strong>
+                            <strong>NOTIFICATIONS ARE SO HELPFUL!</strong>
                         </div>
                     </div>
                 </div>

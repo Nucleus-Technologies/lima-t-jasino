@@ -60,8 +60,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">location for all appointments.</h5>
-                                        <span class="h2 font-weight-bold mb-0">Yaoundé, Cameroon (In our Office)</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">locations available for appointments.</h5>
+                                        <span class="h2 font-weight-bold mb-0">Yaoundé, Cameroon</span> <br>
+                                        <span class="h2 font-weight-bold mb-0">Douala, Cameroon</span> <br>
+                                        <span class="float-right">--- In our Office</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -95,7 +97,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
                                             </div>
-                                            <input class="form-control" id="done-search" placeholder="Search by type, by name, by availibility, ..." type="text">
+                                            <input class="form-control" id="done-search" placeholder="Search by customer, by date, by time, ..." type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +130,7 @@
                                                 <th scope="row" class="customer">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <strong class="mb-0 text-sm">{{ id_to_full_name($appointment->user)->full_name }}</strong>
+                                                            <strong class="mb-0 text-sm">{{ $appointment->user->full_name }}</strong>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -154,16 +156,9 @@
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="{{ route('admin.appointment.show', $appointment) }}">
-                                                                <i class="fas fa-eye"></i> More...
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                    <a class="btn btn-sm btn-icon-only" href="{{ route('admin.appointment.show', $appointment->id) }}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -223,7 +218,7 @@
                                                 <th scope="row" class="customer">
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
-                                                            <strong class="mb-0 text-sm">{{ id_to_full_name($appointment->user)->full_name }}</strong>
+                                                            <strong class="mb-0 text-sm">{{ $appointment->user->full_name }}</strong>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -257,7 +252,7 @@
                                                             <a class="dropdown-item" href="{{ route('admin.appointment.show', $appointment) }}">
                                                                 <i class="fas fa-eye"></i> More...
                                                             </a>
-                                                            <a class="dropdown-item mark-done-btn" href="{{ route('admin.appointment.done', $appointment) }}">
+                                                            <a class="dropdown-item mark-done-btn" href="{{ route('admin.appointment.done', $appointment->id) }}">
                                                                 <i class="fas fa-check-circle"></i> Mark as Done
                                                                 @csrf
                                                                 <input type="hidden" id="id" value="{{ $appointment->id }}">

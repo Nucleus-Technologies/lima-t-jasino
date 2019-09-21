@@ -25,7 +25,6 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'user' => 'required|integer',
             'first_name' => 'required|string|min:2',
             'last_name' => 'required|string|min:2',
             'email' => 'required|email',
@@ -38,8 +37,8 @@ class AddressRequest extends FormRequest
             'phone2' => 'nullable|string',
             'addressline1' => 'required|string',
             'addressline2' => 'nullable|string',
-            'region' => 'required|string',
-            'city' => 'required|string',
+            'region' => 'required|integer',
+            'city' => 'required|integer',
             'zip' => 'nullable|integer'
         ];
     }

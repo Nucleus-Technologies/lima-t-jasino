@@ -14,11 +14,11 @@ class OutfitPhoto extends Model
      * @var array
      */
     protected $fillable = [
-        'outfit', 'filename'
+        'outfit_id', 'filename'
     ];
 
     public function outfit()
     {
-        return $this->belongsTo('App\Models\Outfit', 'outfit');
+        return $this->belongsTo('App\Models\Outfit');
     }
 }

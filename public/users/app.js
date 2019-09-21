@@ -1,5 +1,7 @@
 // Helpers
 
+$rd = $('#relaypoint_details').children().clone();
+
 function alertDisappear() {
     setTimeout(function() {
         $('#alert-response .alert').alert('close').fadeOut();
@@ -113,6 +115,106 @@ function refresh_checkout_address(zone) {
     });
 }
 
+// Load regions
+function load_regions(elt) {
+    var request = $.ajax({
+        type: 'GET',
+        url: '/regions'
+    });
+
+    request.done(function(response) {
+        elt.empty().append('<option value="" selected>---</option>');
+
+        response.forEach(region => {
+            elt.append('<option value="' + region['id'] + '">' + region['label'] + '</option>');
+        });
+
+        return elt;
+    });
+
+    request.fail(function() {
+        return elt.empty().append('<option value="">Script Error!</option>');
+    });
+}
+
+// Load regions
+function load_cities(region, elt) {
+    var request = $.ajax({
+        type: 'GET',
+        url: '/region-' + region + '/cities'
+    });
+
+    request.done(function(response) {
+        elt.empty();
+
+        response.forEach(city => {
+            elt.append('<option value="' + city['id'] + '">' + city['label'] + '</option>');
+        });
+
+        return elt;
+    });
+
+    request.fail(function() {
+        return elt.empty().append('<option value="">Script Error!</option>');
+    });
+}
+
+// Load Relay Point Details
+function load_relaypoint_details(region, city) {
+    var request = $.ajax({
+        type: 'GET',
+        url: '/users/payment/checkout/delivery_method/relaypoint/region-' + region + '-city-' + city
+    });
+
+    request.done(function(response) {
+
+        if (response === 0) {
+            $('#relaypoint_details').html('<div class="alert alert-info" role="alert"> <strong>Info!</strong> Sorry, but we don\'t have a relay point for this city! Please change city! </div>');
+            $('.save-order-form #btn-save-order').attr('disabled', '');
+        } else {
+            $.getScript(Url["py_sc_url"]);
+
+            $rd.find('#relaypoint').prop('checked', false).val(response['id']);
+            $rd.find('.rp-label').html(response['label']);
+            $rd.find('.rp-near').html(response['near']);
+            $rd.find('.rp-address').html(response['address']);
+            $rd.find('.rp-contact').html(response['contact']);
+            $rd.find('.rp-opening-hours').html(response['opening_hours']);
+            $rd.find('.rp-shipping-cost').html(response['shipping_cost']);
+
+            $('#relaypoint_details').html($rd);
+        }
+
+    });
+
+    request.fail(function() {
+        $('#relaypoint_details').html('<div class="alert alert-warning" role="alert"> <strong>Info!</strong> Something goes to wrong. Please try again again or later! </div>');
+    });
+}
+
+// Refresh Checkout Order
+function refresh_order(relaypoint) {
+    var request = $.ajax({
+        type: 'GET',
+        url: '/users/payment/checkout/order_inner-' + relaypoint + '/refresh'
+    });
+
+    request.done(function(response) {
+
+        if (response === 0) {
+            $('#order_inner').prepend('<div class="alert alert-warning" role="alert"> <strong>Info!</strong> Relay Point not available! </div>');
+        } else {
+            $('#order_inner #order-shipping-cost').html(response['shipping_cost']);
+            $('#order_inner #order-total').html(response['total']);
+        }
+
+    });
+
+    request.fail(function() {
+        $('#order_inner').prepend('<div class="alert alert-warning" role="alert"> <strong>Info!</strong> Something goes to wrong. Please try again again or later! </div>');
+    });
+}
+
 //
 // Pages and Events
 //
@@ -150,4 +252,10 @@ $('.zone').click(function() {
     $('#address_details').fadeOut();
     refresh_checkout_address($(this).val());
     $('#address_details').fadeIn();
+});
+
+$('.save-order-form #city').on('change', function() {
+    $('#relaypoint_details').fadeOut();
+    load_relaypoint_details($('.save-order-form select[name=region]').val(), $(this).val());
+    $('#relaypoint_details').fadeIn();
 });

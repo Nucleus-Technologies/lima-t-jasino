@@ -61,7 +61,7 @@ trait Searchable
                     break;
 
                 case 'type':
-                    $outfits = Outfit::where('type', $type)->orderBy($sorting, $order)->paginate(9);
+                    $outfits = Outfit::where('type_id', $type)->orderBy($sorting, $order)->paginate(9);
                     $outfits->withPath('search?_token=' .$request->_token. '&prefix=' .$request->prefix. '&keyword=' .$request->keyword);
                     break;
 
@@ -79,7 +79,7 @@ trait Searchable
                         ->orderBy($sorting, $order)
                         ->paginate(9);
 
-                    $outfits->withPath('search?_token=' .$request->_token. '&prefix=' .$request->prefix. '&keyword=' .$request->keyword. '&range=' .$request->min_price. '-' .$request->max_price);
+                    $outfits->withPath('search?_token=' .$request->_token. '&prefix=' .$request->prefix. '&keyword=' .$request->keyword. '&min_price=' .$request->min_price. '&max_price=' .$request->max_price);
 
                     $min_price = $request->min_price;
                     $max_price = $request->max_price;
@@ -97,7 +97,7 @@ trait Searchable
             $outfits = Outfit::where('name', 'like', '%' . $request->keyword . '%')
                 ->orWhere('price', 'like', '%' . $request->keyword . '%')
                 ->orWhere('category', 'like', '%' . $request->keyword . '%')
-                ->orWhere('type', $type)
+                ->orWhere('type_id', $type)
                 ->orWhere('availibility', 'like', '%' . $request->keyword . '%')
                 ->orWhere('description', 'like', '%' . $request->keyword . '%')
                 ->orderBy($sorting, $order)

@@ -24,37 +24,37 @@ trait AddOutfitToCart
         $outfit = decrypt_id($request->outfit);
 
         if(Auth::check()) {
-            $verif = Auth::user()->cart()->where('outfit', $outfit)->where('source', 'in')->first();
+            $verif = Auth::user()->cart()->where('outfit_id', $outfit)->where('source', 'in')->first();
         } else {
             $user = Cookie::get('user');
 
             if (isset($user)) {
-                $verif = Session::find($user)->cart()->where('outfit', $outfit)->where('source', 'out')->first();
+                $verif = Session::find($user)->cart()->where('outfit_id', $outfit)->where('source', 'out')->first();
             } else {
                 $user = make_cookie_session();
 
-                $verif = Session::find($user)->cart()->where('outfit', $outfit)->where('source', 'out')->first();
+                $verif = Session::find($user)->cart()->where('outfit_id', $outfit)->where('source', 'out')->first();
             }
         }
 
         if (isset($verif)) {
             if(Auth::check()) {
                 $cart = Auth::user()->cart()
-                    ->where('outfit', $outfit)
+                    ->where('outfit_id', $outfit)
                     ->where('source', 'in')
                     ->increment('quantity', $request->quantity);
             } else {
                 $user = Cookie::get('user');
 
                 $cart = Session::find($user)->cart()
-                    ->where('outfit', $outfit)
+                    ->where('outfit_id', $outfit)
                     ->where('source', 'out')
                     ->increment('quantity', $request->quantity);
             }
         } else {
             $cart = Cart::create([
-                'user' => (Auth::check()) ? Auth::user()->id : Cookie::get('user'),
-                'outfit' => $outfit,
+                'user_id' => (Auth::check()) ? Auth::user()->id : Cookie::get('user'),
+                'outfit_id' => $outfit,
                 'quantity' => $request->quantity,
                 'source' => (Auth::check()) ? 'in' : 'out'
             ]);

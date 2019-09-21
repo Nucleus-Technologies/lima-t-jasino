@@ -15,11 +15,11 @@ class AppointmentMessage extends Model
      * @var array
      */
     protected $fillable = [
-        'origin', 'from', 'to', 'appointment', 'answered_message'
+        'origin', 'from', 'to', 'appointment_id', 'answered_message'
     ];
 
     public function appointment()
     {
-        return $this->belongsTo('App\Models\Appointment', 'appointment');
+        return $this->belongsTo('App\Models\Appointment');
     }
 }
