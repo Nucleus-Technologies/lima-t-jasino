@@ -98,6 +98,7 @@
     <script src="{{ asset('customer/vendors/counter-up/jquery.counterup.js') }}"></script>
     <script src="{{ asset('customer/js/mail-script.js') }}"></script>
     <script src="{{ asset('customer/js/theme.js') }}"></script>
+    <script src="{{ asset('customer/js/jquery.printElement.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>

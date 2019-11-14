@@ -95,11 +95,10 @@ trait Searchable
         }
         else {
             $outfits = Outfit::where('name', 'like', '%' . $request->keyword . '%')
-                ->orWhere('price', 'like', '%' . $request->keyword . '%')
                 ->orWhere('category', 'like', '%' . $request->keyword . '%')
-                ->orWhere('type_id', $type)
                 ->orWhere('availibility', 'like', '%' . $request->keyword . '%')
                 ->orWhere('description', 'like', '%' . $request->keyword . '%')
+                ->orWhere('specification', 'like', '%' . $request->keyword . '%')
                 ->orderBy($sorting, $order)
                 ->paginate(9);
 
@@ -108,8 +107,7 @@ trait Searchable
 
         $categories = [
             'men',
-            'women',
-            'children'
+            'women'
         ];
 
         $types = Type::all()->sortBy('label');

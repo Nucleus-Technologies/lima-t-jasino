@@ -3,10 +3,6 @@
         <div class="container-fluid">
             <div class="float-left d-flex">
                 <p class="mr-4">
-                    <i class="fas fa-phone-volume mb-0 mr-1"></i>
-                    Need help? Call Us: <a href="tel:+237655191890">+237 655 191 890</a>
-                </p>
-                <p class="mr-4">
                     <i class="fas fa-shield-alt mb-0 mr-1"></i>
                     Secure Payment.
                 </p>
@@ -57,38 +53,24 @@
                     <div class="row w-100">
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
-                                <li class="nav-item {{ set_active_route('home') }}">
-                                    <a href="{{ route('home') }}" class="nav-link">Home</a>
-                                </li>
                                 <li class="nav-item {{ set_active_route('outfit.shop') }}">
                                     <a href="{{ route('outfit.shop') }}" class="nav-link">Shop</a>
                                 </li>
 
-                                @if (!in_array(Route::currentRouteName(), ['collection', 'collection.men', 'collection.women', 'collection.weddings']))
-                                    <li class="nav-item {{ set_active_route('collection') }}">
-                                        <a href="{{ route('collection') }}" class="nav-link">Our Collection</a>
-                                    </li>
-                                @else
-                                    <li class="nav-item submenu dropdown {{ set_active_route('collection') }}">
-                                        <a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            Our Collection
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item {{ set_active_route('collection.men') }}">
-                                                <a href="{{ route('collection.men') }}" class="nav-link">Men</a>
-                                            </li>
-                                            <li class="nav-item {{ set_active_route('collection.women') }}">
-                                                <a href="{{ route('collection.women') }}" class="nav-link">Women</a>
-                                            </li>
-                                            <li class="nav-item {{ set_active_route('collection.weddings') }}">
-                                                <a href="{{ route('collection.weddings') }}" class="nav-link">Weddings</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endif
+                                <li class="nav-item {{ set_active_route('collection.men') }}">
+                                    <a href="{{ route('collection.men') }}" class="nav-link">Men</a>
+                                </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                <li class="nav-item {{ set_active_route('collection.women') }}">
+                                    <a href="{{ route('collection.women') }}" class="nav-link">Women</a>
+                                </li>
+
+                                <li class="nav-item {{ set_active_route('collection.weddings') }}">
+                                    <a href="{{ route('collection.weddings') }}" class="nav-link">Weddings</a>
+                                </li>
+
+                                <li class="nav-item {{ set_active_route('appointment.create') }}">
+                                    <a class="nav-link" href="{{ route('appointment.create') }}">Book Appointment</a>
                                 </li>
                             </ul>
 
@@ -102,7 +84,7 @@
                                                 <i class="fas fa-times" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                        <input type="search" name="keyword" placeholder="You can search by name, by category, by type, by price or another keyword..." class="w-100">
+                                        <input type="search" name="keyword" placeholder="Type any keyword here for your search..." class="w-100">
                                     </div>
                                 </form>
                             </div>
@@ -154,14 +136,6 @@
                                             </li>
                                         @endguest
                                     </ul>
-                                </li>
-
-                                <hr>
-
-                                <li class="nav-item {{ set_active_route('appointment.create') }}">
-                                    <a href="{{ route('appointment.create') }}" class="icons">
-                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                                    </a>
                                 </li>
 
                                 @if (Auth::check())

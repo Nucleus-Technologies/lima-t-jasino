@@ -160,7 +160,7 @@ a:focus {
 }
 
 .section_gap {
-    padding: 120px 0px;
+    padding: 80px 0px;
 }
 
 @media (max-width: 1224px) {
@@ -595,7 +595,7 @@ a:focus {
     background: url(../img/banner/banner-bg.jpg) no-repeat center bottom;
     position: relative;
     z-index: 1;
-    min-height: 900px;
+    min-height: 700px;
 }
 
 .home_banner_area .overlay {
@@ -612,7 +612,7 @@ a:focus {
 .home_banner_area .banner_inner {
     position: relative;
     width: 100%;
-    min-height: 900px;
+    min-height: 700px;
 }
 
 .home_banner_area .banner_inner .banner_content {
@@ -3902,13 +3902,14 @@ h6 {
 
 .hot_deals_area .hot_deal_box {
     position: relative;
-    background: #000000;
+    background: rgba(0,0,0, .4);
     cursor: pointer;
     transition: all 300ms linear 0s;
+    height: 400px;
 }
 
 .hot_deals_area .hot_deal_box:hover {
-    background: var(--main-color);
+    background: var(--main-color-light);
 }
 
 .hot_deals_area .hot_deal_box:hover img {
@@ -3917,7 +3918,7 @@ h6 {
 
 @media (max-width: 992px) {
     .hot_deals_area .hot_deal_box {
-        margin-bottom: 20px;
+        margin-bottom: 0;
     }
 }
 

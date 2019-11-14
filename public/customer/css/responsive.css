@@ -314,6 +314,34 @@
         padding-bottom: 0px;
         padding-top: 0px;
     }
+    /* Collection css
+    ============================================================================================ */
+    .collection-area {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .collection-area .collection-group {
+        margin-bottom: 40px;
+        flex-direction: column;
+    }
+    .collection-area .collection-group .description h1 {
+        font-size: 26px;
+    }
+    .collection-area .collection-group .description {
+        width: 100%;
+        padding: 10px;
+        margin-right: 0;
+    }
+    .collection-area .collection-group .description hr {
+        border: 1px solid #fff;
+        margin-left: -30px;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+    .collection-area .collection-group .description p {
+        font-size: 1rem;
+        line-height: 22px;
+    }
     /* Footer Area css
 	============================================================================================ */
     .footer-bottom {
@@ -540,7 +568,8 @@
     /* Hot deal Area css
 	============================================================================================ */
     .hot_deals_area .hot_deal_box {
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        height: 250px;
     }
     .hot_deals_area .hot_deal_box .content {
         max-width: 280px;

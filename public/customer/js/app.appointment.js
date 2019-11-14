@@ -55,7 +55,7 @@ $(function() {
                 max: "This appointment must starts no later than " + close_time + "."
             },
             specified_message: {
-                required: "It's very important that you specifies a message to our tailors."
+                required: "It's very important that you specifies a message to our managers."
             }
         },
 
@@ -140,7 +140,7 @@ $(function() {
             request.fail(function() {
                 $('#btn-appointment-reply').html('<i class="fas fa-reply"></i> REPLY');
 
-                fadeAlert('danger', "An script error occured while replying to the tailors!");
+                fadeAlert('danger', "An script error occured while replying to the managers!");
             });
         }
 

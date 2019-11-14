@@ -9,15 +9,38 @@ use Illuminate\Support\Facades\Cookie;
 
 if (!function_exists('number_outfit_cart')) {
     function number_outfit_cart() {
-        return (Auth::check()) ? Auth::user()->cart()->where('source', 'in')->sum('quantity')
-            : Session::find(Cookie::get('user'))->cart()->where('source', 'out')->sum('quantity');
+        if (Auth::check()) {
+            return Auth::user()->cart()->where('source', 'in')->sum('quantity');
+        } else {
+            $user = Cookie::get('user');
+
+            if (isset($user)) {
+                return Session::find($user)->cart()->where('source', 'out')->sum('quantity');
+            } else {
+                $user = make_cookie_session();
+
+                return Session::find($user)->cart()->where('source', 'out')->sum('quantity');
+            }
+        }
     }
 }
 
 if (!function_exists('subtotal')) {
     function subtotal() {
-        $lines = (Auth::check()) ? Cart::where('user_id', Auth::user()->id)->where('source', 'in')->get()
-            : Cart::where('user_id', Session::find(Cookie::get('user'))->id)->where('source', 'out')->get();
+        if (Auth::check()) {
+            $lines = Cart::where('user_id', Auth::user()->id)->where('source', 'in')->get();
+        } else {
+            $user = Cookie::get('user');
+
+            if (isset($user)) {
+                $lines = Cart::where('user_id', Session::find($user)->id)->where('source', 'out')->get();;
+            } else {
+                $user = make_cookie_session();
+
+                $lines = Cart::where('user_id', Session::find($user)->id)->where('source', 'out')->get();;
+            }
+        }
+
         $st = 0;
 
         foreach ($lines as $line) {

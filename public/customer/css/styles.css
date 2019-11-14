@@ -184,6 +184,12 @@ p.lead {
     padding-top: 1.7rem;
     padding-bottom: 1.7rem;
     padding-left: 3.5rem !important;
+    transition: border-bottom ease-in-out .5s;
+}
+
+.navbar .nav-search form input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--main-color);
 }
 
 .navbar .nav-search form input::placeholder {
@@ -264,6 +270,23 @@ p.lead {
     border-color: #f9f9ff;
 }
 
+.feature_product_area {
+    padding-top: 40px;
+}
+
+.hot_deals_area .row .hot_deal_col:first-child {
+    background: url('../img/product/hot_deals/for-men.jpg') no-repeat center 20%;
+}
+
+.hot_deals_area .row .hot_deal_col:nth-child(2) {
+    background: url('../img/product/hot_deals/for-women.jpg') no-repeat center 20%;
+}
+
+.hot_deals_area .row .hot_deal_col:last-child {
+    background: url('../img/product/hot_deals/for-weedings.jpg') no-repeat center top;
+    background-size: cover;
+}
+
 footer .single-footer-widget input,
 .subscription input {
     border: 1px solid var(--main-color);
@@ -281,7 +304,8 @@ footer .single-footer-widget input,
 }
 
 form:not(.login_form) .form-group .single-textarea:focus,
-form:not(.login_form, .search_form) .input-group-icon input:focus {
+form:not(.login_form,
+.search_form) .input-group-icon input:focus {
     border: 1px solid var(--main-color) !important;
 }
 
@@ -487,12 +511,11 @@ form:not(.login_form) .input-group-icon .icon {
 /* Collection  */
 
 .collection-area .collection-group {
-    margin-top: 200px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .collection-area .collection-group:last-child {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
 }
 
 .collection-area .collection-group .description {
@@ -545,6 +568,10 @@ form:not(.login_form) .input-group-icon .icon {
 
 /* Collection Groups */
 
+.collection-group-area {
+    padding-bottom: 0;
+}
+
 .collection-group-area .grid .grid-item.col-lg-4:hover {
     cursor: -moz-zoom-in;
     cursor: -webkit-zoom-in;
@@ -578,40 +605,45 @@ form:not(.login_form) .input-group-icon .icon {
     border-radius: calc(.25rem - 1px);
 }
 
-.collection-group-area .card.card-pub {
+.card.card-pub {
     box-shadow: none;
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    margin-top: 110px;
-    margin-bottom: 40px;
+    height: 200px;
 }
 
-.collection-group-area .card.card-pub .card-img {
-    border-radius: 0;
+.card.card-pub .c-text {
+    width: 500px;
 }
 
-.collection-group-area .card.card-pub .display-3 {
-    line-height: 1;
-}
-
-.collection-group-area .card.card-pub .card-text a {
-    font-size: 1rem;
+.card.card-pub a {
     text-transform: uppercase;
     color: #fff;
-    transition: margin-left .3s cubic-bezier(.68, -0.55, .27, 1.55);
+    font-size: 2rem;
+    display: block;
 }
 
-.collection-group-area .card.card-pub .card-text a:hover {
-    margin-left: 4px;
+.card.card-pub a::after {
+    content: '';
+    display: block;
+    width: 10%;
+    height: 3px;
+    background: var(--main-color);
+    transition: width .5s cubic-bezier(.86, 0, .07, 1);
+    margin-top: 3px;
 }
 
-.collection-group-area .card.card-pub .card-text a i {
+.card.card-pub a:hover::after {
+    width: 85%;
+}
+
+.card.card-pub a i {
     margin-left: 2px;
     transition: margin-left, transform, .3s cubic-bezier(.46, .03, .52, .96);
 }
 
-.collection-group-area .card.card-pub .card-text a:hover i {
-    margin-left: 12px;
+.card.card-pub a:hover i {
+    margin-left: 20px;
     transform: rotate(360deg);
 }

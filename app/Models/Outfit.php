@@ -23,6 +23,18 @@ class Outfit extends Model
         'context', 'description', 'specification', 'images'
     ];
 
+    /**
+     * The columns of the full text index
+     * @var array
+     */
+    protected $searchable = [
+        'name',
+        'category',
+        'availibility',
+        'description',
+        'specification'
+    ];
+
     public function type()
     {
         return $this->belongsTo('App\Models\Type');

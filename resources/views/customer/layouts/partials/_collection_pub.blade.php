@@ -1,15 +1,12 @@
 <div class="card card-pub text-white bg-dark">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ asset('customer/img/breadcrumb/collection-pub.jpg') }}" class="card-img" alt="image-pub">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h1 class="card-title mb-4"><i class="fas fa-smile-beam"></i> Hi!</h1>
-                <h1 class="card-title display-3 mb-4">Discover the best offers <br> on our shop.</h1>
-                <p class="card-text">
-                    <a href="{{ route('outfit.shop') }}">Let's make some shopping <i class="fas fa-arrow-circle-right"></i></a>
-                </p>
+    <div class="row no-gutters h-100">
+        <div class="col-12">
+            <div class="card-body h-100 d-flex justify-content-center align-items-center">
+                <h1><i class="fas fa-smile-beam"></i></h1>
+                <div class="ml-5 c-text">
+                    <h3 class="mb-4">Interested about our collection? <br> Need to see our offices?</h3>
+                    <a href="{{ route('appointment.create') }}">Book an appointment <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
             </div>
         </div>
     </div>

@@ -40,8 +40,8 @@ class OutfitController extends Controller
             'yellow'
         ];
 
-        $men_outfits = Outfit::where('category', 'men')->get();
-        $women_outfits = Outfit::where('category', 'women')->get();
+        $men_outfits = Outfit::where('category', 'men')->orderBy('created_at', 'desc')->get();
+        $women_outfits = Outfit::where('category', 'women')->orderBy('created_at', 'desc')->get();
 
         if(Auth::check()) {
             if(isset(Auth::user()->username)) {

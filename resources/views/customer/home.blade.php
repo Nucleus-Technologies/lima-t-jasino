@@ -11,12 +11,7 @@
                     <div class="offset-lg-2 col-lg-8">
                         <h3 class="text-uppercase mb-0">Lima T Jasino</h3>
                         <hr>
-                        <h2 class="text-uppercase text-white mb-5">Bespoke</h2>
-
-                        <p>
-                            <strong>Cameroon Premium Tailor.</strong> <br>
-                            As tailors, we offer outfits already designed and you also have the opportunity to order your own, as well as visit us by booking appointments.
-                        </p>
+                        <h2 class="text-uppercase text-white mb-3">Bespoke</h2>
 
                         <a class="white_bg_btn text-uppercase" href="{{ route('collection') }}">View Collection</a>
                         <a class="white_bg_btn inverse text-uppercase" href="{{ route('appointment.create') }}">Book an appointment</a>
@@ -30,47 +25,45 @@
 
 @section('content')
 
-    {{-- Hot Deals Area --}}
-    <section class="hot_deals_area section_gap">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="hot_deal_box">
-                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/for-men.jpg') }}" alt="">
-                        <div class="content">
-                            <h2>Hot Deals for You, Men</h2>
-                            <p>shop now</p>
-                        </div>
-                        <a class="hot_deal_link" href="{{ route('outfit.search', 'category/men') }}" onclick="event.preventDefault(); document.getElementById('men-form').submit();"></a>
-                        <form id="men-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
-                            @csrf
-                            <input type="hidden" name="prefix" value="category">
-                            <input type="hidden" name="keyword" value="men">
-                        </form>
-                    </div>
-                </div>
+    @include('customer.layouts.partials._collection_pub')
 
-                <div class="col-lg-6">
-                    <div class="hot_deal_box">
-                        <img class="img-fluid" src="{{ asset('customer/img/product/hot_deals/for-women.jpg') }}" alt="">
-                        <div class="content">
-                            <h2>Women, you deserves the Best</h2>
-                            <p>shop now</p>
-                        </div>
-                        <a class="hot_deal_link" href="{{ route('outfit.search', 'category/women') }}" onclick="event.preventDefault(); document.getElementById('women-form').submit();"></a>
-                        <form id="women-form" action="{{ route('outfit.search') }}" method="GET" style="display: none;">
-                            @csrf
-                            <input type="hidden" name="prefix" value="category">
-                            <input type="hidden" name="keyword" value="women">
-                        </form>
+    {{-- Hot Deals Area --}}
+    <section class="hot_deals_area section_gap pt-0">
+        <div class="row mr-0 ml-0">
+            <div class="col-lg-6 p-0 hot_deal_col">
+                <div class="hot_deal_box">
+                    <div class="content">
+                        <h2>Hot Deals for You, Men</h2>
+                        <p class="mb-0">Let's see</p>
                     </div>
+                    <a class="hot_deal_link" href="{{ route('collection.men') }}"></a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 p-0 hot_deal_col">
+                <div class="hot_deal_box">
+                    <div class="content">
+                        <h2>Women, you deserves the Best</h2>
+                        <p class="mb-0">Let's see</p>
+                    </div>
+                    <a class="hot_deal_link" href="{{ route('collection.women') }}"></a>
+                </div>
+            </div>
+
+            <div class="col-12 p-0 hot_deal_col">
+                <div class="hot_deal_box">
+                    <div class="content">
+                        <h2>The best for the happiest weddings, ever.</h2>
+                        <p class="mb-0">Let's see</p>
+                    </div>
+                    <a class="hot_deal_link" href="{{ route('collection.weddings') }}"></a>
                 </div>
             </div>
         </div>
     </section>
 
     {{-- Clients Logo Area --}}
-    <section class="clients_logo_area">
+    {{--  <section class="clients_logo_area">
         <div class="container-fluid">
             <div class="clients_slider owl-carousel">
                 <div class="item">
@@ -90,7 +83,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>  --}}
 
     {{-- Feature Product Area --}}
     <section class="feature_product_area section_gap">

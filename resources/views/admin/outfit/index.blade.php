@@ -256,6 +256,12 @@
                                                         </a>
                                                         <div class="media-body">
                                                             <span class="mb-0 text-sm">{{ format_message($outfit->name, 30) }}</span>
+                                                            <span class="badge badge-pill badge-primary">
+                                                                <i class="fas fa-tag text-success mr-1"></i>{{ number_sales($outfit->id) }}
+                                                            </span>
+                                                            <span class="badge badge-pill badge-primary">
+                                                                <i class="fas fa-heart text-danger mr-1"></i>{{ number_wishes($outfit->id) }}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </th>

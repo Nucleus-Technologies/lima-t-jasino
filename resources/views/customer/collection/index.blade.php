@@ -3,22 +3,14 @@
 @section('banner')
 
     {{-- Banner Area --}}
-    <section class="home_banner_area">
-        <div class="overlay"></div>
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content row">
-                    <div class="offset-lg-2 col-lg-8">
-                        <h3>Our <br> Collection</h3> <hr>
-                        <p class="mt-4">
-                            Suits, Pants, Shirts, Skirts, Trousers, Coats, Ties and so more. <br>
-                            Discover us!
-                        </p>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('customer.layouts.partials._banner', [
+        "banner_content" => "<h2>Our Collection</h2>
+            <p class='mt-4 text-white text-bold'>
+                Suits, Pants, Shirts, Skirts, Trousers, Coats, Ties and so more. <br>
+                Discover us!
+            </p>
+        "
+    ])
 
 @endsection
 

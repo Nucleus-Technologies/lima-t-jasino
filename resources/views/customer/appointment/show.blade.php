@@ -25,7 +25,7 @@
     <section class="tracking_box_area p_120">
         <div class="container">
             <h2 class="text-center mb-2">
-                Your appointment and conversations with our tailors about this appointment.
+                Your appointment and conversations with our managers about this appointment.
             </h2>
 
             <div class="tracking_box_inner d-flex flex-column align-items-center mb-5">
@@ -121,7 +121,7 @@
             <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-md-8">
                     @if ($messages->isEmpty())
-                        <h2>No replies from the tailors for the moment.</h2>
+                        <h2>No replies from the managers for the moment.</h2>
                     @else
                         <h2 class="mb-4">Conversation</h2>
 
@@ -140,7 +140,7 @@
                         @endforeach
 
                         @if (!$appointment->done)
-                            <h2 class="mb-4 mt-5">Leave a message to the tailors</h2>
+                            <h2 class="mb-4 mt-5">Leave a message to the managers</h2>
 
                             <form method="POST" action="javascript:void(0)" class="answer-appointment-form mt-5">
                                 @csrf

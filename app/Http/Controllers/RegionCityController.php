@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RegionCityController extends Controller
 {
@@ -97,9 +98,16 @@ class RegionCityController extends Controller
      */
     public function cities(Region $region)
     {
-        $ids = DB::table('relay_points')->pluck('city_id')->toArray();
+        if (isset(Auth::user()->username)) {
+            $ids = DB::table('relay_points')->pluck('city_id')->toArray();
 
-        $cities = $region->cities()->whereNotIn('id', $ids)->orderBy('label')->get();
+            $cities = $region->cities()->whereNotIn('id', $ids)->orderBy('label')->get();
+        }
+        else {
+            $ids = DB::table('relay_points')->pluck('city_id')->toArray();
+
+            $cities = $region->cities()->whereIn('id', $ids)->orderBy('label')->get();
+        }
 
         return response()->json($cities);
     }

@@ -20,9 +20,9 @@ class AppointmentController extends Controller
     {
         if(isset(Auth::user()->username)) {
             $appointments_done = Appointment::where('done', 1)
-                ->orderBy('user_id')->orderBy('created_at', 'desc')->get();
+                ->orderBy('created_at', 'desc')->get();
             $appointments_not_done = Appointment::where('done', 0)
-                ->orderBy('user_id')->orderBy('created_at', 'desc')->get();
+                ->orderBy('created_at', 'desc')->get();
 
             return view('admin.appointment.index', compact('appointments_done', 'appointments_not_done'));
         } else {

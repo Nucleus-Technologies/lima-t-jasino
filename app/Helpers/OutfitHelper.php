@@ -41,7 +41,13 @@ if (!function_exists('is_wished')) {
         } else {
             $user = Cookie::get('user');
 
-            $check = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
+            if (isset($user)) {
+                $check = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
+            } else {
+                $user = make_cookie_session();
+
+                $check = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
+            }
         }
 
         return isset($check) ? true : false;

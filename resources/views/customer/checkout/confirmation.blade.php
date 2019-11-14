@@ -10,7 +10,11 @@
         <div class="container">
             <h3 class="title_confirmation bg-success">
                 <i class="fas fa-check-circle mr-2"></i>
-                Thank you. Your order has been received.
+                Thank you. Your order has been received. You can print your order <a href="#" class="text-warning text-uppercase" onClick="javascript:window.print()">here</a>.
+            </h3>
+            <h3 class="title_confirmation bg-info">
+                <i class="fas fa-info-circle mr-2"></i>
+                It's important for you to remember/note this order number/ref, because it'll be necessary when you will attempt your appointment on our offices to give your body measures.
             </h3>
             <div class="row order_d_inner">
                 <div class="col-lg-4">

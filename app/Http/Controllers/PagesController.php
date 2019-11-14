@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outfit;
-use Illuminate\Support\Facades\URL;
 
 class PagesController extends Controller
 {

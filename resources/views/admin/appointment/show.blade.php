@@ -94,7 +94,7 @@
                             <hr class="col-12">
 
                             @if (!$messages->isEmpty())
-                                <div class="row mt-2 mb-3 justify-content-center">
+                                <div class="col-12 row mt-2 mb-3 justify-content-center">
                                     <div class="col-12 col-md-8">
                                         <h1 class="mb-5">Conversation</h1>
 

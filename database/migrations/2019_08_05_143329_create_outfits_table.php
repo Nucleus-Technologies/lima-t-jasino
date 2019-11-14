@@ -26,6 +26,9 @@ class CreateOutfitsTable extends Migration
             $table->longText('specification');
             $table->timestamps();
         });
+
+        // Full Text Index
+        DB::statement('ALTER TABLE outfits ADD FULLTEXT fulltext_index (name, category, availibility, description, specification)');
     }
 
     /**

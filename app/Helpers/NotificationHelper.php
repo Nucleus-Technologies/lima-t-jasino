@@ -33,7 +33,7 @@ if (!function_exists('format_sender')) {
 
         switch ($type) {
             case 'user':
-                return 'From ours tailors.';
+                return 'From our managers.';
                 break;
 
             default:

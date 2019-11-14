@@ -145,11 +145,18 @@ function load_cities(region, elt) {
     });
 
     request.done(function(response) {
-        elt.empty();
 
-        response.forEach(city => {
-            elt.append('<option value="' + city['id'] + '">' + city['label'] + '</option>');
-        });
+        if (response.length === 0) {
+            elt.empty();
+
+            elt.append('<option value="">Not Available</option>');
+        } else {
+            elt.empty();
+
+            response.forEach(city => {
+                elt.append('<option value="' + city['id'] + '">' + city['label'] + '</option>');
+            });
+        }
 
         return elt;
     });

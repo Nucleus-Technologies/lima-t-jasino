@@ -28,7 +28,7 @@
             </h2>
 
             <div class="tracking_box_inner d-flex flex-column align-items-center">
-                <p>You must indicate information about your appointment to allow our tailors to better program you and respond to you in the shortest time.</p>
+                <p>You must indicate information about your appointment to allow our managers to better program you and respond to you in the shortest time.</p>
 
                 <form class="row book-appointment-form tracking_form mt-5" action="javascript:void(0)" method="POST" novalidate>
                     @csrf
@@ -67,7 +67,7 @@
                         <input type="time" name="ends_at" placeholder="Define a time..." class="single-input" min="{{ env('OPEN_TIME') }}" max="{{ env('CLOSE_TIME') }}" value="{{ env('CLOSE_TIME') }}" required>
                     </div>
 
-                    <h6>Specifies a message to our tailors
+                    <h6>Specifies a message to our managers
                         <small class="badge badge-warning ml-1">--Important</small>
                     </h6>
                     <div class="col-md-12 form-group mb-4">
