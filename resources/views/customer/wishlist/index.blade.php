@@ -80,7 +80,7 @@
                                                 <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit->id) }}">
                                                 <input type="hidden" name="quantity" value="1">
                                                 <button type="submit" class="btn btn-outline-success btn-sm btn-add-to-cart">
-                                                    <i class="lnr lnr-cart"></i> Add to Cart
+                                                    <i class="fas fa-cart-plus"></i> Add to Cart
                                                 </button>
                                             </form>
 

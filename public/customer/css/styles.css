@@ -647,3 +647,24 @@ form:not(.login_form) .input-group-icon .icon {
     margin-left: 20px;
     transform: rotate(360deg);
 }
+
+
+/* Footer */
+
+.footer-area ul {
+    padding-left: 0;
+}
+
+.footer-area ul.list-delivery {
+    list-style-type: none;
+    margin-left: -14px;
+}
+
+.footer-area ul li {
+    padding-left: 0;
+}
+
+.footer-area ul a {
+    text-transform: uppercase;
+    margin-bottom: 5px !important;
+}

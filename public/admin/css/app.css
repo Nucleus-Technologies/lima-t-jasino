@@ -55,6 +55,32 @@ label.error {
     max-height: 600px;
 }
 
+.table-outfits .avatar {
+    background-color: transparent;
+    height: 28px;
+    width: 28px
+}
+
+.table-outfits .avatar img {
+    border-radius: 0;
+}
+
+.table-outfits .dropdown-menu {
+    padding: 0.5rem;
+}
+
+.table-outfits .dropdown-menu .dropdown-item {
+    display: inline-block;
+    width: 49%;
+    border-radius: 0.4375rem;
+    text-align: center;
+}
+
+.table-outfits .dropdown-menu .dropdown-item>i,
+.table-outfits .dropdown-menu .dropdown-item>svg {
+    margin-right: .4rem;
+}
+
 .outfit-save-form .custom-control {
     display: inline-block;
     margin-left: 25px;

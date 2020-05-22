@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use App\Models\Outfit;
-use App\Models\OutfitPhoto;
 use App\Http\Requests\OutfitRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Traits\Searchable;
+use App\Http\Controllers\Traits\UploadImages;
 
 class OutfitController extends Controller
 {
     use Searchable;
+    use UploadImages;
 
     /**
      * Display a listing of outfits.
@@ -21,7 +22,7 @@ class OutfitController extends Controller
     public function index()
     {
         $outfits = Outfit::orderBy('name')
-            ->paginate(9);
+            ->paginate(8);
 
         $categories = [
             'men',
@@ -88,26 +89,8 @@ class OutfitController extends Controller
             'description' => nl2br($request->description),
             'specification' => $request->specification
         ]);
-
-        $type = Type::find($request->type);
-
-        $slug_type = str_slug($type->label);
-        $slug_category = str_slug($request->category);
-        $slug_name = str_slug($request->name);
-
-        $key = 0;
-        foreach ($request->photos as $photo) {
-            $key++;
-            $filename = $photo->storeAs(
-                $slug_category .'/'. $slug_type,
-                $slug_name . $outfit->id . $key .'.'
-                . $photo->getClientOriginalExtension());
-
-            OutfitPhoto::create([
-                'outfit_id' => $outfit->id,
-                'filename' => $filename
-            ]);
-        }
+        
+        UploadImages::upload($request, $outfit);
 
         if ($outfit) {
             $response = ['msg' => 'Outfit successfully registered!', 'status' => true];

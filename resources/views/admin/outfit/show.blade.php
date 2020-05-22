@@ -58,8 +58,11 @@
                                             </ol>
                                             <div class="carousel-inner">
                                                 @foreach ($outfit->outfitphotos as $img)
+                                                    @php
+                                                        $path = $outfit->category .'/'. $outfit->type->label .'/'. $img->filename;
+                                                    @endphp
                                                     <div class="carousel-item @if ($loop->first) active @endif">
-                                                        <img alt="Image placeholder" src="{{ show_photo($img->filename) }}" class="d-block m-auto">
+                                                        <img alt="Image placeholder" src="{{ show_photo($path) }}" class="d-block m-auto">
                                                     </div>
                                                 @endforeach
                                             </div>

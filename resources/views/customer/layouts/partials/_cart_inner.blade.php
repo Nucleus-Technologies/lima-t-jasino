@@ -52,7 +52,7 @@
 
                                             <input type="hidden" name="outfit" value="{{ crypt_id($line->outfit->id) }}">
                                             <button type="submit" class="btn btn-outline-success btn-sm btn-add-to-wishlist {{ is_wished($line->outfit->id) ? 'active' : '' }}">
-                                                {!! is_wished($line->outfit->id) ? '<i class="fas fa-heart"></i> Added to Wishlist' : '<i class="lnr lnr-heart"></i> Add to Wishlist' !!}
+                                                {!! is_wished($line->outfit->id) ? '<i class="fas fa-heart"></i> Added to Wishlist' : '<i class="fas fa-heart"></i> Add to Wishlist' !!}
                                             </button>
                                         </form>
 
@@ -78,10 +78,10 @@
 
                                 <input type="text" name="quantity" id="sst" maxlength="12" value="{{ $line->quantity }}" title="Quantity:" class="input-text qty">
                                 <button class="increase items-count" type="button">
-                                    <i class="lnr lnr-chevron-up"></i>
+                                    <i class="fas fa-chevron-up"></i>
                                 </button>
                                 <button class="reduced items-count" type="button">
-                                    <i class="lnr lnr-chevron-down"></i>
+                                    <i class="fas fa-chevron-down"></i>
                                 </button>
                             </form>
                         </td>

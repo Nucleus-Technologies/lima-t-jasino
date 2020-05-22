@@ -15818,7 +15818,7 @@ a.btn-icon-only {
 .dropdown-menu .dropdown-item>svg {
   margin-right: 1rem;
   font-size: 1rem;
-  vertical-align: -17%;
+  /*! vertical-align: -17%; */
 }
 
 .dropdown-header {

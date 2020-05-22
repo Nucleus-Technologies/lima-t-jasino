@@ -16,7 +16,9 @@ class CreateOrderLinesTable extends Migration
         Schema::create('order_lines', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->unsignedBigInteger('outfit_id');
+            $table->foreign('outfit_id')->references('id')->on('outfits')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

@@ -12,12 +12,14 @@ if (!function_exists('number_outfit_cart')) {
         if (Auth::check()) {
             return Auth::user()->cart()->where('source', 'in')->sum('quantity');
         } else {
-            $user = Cookie::get('user');
+            if (Cookie::has('user')) {
+                $user = Cookie::get('user');
 
-            if (isset($user)) {
                 return Session::find($user)->cart()->where('source', 'out')->sum('quantity');
             } else {
                 $user = make_cookie_session();
+
+                if ($user == null) return redirect()->route('home');
 
                 return Session::find($user)->cart()->where('source', 'out')->sum('quantity');
             }
@@ -30,12 +32,14 @@ if (!function_exists('subtotal')) {
         if (Auth::check()) {
             $lines = Cart::where('user_id', Auth::user()->id)->where('source', 'in')->get();
         } else {
-            $user = Cookie::get('user');
+            if (Cookie::has('user')) {
+                $user = Cookie::get('user');
 
-            if (isset($user)) {
                 $lines = Cart::where('user_id', Session::find($user)->id)->where('source', 'out')->get();;
             } else {
                 $user = make_cookie_session();
+
+                if ($user == null) return redirect()->route('home');
 
                 $lines = Cart::where('user_id', Session::find($user)->id)->where('source', 'out')->get();;
             }

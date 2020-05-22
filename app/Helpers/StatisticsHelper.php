@@ -41,7 +41,7 @@ if (!function_exists('stat_week_pcent')) {
             $total = Order::count();
         }
 
-        return round_number((total_week($elt, $i) / $total) * 100);
+        return ($total == 0) ? 0 : round_number((total_week($elt, $i) / $total) * 100);
     }
 }
 
@@ -90,7 +90,7 @@ if (!function_exists('stat_month_pcent')) {
             $total = Order::count();
         }
 
-        return round_number((total_month($elt, $i) / $total) * 100);
+        return ($total == 0) ? 0 : round_number((total_month($elt, $i) / $total) * 100);
     }
 }
 

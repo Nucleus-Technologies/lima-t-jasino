@@ -9,12 +9,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('brand/favicon.png') }}" type="image/png">
-
     <title>{{ show_title_admin($title) }}</title>
 
     <!-- Favicon -->
-    <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
+    <link rel="icon" href="{{ asset('brand/favicon-x.png') }}" type="image/png">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">

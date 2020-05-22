@@ -20,6 +20,7 @@ class CreateOutfitsTable extends Migration
             $table->integer('price');
             $table->string('category');
             $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->string('availibility');
             $table->text('context');
             $table->longText('description');

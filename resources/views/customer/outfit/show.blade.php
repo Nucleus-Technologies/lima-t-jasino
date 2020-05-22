@@ -28,17 +28,23 @@
 					<div class="s_product_img">
 						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
-                                @foreach ($outfit->outfitphotos as $idx=>$img)
+								@foreach ($outfit->outfitphotos as $idx=>$img)
+									@php
+										$path = $outfit->category .'/'. $outfit->type->label .'/'. $img->filename;
+									@endphp
                                     <li data-target="#carouselExampleIndicators" data-slide-to="{{ $idx }}" @if ($loop->first) class="active" @endif>
-                                        <img src="{{ show_photo($img->filename) }}" alt="">
+                                        <img src="{{ show_photo($path) }}" alt="">
                                     </li>
                                 @endforeach
                             </ol>
 
 							<div class="carousel-inner">
-                                @foreach ($outfit->outfitphotos as $idx=>$img)
+								@foreach ($outfit->outfitphotos as $idx=>$img)
+									@php
+										$path = $outfit->category .'/'. $outfit->type->label .'/'. $img->filename;
+									@endphp
                                     <div class="carousel-item @if ($loop->first) active @endif">
-                                        <img class="d-block w-100" src="{{ show_photo($img->filename) }}" alt="Slide {{ $idx }}">
+                                        <img class="d-block w-100" src="{{ show_photo($path) }}" alt="Slide {{ $idx }}">
                                     </div>
                                 @endforeach
 							</div>
@@ -70,16 +76,16 @@
                                 <label for="qty">Quantity:</label>
                                 <input type="text" name="quantity" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                                 <button class="increase items-count" type="button">
-                                    <i class="lnr lnr-chevron-up"></i>
+                                    <i class="fas fa-chevron-up"></i>
                                 </button>
                                 <button class="reduced items-count" type="button">
-                                    <i class="lnr lnr-chevron-down"></i>
+                                    <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div><br>
 
                             <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                             <button type="submit" class="main_btn btn-add-to-cart text-uppercase">
-                                <i class="lnr lnr-cart mr-1"></i> Add to Cart
+                                <i class="fas fa-cart-plus mr-1"></i> Add to Cart
                             </button>
                         </form>
 
@@ -87,7 +93,7 @@
                             @csrf
                             <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                             <button type="submit" class="main_btn btn-add-to-wishlist text-uppercase">
-                                <i class="lnr lnr-heart mr-1"></i> Add to Wishlist
+                                <i class="fas fa-heart mr-1"></i> Add to Wishlist
                             </button>
                         </form>
 					</div>

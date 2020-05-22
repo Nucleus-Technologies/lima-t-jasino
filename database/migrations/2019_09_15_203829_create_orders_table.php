@@ -17,8 +17,11 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('ref');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->unsignedBigInteger('relaypoint_id');
+            $table->foreign('relaypoint_id')->references('id')->on('relay_points')->onDelete('cascade');
             $table->boolean('current')->default(false);
             $table->timestamps();
         });

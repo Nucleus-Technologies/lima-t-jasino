@@ -13,10 +13,16 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $outfits = Outfit::orderBy('created_at', 'desc')
-            ->paginate(9);
+        $men_outfits = Outfit::orderBy('created_at', 'desc')
+            ->where('category', 'men')
+            ->offset(0)->limit(10)
+            ->get();
+        $women_outfits = Outfit::orderBy('created_at', 'desc')
+            ->where('category', 'women')
+            ->offset(0)->limit(10)
+            ->get();
 
-        return view('customer.home', compact('outfits'));
+        return view('customer.home', compact('men_outfits', 'women_outfits'));
     }
 
     /**

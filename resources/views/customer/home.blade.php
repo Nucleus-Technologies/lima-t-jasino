@@ -86,32 +86,35 @@
     </section>  --}}
 
     {{-- Feature Product Area --}}
-    <section class="feature_product_area section_gap">
+    <section class="feature_product_area section_gap mb-0 pb-0">
         <div class="main_box">
             <div class="container-fluid">
                 <div class="row">
                     <div class="main_title">
-                        <h2>New Outfits</h2>
-                        <p>Those who are recent and who might interest you; a change of style will do you good.</p>
+                        <h2>Men Outfits</h2>
+                        <p>The recent ones who might surely interest you men; a little change of style for your good.</p>
                     </div>
                 </div>
                 <div class="row">
-                    @if ($outfits->isEmpty())
+                    @if ($men_outfits->isEmpty())
                         <div class="alert alert-primary w-100" role="alert">
                             <strong>Info!</strong> No outfits available!
                         </div>
                     @else
-                        @foreach ($outfits as $outfit)
+                        @foreach ($men_outfits as $outfit)
+                            @php
+                                $path = $outfit->category .'/'. $outfit->type->label .'/'. $outfit->outfitphotos->first()->filename;
+                            @endphp
                             <div class="col col1">
                                 <div class="f_p_item">
                                     <div class="f_p_img">
-                                        <img class="img-fluid" src="{{ show_photo($outfit->outfitphotos->first()->filename) }}" alt="">
+                                        <img class="img-fluid" src="{{ show_photo($path) }}" alt="">
                                         <div class="p_icon d-flex">
                                             <form class="form-add-to-wishlist" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                                                 <button type="submit" class="btn-add-to-wishlist {{ is_wished($outfit->id) ? 'active' : '' }}">
-                                                    {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="lnr lnr-heart"></i>' !!}
+                                                    {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="fas fa-heart"></i>' !!}
                                                 </button>
                                             </form>
 
@@ -120,7 +123,7 @@
                                                 <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                                                 <input type="hidden" name="quantity" value="1">
                                                 <button type="submit" class="btn-add-to-cart">
-                                                    <i class="lnr lnr-cart"></i>
+                                                    <i class="fas fa-cart-plus"></i>
                                                 </button>
                                             </form>
                                         </div>
@@ -134,11 +137,61 @@
                         @endforeach
                     @endif
                 </div>
+            </div>
+        </div>
+    </section>
 
+    {{-- Feature Product Area --}}
+    <section class="feature_product_area section_gap">
+        <div class="main_box">
+            <div class="container-fluid">
                 <div class="row">
-                    <nav class="cat_page mx-auto" aria-label="Page navigation example">
-                        {{ $outfits->links() }}
-                    </nav>
+                    <div class="main_title">
+                        <h2>Women Outfits</h2>
+                        <p>The recent ones who might surely interest you women; a little change of style for your good.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    @if ($women_outfits->isEmpty())
+                        <div class="alert alert-primary w-100" role="alert">
+                            <strong>Info!</strong> No outfits available!
+                        </div>
+                    @else
+                        @foreach ($women_outfits as $outfit)
+                            @php
+                                $path = $outfit->category .'/'. $outfit->type->label .'/'. $outfit->outfitphotos->first()->filename;
+                            @endphp
+                            <div class="col col1">
+                                <div class="f_p_item">
+                                    <div class="f_p_img">
+                                        <img class="img-fluid" src="{{ show_photo($path) }}" alt="">
+                                        <div class="p_icon d-flex">
+                                            <form class="form-add-to-wishlist" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                                                <button type="submit" class="btn-add-to-wishlist {{ is_wished($outfit->id) ? 'active' : '' }}">
+                                                    {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="fas fa-heart"></i>' !!}
+                                                </button>
+                                            </form>
+
+                                            <form class="form-add-to-cart ml-2" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="btn-add-to-cart">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('outfit.show', $outfit) }}">
+                                        <h4>{{ $outfit->name }}</h4>
+                                    </a>
+                                    <h5>@convert($outfit->price)</h5>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

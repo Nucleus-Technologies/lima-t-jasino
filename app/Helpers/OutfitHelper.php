@@ -1,10 +1,7 @@
 <?php
 
 use App\Models\Session;
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('format_availibility')) {
     function format_availibility($availibility) {
@@ -21,8 +18,8 @@ if (!function_exists('show2digits')) {
 }
 
 if (!function_exists('show_photo')) {
-    function show_photo($filename) {
-        return Storage::url($filename);
+    function show_photo($path) {
+        return asset('uploads/' . $path);
     }
 }
 
@@ -39,15 +36,11 @@ if (!function_exists('is_wished')) {
 
             $check = Auth::user()->wishlist()->where('outfit_id', $outfit)->where('source', 'in')->first();
         } else {
-            $user = Cookie::get('user');
+            $user_cookie = get_cookie_session();
 
-            if (isset($user)) {
-                $check = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
-            } else {
-                $user = make_cookie_session();
+            if ($user_cookie == null) return redirect()->route('home');
 
-                $check = Session::find($user)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
-            }
+            $check = Session::find($user_cookie)->wishlist()->where('outfit_id', $outfit)->where('source', 'out')->first();
         }
 
         return isset($check) ? true : false;

@@ -16,8 +16,11 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('outfit_id');
+            $table->foreign('outfit_id')->references('id')->on('outfits')->onDelete('cascade');
             $table->integer('quantity');
+            $table->enum('source', ['in', 'out']);
             $table->timestamps();
         });
     }

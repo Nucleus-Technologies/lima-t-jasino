@@ -9,14 +9,14 @@
 
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset('brand/dark.png') }}" class="navbar-brand-img" alt="...">
+            <img src="{{ asset('brand/logo.png') }}" class="navbar-brand-img" alt="...">
         </a>
 
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item" id="nav-item-notif">
                 <a href="{{ route('admin.notification') }}" class="nav-link nav-link-icon nav-notification">
-                    <i class="ni ni-bell-55"></i>
+                    <i class="fas fa-bell"></i>
 
                     @if (number_notif_unread('admin') != 0)
                         <span class="badge badge-pill badge-danger">
@@ -39,24 +39,24 @@
                         <h6 class="text-overflow m-0">Welcome!</h6>
                     </div>
                     <a href="{{ route('admin.profile') }}" class="dropdown-item {{ set_active_route('admin.profile') }}">
-                        <i class="ni ni-single-02"></i>
+                        <i class="fas fa-user"></i>
                         <span>My profile</span>
                     </a>
                     <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
+                        <i class="fas fa-cogs"></i>
                         <span>Settings</span>
                     </a>
                     <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
+                        <i class="fas fa-calendar-alt"></i>
                         <span>Activity</span>
                     </a>
                     <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
+                        <i class="fas fa-life-ring"></i>
                         <span>Support</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
-                        <i class="ni ni-user-run"></i>
+                        <i class="fas fa-running"></i>
                         <span>Logout</span>
 
                         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
@@ -101,7 +101,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class=" nav-link {{ set_active_route('admin.dashboard') }}" href="{{ route('admin.dashboard') }}"> <i class="ni ni-tv-2 text-primary"></i> Dashboard </a>
+                    <a class=" nav-link {{ set_active_route('admin.dashboard') }}" href="{{ route('admin.dashboard') }}"> <i class="fas fa-tachometer-alt text-primary"></i> Dashboard </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ set_active_route('admin.outfit') }}" href="{{ route('admin.outfit') }}">

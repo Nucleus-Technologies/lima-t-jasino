@@ -87,6 +87,16 @@ if (!function_exists('make_cookie_session')) {
     }
 }
 
+if (!function_exists('get_cookie_session')) {
+    function get_cookie_session() {
+        if (Cookie::has('user')) {
+            return Cookie::get('user');
+        } else {
+            return make_cookie_session();
+        }
+    }
+}
+
 if (!function_exists('convert')) {
     function convert($money) {
         return 'XAF ' . number_format($money, 2, '.', ',');

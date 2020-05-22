@@ -16,7 +16,9 @@ class CreateRelayPointsTable extends Migration
         Schema::create('relay_points', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('region_id');
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('label');
             $table->string('near');
             $table->string('address');

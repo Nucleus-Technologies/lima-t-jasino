@@ -4,7 +4,7 @@ $(function() {
     setInterval(function() {
         $('#nav-item-notif').load(Url["nt_url"], function(response, status, xhr) {
             if (status == "error") {
-                $('#nav-item-notif').html('<a href="{{ route(\'admin.notification\') }}" class="nav-link nav-link-icon nav-notification"><i class="ni ni-bell-55"></i><span class="badge badge-pill badge-secondary"><i class="fas fa-exclamation-triangle"></i></span></a>');
+                $('#nav-item-notif').html('<a href="{{ route(\'admin.notification\') }}" class="nav-link nav-link-icon nav-notification"><i class="fas fa-bell"></i><span class="badge badge-pill badge-secondary"><i class="fas fa-exclamation-triangle"></i></span></a>');
             }
         });
     }, 1000);

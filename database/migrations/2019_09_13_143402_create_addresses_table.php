@@ -26,7 +26,9 @@ class CreateAddressesTable extends Migration
             $table->string('addressline1');
             $table->string('addressline2')->nullable();
             $table->unsignedBigInteger('region_id');
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->integer('zip')->nullable();
             $table->boolean('current')->default(false);
             $table->timestamps();

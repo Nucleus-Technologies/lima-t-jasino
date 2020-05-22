@@ -1,27 +1,57 @@
 <footer class="footer-area section_gap">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3  col-md-6 col-sm-6">
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h6 class="footer_title">About Us</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
+                    <img src="{{ asset('brand/white.png') }}" alt="" width="150" class="mb-4">
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h6 class="footer_title">Newsletter</h6>
-                    <p>Stay updated with our latest trends</p>
-                    <div id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
-                            <div class="input-group d-flex flex-row">
-                                <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                <button class="btn sub-btn">
-                                    <span class="lnr lnr-arrow-right"></span>
-                                </button>
-                            </div>
-                            <div class="mt-10 info"></div>
-                        </form>
-                    </div>
+                    <h6 class="footer_title">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('outfit.shop') }}">Shop</a></li>
+                        <li><a href="{{ route('appointment.create') }}">Book appointment</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title">Outfits Collection</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('collection.men') }}">Men</a></li>
+                        <li><a href="{{ route('collection.women') }}">Women</a></li>
+                        <li><a href="{{ route('collection.weddings') }}">Weddings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title">Users</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('appointment') }}">Cart</a></li>
+                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title">Delivery Zone</h6>
+                    <ul class="list-delivery">
+                        <li><i class="fas fa-map-marker-alt"></i> On the Cameroonian national territory</li>
+                        <li><i class="fas fa-map-marker-alt"></i> At the international level</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title">Payment Mode</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">

@@ -107,7 +107,7 @@
 
                                 @if (isset($min_price) && isset($max_price))
                                     <div class="mt-4">
-                                        You searched for outfits between <strong>@convert($min_price)</strong> and <strong>@convert($max_price)</strong>.
+                                        Research for outfits between <strong>@convert($min_price)</strong> and <strong>@convert($max_price)</strong>.
                                     </div>
                                 @endif
                             </div>
@@ -138,7 +138,7 @@
 
                         @if (isset($min_price) && isset($max_price))
                             <div class="right_page m-auto">
-                                You searched for outfits between <strong>@convert($min_price)</strong> and <strong>@convert($max_price)</strong>.
+                                Research for outfits between <strong>@convert($min_price)</strong> and <strong>@convert($max_price)</strong>.
                             </div>
                         @endif
                     </div>
@@ -150,16 +150,19 @@
                             </div>
                         @else
                             @foreach ($outfits as $outfit)
+                                @php
+                                    $path = $outfit->category .'/'. $outfit->type->label .'/'. $outfit->outfitphotos->first()->filename;
+                                @endphp
                                 <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="f_p_item">
                                         <div class="f_p_img">
-                                            <img class="img-fluid" src="{{ show_photo($outfit->outfitphotos->first()->filename) }}" alt="">
+                                            <img class="img-fluid" src="{{ show_photo($path) }}" alt="">
                                             <div class="p_icon d-flex">
                                                 <form class="form-add-to-wishlist" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                                                     <button type="submit" class="btn-add-to-wishlist {{ is_wished($outfit->id) ? 'active' : '' }}">
-                                                        {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="lnr lnr-heart"></i>' !!}
+                                                        {!! is_wished($outfit->id) ? '<i class="fas fa-heart"></i>' : '<i class="fas fa-heart"></i>' !!}
                                                     </button>
                                                 </form>
 
@@ -168,7 +171,7 @@
                                                     <input type="hidden" name="outfit" value="{{ crypt_id($outfit->id) }}">
                                                     <input type="hidden" name="quantity" value="1">
                                                     <button type="submit" class="btn-add-to-cart">
-                                                        <i class="lnr lnr-cart"></i>
+                                                        <i class="fas fa-cart-plus"></i>
                                                     </button>
                                                 </form>
                                             </div>

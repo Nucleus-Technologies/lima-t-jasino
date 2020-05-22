@@ -767,8 +767,8 @@ a:focus {
 }
 
 .banner_area .banner_inner .banner_content .page_link a:before {
-    content: "\e87a";
-    font-family: 'Linearicons-Free';
+    content: "\f054";
+    font-family: FontAwesome;
     font-size: 14px;
     position: absolute;
     right: -25px;
@@ -6059,10 +6059,10 @@ h6 {
 }
 
 .f_social_wd .f_social a {
-    font-size: 14px;
+    font-size: 30px;
     color: #777777;
     transition: all 0.3s linear;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .f_social_wd .f_social a:hover {
